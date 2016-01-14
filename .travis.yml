@@ -1,0 +1,10 @@
+language: node_js
+node_js: 
+  - "4.1"
+services: mongodb
+before_script:
+  - npm install -g gulp
+script: gulp test
+
+#notifications:
+#  slack: cuponthetop:z2GNywU1vQo5C1A7ndEVaZIs
