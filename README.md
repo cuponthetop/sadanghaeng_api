@@ -25,9 +25,9 @@ setup-dev.sh  ... npm module install 및 pre-commit-hook, pre-push-hook 설정
 
 ## 개발 환경 설정
 
-해당 레포지토리 클론 하시고 (git clone git@github.com:cuponthetop/sadanghaeng_auth.git)
+해당 레포지토리 클론 하시고 (git clone git@github.com:cuponthetop/sadanghaeng_api.git)
 
-cd sadanghaeng_auth
+cd sadanghaeng_api
 
 *NIX 환경 터미널에서
 ./setup-dev.sh
