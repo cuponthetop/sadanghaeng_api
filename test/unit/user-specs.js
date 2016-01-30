@@ -8,15 +8,10 @@ describe('UserController',function(){
     describe('#getUser', function() {
         it('respond with json', function(done){
             request(app)
-                .get('/user/'+'test')
+                .get('/api/v1/user/'+'test')
                 .set('Accept', 'application/json')
-                .expect('Content-Type', /json/)
-                .expect(200, done)
                 .end(function(err, res){
-                    if (err) {
-                        return done(err);
-                    }
-                    expect(res.body.name).to.exist;
+                    expect(res.body.name).to.equal('test');
                     done();
                 });
         });
