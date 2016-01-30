@@ -15,3 +15,6 @@ build/Release
 node_modules
 
 .vscode
+.idea
+
+.idea/vcs.xml
