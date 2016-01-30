@@ -9,7 +9,6 @@ var nodeEnv = process.env.NODE_ENV || 'development';
 var config = { 
   db: '', 
   session: '',
-  auth: '',
   user: ''
 };
 
