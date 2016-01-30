@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-  uri: 'mongodb://172.17.0.1/',
+  uri: 'mongodb://localhost/',
   dbName: 'sadanghaeng-auth',
   username: '',
   password: ''
