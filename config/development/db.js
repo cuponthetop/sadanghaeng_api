@@ -2,7 +2,7 @@
 
 module.exports = {
   uri: 'mongodb://localhost/',
-  dbName: 'sadanghaeng-auth',
+  dbName: 'garim',
   username: '',
   password: ''
 };
