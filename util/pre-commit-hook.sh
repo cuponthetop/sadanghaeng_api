@@ -1,6 +1,7 @@
 #!/bin/sh
 set +e
 echo "Linting..."
+gulp="./node_modules/.bin/gulp"
 out=$($gulp lint 2>&1)
 status=$?
 if [ "$status" != "0" ]; then
@@ -8,7 +9,7 @@ if [ "$status" != "0" ]; then
     exit $status
 fi
 echo "Running unit tests..."
-mocha=mocha
+mocha="./node_modules/.bin/mocha"
 out=$($mocha --recursive test/unit/ 2>&1)
 status=$?
 if [ "$status" != "0" ]; then

@@ -62,8 +62,9 @@ setup_general() {
         echo "* Linking git hooks"
         run_cmd rm -rf "$(pwd)"/.git/hooks/pre-commit
         run_cmd rm -rf "$(pwd)"/.git/hooks/pre-push
-        run_cmd ln -s "$(pwd)"/test/pre-commit-hook.sh "$(pwd)"/.git/hooks/pre-commit
-        run_cmd ln -s "$(pwd)"/test/pre-push-hook.sh "$(pwd)"/.git/hooks/pre-push
+
+        run_cmd ln -sf "$(pwd)"/util/pre-commit-hook.sh "$(pwd)"/.git/hooks/pre-commit
+        run_cmd ln -sf "$(pwd)"/util/pre-push-hook.sh "$(pwd)"/.git/hooks/pre-push
     else
         echo "* Nothing to do, not a git repo"
     fi

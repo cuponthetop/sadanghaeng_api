@@ -11,7 +11,7 @@ var gulp = require('gulp'),
     runSequence = Q.denodeify(require('run-sequence'))
     ;
 
-var JS_SOURCES = ['*.js', 'lib/**/*.js', 'test/**/*.js', 'util/**/*.js'];
+var JS_SOURCES = ['*.js', 'lib/**/*.js', 'test/**/*.js', 'util/**/*.js', 'config/**/*.js'];
 
 gulp.task('jshint', function () {
   return gulp.src(JS_SOURCES)
