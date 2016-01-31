@@ -8,15 +8,14 @@
    describe('#getUser', function () {
      it('respond with json', function (done) {
        request(app)
-         .get('/api/v1/users/' + 'test')
+         .get('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
          .set('Accept', 'application/json')
          .end(function (err, res) {
-           expect(res.body.name).to.equal('test');
+           console.log(JSON.stringify(res));
+           expect(res.body.value.email).to.equal('test@gmail.com');
            done();
          });
      });
    });
-
-
  });
 

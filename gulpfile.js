@@ -6,10 +6,13 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     jshintStylish = require('jshint-stylish'),
     jscs = require('gulp-jscs'),
+    // mongodb = require('mongodb').MongoClient,
     Q = require('q'),
     _ = require('underscore'),
     runSequence = Q.denodeify(require('run-sequence'))
     ;
+
+// var config = require('./config/config');
 
 var JS_SOURCES = ['*.js', 'lib/**/*.js', 'util/**/*.js', 'config/**/*.js'];
 
@@ -28,7 +31,7 @@ gulp.task('jscs', function () {
 function generateMochaOpts() {
   return {
     flags: {
-      u: 'bdd-with-opts',
+      //u: 'bdd-with-opts',
       R: process.env.MOCHA_REPORTER || 'nyan',
       'c': true
     },
@@ -37,6 +40,48 @@ function generateMochaOpts() {
     concurrency: 5
   };
 }
+
+// gulp.task('init-mongo-universitys', function () {
+//   return gulp.src('test/init/json/universitys.json')
+//     .pipe(mongoData({
+//       mongoUrl: config.db.uri + config.db.dbName,
+//       collectionName: 'universitys',
+//       dropCollection: true
+//     }));
+// });
+
+// gulp.task('init-mongo-users', function () {
+//   return gulp.src('test/init/json/users.json')
+//     .pipe(mongoData({
+//       mongoUrl: config.db.uri + config.db.dbName,
+//       collectionName: 'users',
+//       dropCollection: true
+//     }));
+// });
+
+// gulp.task('init-mongo-posts', function () {
+//   return gulp.src('test/init/json/posts.json')
+//     .pipe(mongoData({
+//       mongoUrl: config.db.uri + config.db.dbName,
+//       collectionName: 'posts',
+//       dropCollection: true
+//     }));
+// });
+
+// gulp.task('init-mongo-comments', function () {
+//   return gulp.src('test/init/json/comments.json')
+//     .pipe(mongoData({
+//       mongoUrl: config.db.uri + config.db.dbName,
+//       collectionName: 'comments',
+//       dropCollection: true
+//     }));
+// });
+
+gulp.task('init-mongo', function () {
+  return ;
+  // return runSequence('init-mongo-universitys', 'init-mongo-users'
+  // , 'init-mongo-posts', 'init-mongo-comments');
+});
 
 gulp.task('test-unit', function () {
   var opts = generateMochaOpts();
@@ -48,7 +93,7 @@ gulp.task('test-unit', function () {
 });
 
 gulp.task('test', function () {
-  return runSequence('test-unit');
+  return runSequence('init-mongo', 'test-unit');
 });
 
 gulp.task('lint', ['jshint', 'jscs']);

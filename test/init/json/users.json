@@ -1,17 +1,15 @@
-{
-  "_id": ObjectId("11bc6f7b9b0d0b0457673daf"),
-  "email": "test@gmail.com",
-
-  "hashed_password": "ABCDEFGPASSWORD",
-  "verified": true,
-
-  "reset_token": "ABCDEFGRESET",
-  "reset_token_expires": "2016-06-30T06:00:00.000Z",
-  "verify_token": "ABCDEFGVERIFY",
-  "verify_token_expires": "2016-06-30T06:00:00.000Z",
-
-  "univID": ObjectId("56ac6f7b9b0d0b0457673daf"),
-  "memberSince": "2016-01-01T08:11:10.000Z",
-
-  "reportCounts": 0
-}
+[
+  {
+    _id: ObjectId("11bc6f7b9b0d0b0457673daf"),
+    email: "test@gmail.com",
+    hashed_password: "ABCDEFGPASSWORD",
+    verified: true,
+    reset_token: "ABCDEFGRESET",
+    reset_token_expires: "2016-06-30T06:00:00.000Z",
+    verify_token: "ABCDEFGVERIFY",
+    verify_token_expires: "2016-06-30T06:00:00.000Z",
+    univID: ObjectId("56ac6f7b9b0d0b0457673daf"),
+    memberSince: "2016-01-01T08:11:10.000Z",
+    reportCounts: 0
+  }
+]
