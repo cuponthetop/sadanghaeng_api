@@ -18,7 +18,7 @@ rm -rf apidoc/
 
 cp -r apidocout apidoc
 
-git add apidoc
+git add apidoc/
 
 git commit -m "api doc update"
 
