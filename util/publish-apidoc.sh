@@ -14,7 +14,7 @@ fi
 # change to gh-pages branch
 git checkout gh-pages
 
-rm -rf apidoc/
+git rm -rf apidoc/
 
 cp -r apidocout apidoc
 
