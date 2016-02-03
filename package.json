@@ -23,6 +23,7 @@
     "winston": "^2.1.1"
   },
   "devDependencies": {
+    "apidoc": "^0.14.0",
     "chai": "^3.5.0",
     "gulp": "^3.9.0",
     "gulp-jscs": "^3.0.2",
@@ -49,6 +50,6 @@
   "homepage": "https://github.com/cuponthetop/sadanghaeng_auth#readme",
   "apidoc": {
     "title": "Custom apiDoc browser title",
-    "url" : "https://api.github.com/v1"
+    "url": "https://api.github.com/v1"
   }
 }
