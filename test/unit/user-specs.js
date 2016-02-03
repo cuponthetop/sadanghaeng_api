@@ -4,7 +4,7 @@ process.env.NODE_ENV = 'test';
 
  var request = require('supertest');
  var expect = require('chai').expect;
- var app = require('../../lib/server/server');
+ var app = require('../../lib/server/test-server');
 
  describe('UserController', function () {
    describe('#getUser', function () {
