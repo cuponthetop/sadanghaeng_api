@@ -1,3 +1,12 @@
 [
-  
+  {
+    "_id": "77ac6f7b9b0d0b0457673daf",
+    "text": "test comment 1",
+    "author": "11bc6f7b9b0d0b0457673daf",
+    "postID": "34bc6f7b9b0d0b0457673daf",
+    "univID": "56ac6f7b9b0d0b0457673daf",
+    "written": "2016-01-02T08:11:10.000Z",
+    "edited": "2016-01-02T08:11:10.000Z",
+    "votes": []
+  }
 ]

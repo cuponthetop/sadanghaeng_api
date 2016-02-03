@@ -1,7 +1,7 @@
 [
   {
     "_id": "11bc6f7b9b0d0b0457673daf",
-    "email": "test@gmail.com",
+    "email": "test@test.com",
     "nickname": "test",
     "hashed_password": "ABCDEFGPASSWORD",
     "verified": true,
