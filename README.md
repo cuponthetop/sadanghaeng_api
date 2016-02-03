@@ -45,4 +45,4 @@ master 브랜치에 force-push 하지 못하게 막아요
 - 테스트 DB에 데이터 넣기
 node test/init/test-init.js
 - 테스트 데이터로 서버 띄우기
-node server.js test
+node lib/server/server.js test
