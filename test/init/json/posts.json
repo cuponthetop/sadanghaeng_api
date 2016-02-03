@@ -1,11 +1,11 @@
 [
   {
-    "_id": ObjectId("34bc6f7b9b0d0b0457673daf"),
+    "_id": "34bc6f7b9b0d0b0457673daf",
     "title": "Test Post1",
     "text": "11Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text",
 
-    "author": ObjectId("11bc6f7b9b0d0b0457673daf"),
-    "university": ObjectId("56ac6f7b9b0d0b0457673daf"),
+    "author": "11bc6f7b9b0d0b0457673daf",
+    "university": "56ac6f7b9b0d0b0457673daf",
 
     "written": "2016-01-01T08:11:10.000Z",
     "edited": "2016-01-01T08:11:10.000Z",
@@ -14,12 +14,12 @@
     "comments": []
   },
   {
-    "_id": ObjectId("35bc6f7b9b0d0b0457673daf"),
+    "_id": "35bc6f7b9b0d0b0457673daf",
     "title": "Test Post2",
     "text": "22Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text",
 
-    "author": ObjectId("11bc6f7b9b0d0b0457673daf"),
-    "university": ObjectId("56ac6f7b9b0d0b0457673daf"),
+    "author": "11bc6f7b9b0d0b0457673daf",
+    "university": "56ac6f7b9b0d0b0457673daf",
 
     "written": "2016-01-02T08:11:10.000Z",
     "edited": "2016-01-02T08:11:10.000Z",
@@ -28,12 +28,12 @@
     "comments": []
   },
   {
-    "_id": ObjectId("36bc6f7b9b0d0b0457673daf"),
+    "_id": "36bc6f7b9b0d0b0457673daf",
     "title": "Test Post3",
     "text": "33Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text",
 
-    "author": ObjectId("11bc6f7b9b0d0b0457673daf"),
-    "university": ObjectId("56ac6f7b9b0d0b0457673daf"),
+    "author": "11bc6f7b9b0d0b0457673daf",
+    "university": "56ac6f7b9b0d0b0457673daf",
 
     "written": "2016-01-03T08:11:10.000Z",
     "edited": "2016-01-03T08:11:10.000Z",
@@ -42,12 +42,12 @@
     "comments": []
   },
   {
-    "_id": ObjectId("37bc6f7b9b0d0b0457673daf"),
+    "_id": "37bc6f7b9b0d0b0457673daf",
     "title": "Test Post4",
     "text": "44Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text",
 
-    "author": ObjectId("11bc6f7b9b0d0b0457673daf"),
-    "university": ObjectId("56ac6f7b9b0d0b0457673daf"),
+    "author": "11bc6f7b9b0d0b0457673daf",
+    "university": "56ac6f7b9b0d0b0457673daf",
 
     "written": "2016-01-04T08:11:10.000Z",
     "edited": "2016-01-04T08:11:10.000Z",
