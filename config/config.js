@@ -6,8 +6,8 @@ var path = require('path')
 
 var nodeEnv = process.env.NODE_ENV || 'development';
 
-var config = { 
-  db: '', 
+var config = {
+  db: '',
   session: '',
   user: ''
 };
