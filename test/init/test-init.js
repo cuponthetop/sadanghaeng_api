@@ -13,6 +13,7 @@ mongoose.connect(dbUri, dbOptions);
 var Post = require('../../lib/model/post');
 var User = require('../../lib/model/user');
 var PostData = require('./json/posts.json');
+var UserData = require('./json/users.json');
 
 function clearTestDb() {
     return Q.all([
@@ -23,7 +24,8 @@ function clearTestDb() {
 
 function insertTestDb() {
     return Q.all([
-        Post.create(PostData)
+        Post.create(PostData),
+        User.create(UserData)
     ]);
 }
 
