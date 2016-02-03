@@ -18,13 +18,13 @@ git rm -rf apidoc/
 
 cp -r apidocout apidoc
 
-git add apidoc/
-
-git commit -m "api doc update"
-
-git push origin gh-pages
-
-# change to original branch
-git checkout $BRANCH
-
-rm -rf apidocout/
+#git add apidoc/
+#
+#git commit -m "api doc update"
+#
+#git push origin gh-pages
+#
+## change to original branch
+#git checkout $BRANCH
+#
+#rm -rf apidocout/
