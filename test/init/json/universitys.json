@@ -3,6 +3,6 @@
     "_id": "56ac6f7b9b0d0b0457673daf",
     "name": "testUniv",
     "displayName": "testUniv",
-    "emailFormatList": ["test.com", "test2.com"]
+    "emailDomainList": ["test.com", "test2.com"]
   }
 ]

@@ -6,13 +6,12 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     jshintStylish = require('jshint-stylish'),
     jscs = require('gulp-jscs'),
-    // mongodb = require('mongodb').MongoClient,
+    // mongoData = require('gulp-mongodb-data'),
     Q = require('q'),
     _ = require('underscore'),
+    //mongoInit = require('./test/init/test-init'),
     runSequence = Q.denodeify(require('run-sequence'))
     ;
-
-// var config = require('./config/config');
 
 var JS_SOURCES = ['*.js', 'lib/**/*.js', 'util/**/*.js', 'config/**/*.js'];
 
@@ -42,6 +41,10 @@ function generateMochaOpts() {
 }
 
 // gulp.task('init-mongo-universitys', function () {
+  
+//   process.env.NODE_ENV = 'test';
+//   var config = require('./config/config');
+  
 //   return gulp.src('test/init/json/universitys.json')
 //     .pipe(mongoData({
 //       mongoUrl: config.db.uri + config.db.dbName,
@@ -51,6 +54,10 @@ function generateMochaOpts() {
 // });
 
 // gulp.task('init-mongo-users', function () {
+  
+//   process.env.NODE_ENV = 'test';
+//   var config = require('./config/config');
+  
 //   return gulp.src('test/init/json/users.json')
 //     .pipe(mongoData({
 //       mongoUrl: config.db.uri + config.db.dbName,
@@ -60,6 +67,10 @@ function generateMochaOpts() {
 // });
 
 // gulp.task('init-mongo-posts', function () {
+  
+//   process.env.NODE_ENV = 'test';
+//   var config = require('./config/config');
+  
 //   return gulp.src('test/init/json/posts.json')
 //     .pipe(mongoData({
 //       mongoUrl: config.db.uri + config.db.dbName,
@@ -69,6 +80,10 @@ function generateMochaOpts() {
 // });
 
 // gulp.task('init-mongo-comments', function () {
+  
+//   process.env.NODE_ENV = 'test';
+//   var config = require('./config/config');
+  
 //   return gulp.src('test/init/json/comments.json')
 //     .pipe(mongoData({
 //       mongoUrl: config.db.uri + config.db.dbName,
@@ -78,15 +93,17 @@ function generateMochaOpts() {
 // });
 
 gulp.task('init-mongo', function () {
-  return ;
   // return runSequence('init-mongo-universitys', 'init-mongo-users'
   // , 'init-mongo-posts', 'init-mongo-comments');
+
+   //mongoInit().then(cb);
+   return ;
 });
 
 gulp.task('test-unit', function () {
   var opts = generateMochaOpts();
   var mocha = mochaStream(opts);
-  
+
   return gulp.src('test/unit/**/*-specs.js', {read: false})
     .pipe(mocha)
     .on('error', console.warn.bind(console));
