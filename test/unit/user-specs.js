@@ -14,7 +14,7 @@ process.env.NODE_ENV = 'test';
          .set('Accept', 'application/json')
          .end(function (err, res) {
            console.log(JSON.stringify(res));
-           expect(res.body.value.email).to.equal('test@gmail.com');
+           expect(res.body.value.email).to.equal('test@test.com');
            done();
          });
      });
