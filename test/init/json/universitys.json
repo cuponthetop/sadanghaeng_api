@@ -4,5 +4,12 @@
     "name": "testUniv",
     "displayName": "testUniv",
     "emailDomainList": ["test.com", "test2.com"]
+  },
+  
+  {
+    "_id": "17ac6f7b9b0d0b0457673daa",
+    "name": "testUniv2",
+    "displayName": "testUniv2",
+    "emailDomainList": ["test2.com"]
   }
 ]
