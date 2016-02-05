@@ -30,8 +30,7 @@ gulp.task('jscs', function () {
 function generateMochaOpts() {
   return {
     flags: {
-      //u: 'bdd-with-opts',
-      R: process.env.MOCHA_REPORTER || 'nyan',
+      R: process.env.MOCHA_REPORTER || 'spec',
       'c': true
     },
     env: _.clone(process.env),
@@ -109,8 +108,17 @@ gulp.task('test-unit', function () {
     .on('error', console.warn.bind(console));
 });
 
+gulp.task('test-api', function () {
+  var opts = generateMochaOpts();
+  var mocha = mochaStream(opts);
+
+  return gulp.src('test/api/**/*-specs.js', {read: false})
+    .pipe(mocha)
+    .on('error', console.warn.bind(console));
+});
+
 gulp.task('test', function () {
-  return runSequence('init-mongo', 'test-unit');
+  return runSequence('init-mongo', 'test-unit', 'test-api');
 });
 
 gulp.task('lint', ['jshint', 'jscs']);

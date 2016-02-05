@@ -34,7 +34,7 @@ describe('UniversityController', () => {
         .notify(done);
     });
 
-    it('should reject invalid email address 2', (done) => {
+    it('should reject more badass email address', (done) => {
       UnivCtrl.getUniversityFromEmail('shouldreject@shouldreject@shouldreject.com')
         .should.be.rejectedWith('not valid email address')
         .notify(done);
