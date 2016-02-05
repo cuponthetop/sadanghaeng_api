@@ -39,6 +39,7 @@
     "supertest": "^1.1.0"
   },
   "scripts": {
+    "start": "node lib/server/server.js",
     "test": "gulp test"
   },
   "repository": {
