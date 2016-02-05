@@ -2,7 +2,7 @@
   "name": "sadanghaeng_api",
   "version": "0.0.1",
   "description": "sadanghaeng_api",
-  "main": "main.js",
+  "main": "server.js",
   "directories": {
     "test": "test"
   },
