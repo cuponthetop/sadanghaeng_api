@@ -5,6 +5,7 @@ services: mongodb
 before_script:
   - npm install -g gulp
 script: 
+  - node test/init/test-init.js
   - npm start &
   - gulp test
 env:
