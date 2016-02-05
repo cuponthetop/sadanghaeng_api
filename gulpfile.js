@@ -36,7 +36,7 @@ function generateMochaOpts() {
     },
     env: _.clone(process.env),
     bin: path.join(__dirname,  'node_modules/.bin/mocha'),
-    concurrency: 5
+    concurrency: 1
   };
 }
 

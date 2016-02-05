@@ -26,6 +26,8 @@
   "devDependencies": {
     "apidoc": "^0.14.0",
     "chai": "^3.5.0",
+    "chai-as-promised": "^5.2.0",
+    "colors": "^1.1.2",
     "gulp": "^3.9.0",
     "gulp-jscs": "^3.0.2",
     "gulp-jshint": "^2.0.0",
