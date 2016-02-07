@@ -2,13 +2,12 @@
 process.env.NODE_ENV = 'test';
 
 var chai = require('../../helper/setup-chai')
-  , should = chai.should()
-  , request = require('supertest')('http://localhost:3001')
+  , status = require('../../../lib/server/status')
+  , request = require('supertest-session')('http://localhost:3001')
+  // , request = require('supertest')('http://localhost:3001')
   ;
 
 describe('User API Auth', () => {
-  var refreshToken = '';
-  var accessToken = '';
 
   describe('#access without token', () => {
     it('should not permit access to generateResetToken for user without a valid access token', (done) => {
@@ -18,8 +17,8 @@ describe('User API Auth', () => {
         .expect(200)
         .end((err, res) => {
           res.body
-            .should.have.property('status', 401).and
-            .notify(done);
+            .should.have.property('status', status.codes.UserAuthRequired.code);
+          done();
         });
     });
   });
@@ -36,9 +35,10 @@ describe('User API Auth', () => {
         .expect(400)
         .end((err, res) => {
           res.body
-            .should.have.property('status', 400).and
-            .should.have.property('message')
-            .notify(done);
+            .should.have.property('status', status.codes.UserCredentialsNotMatch.code);
+          res.body.value
+            .should.have.property('message');
+          done();
         });
     });
 
@@ -51,13 +51,9 @@ describe('User API Auth', () => {
         })
         .expect(200)
         .end((err, res) => {
-          accessToken = res.body.value.access_token;
-          refreshToken = res.body.value.refresh_token;
-
-          res.body.value
-            .should.have.property('access_token').and
-            .should.have.property('refresh_token')
-            .notify(done);
+          res.body
+            .should.have.property('status', 0);
+          done();
         });
     });
 
@@ -72,8 +68,8 @@ describe('User API Auth', () => {
         .expect(200)
         .end((err, res) => {
           res.body
-            .should.have.property('status', 0).and
-            .notify(done);
+            .should.have.property('status', 0);
+          done();
         });
     });
   });
@@ -89,8 +85,8 @@ describe('User API Auth', () => {
         .expect(200)
         .end((err, res) => {
           res.body
-            .should.have.property('status', 0).and
-            .notify(done);
+            .should.have.property('status', 0);
+          done();
         });
     });
   });
@@ -100,27 +96,26 @@ describe('User API Auth', () => {
 
       request
         .post('/api/v1/users/logout')
-        .send({})
         .expect(200)
         .end((err, res) => {
+          console.log(err);
           res.body
-            .should.have.property('status', 0).and
-            .notify(done);
+            .should.have.property('status', 0);
+          done();
           // test for invalidating session
         });
     });
 
 
-    it('should do nothing when non-logged-in user tries to logout', (done) => {
+    it('should do nothing when non-logged-in user tries to logout but notify client', (done) => {
 
       request
         .post('/api/v1/users/logout')
-        .send({})
         .expect(200)
         .end((err, res) => {
           res.body
-            .should.have.property('status', 0).and
-            .notify(done);
+            .should.have.property('status', status.codes.UserLoggingOutWhenNotLoggedIn.code);
+          done();
         });
     });
   });
