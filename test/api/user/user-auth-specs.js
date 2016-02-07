@@ -32,7 +32,7 @@ describe('User API Auth', () => {
           email: 'test@test.com',
           password: 'definitelywrongpassword',
         })
-        .expect(400)
+        .expect(500)
         .end((err, res) => {
           res.body
             .should.have.property('status', status.codes.UserCredentialsNotMatch.code);
@@ -98,7 +98,6 @@ describe('User API Auth', () => {
         .post('/api/v1/users/logout')
         .expect(200)
         .end((err, res) => {
-          console.log(err);
           res.body
             .should.have.property('status', 0);
           done();
@@ -111,7 +110,7 @@ describe('User API Auth', () => {
 
       request
         .post('/api/v1/users/logout')
-        .expect(200)
+        .expect(500)
         .end((err, res) => {
           res.body
             .should.have.property('status', status.codes.UserLoggingOutWhenNotLoggedIn.code);
