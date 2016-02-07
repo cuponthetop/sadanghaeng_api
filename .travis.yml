@@ -5,8 +5,14 @@ services: mongodb
 before_script:
   - npm install -g gulp
 script: 
+  - git clone --branch=master https://github.com/cuponthetop/sadanghaeng_auth.git
+  - cd sadanghaeng_auth
+  - npm install
   - node test/init/test-init.js
-  - npm start &
+  - node lib/server/server.js &
+  - cd ..
+  - node test/init/test-init.js
+  - node lib/server/server.js &
   - gulp test
 env:
   - NODE_ENV=test CXX=g++-4.8

@@ -6,50 +6,45 @@ var chai = require('../../helper/setup-chai');
 var CommentCtrl = require('../../../lib/controller/comment');
 
 describe('CommentController', () => {
-	describe('#getCommentsOnPost', () => {
-		
-		var config = require('../../../config/config');
-		var mongoose = require('mongoose');
-		var wasConnected = mongoose.connection.readyState;
+  describe('#getCommentsOnPost', () => {
 
-		before(() => {
-			if(wasConnected === 0 || wasConnected === 3) {
+    var config = require('../../../config/config');
+    var mongoose = require('mongoose');
+    var wasConnected = mongoose.connection.readyState;
 
-				// 몽고 db 연결
-				var dbUri = config.db.uri + config.db.dbName;
-				var dbOptions = { username: config.db.username, password: config.db.password };
-				mongoose.connect(dbUri);
-			}
-		});
+    before(() => {
+      // 몽고 db 연결
+      var dbUri = config.db.uri + config.db.dbName;
+      var dbOptions = { username: config.db.username, password: config.db.password };
+      mongoose.connect(dbUri, dbOptions);
+    });
 
-		after(() => {
-			if(wasConnected === 0) {
-				mongoose.disconnect();
-			}
-		});
+    after(() => {
+      mongoose.disconnect();
+    });
 
-		it('should reject an invalid post ID', (done) => {
-			CommentCtrl.getCommentsOnPost('34bc6f7b9b0d0b0457673dad') // pid 맨끝자리를 f에서 d로 바꿈
-				.should.be.rejectedWith('not valid post ID(pid)')
-				.notify(done);
-		});
+    // it('should reject an invalid post ID', (done) => {
+    //   CommentCtrl.getCommentsOnPost('34bc6f7b9b0d0b0457673dad') // pid 맨끝자리를 f에서 d로 바꿈
+    //     .should.be.rejectedWith('not valid post ID(pid)')
+    //     .notify(done);
+    // });
 
-		it('should return right comments' (done) => {
-			CommentCtrl.getCommentsOnPost('34bc6f7b9b0d0b0457673daf')
-			.should.eventually.equal('77ac6f7b9b0d0b0457673daf');
-			.notify(done);
-		});
+    // it('should return right comments', (done) => {
+    //   CommentCtrl.getCommentsOnPost('34bc6f7b9b0d0b0457673daf')
+    //     .should.eventually.equal('77ac6f7b9b0d0b0457673daf')
+    //     .notify(done);
+    // });
 
-	});
+  });
 
-	describe('removeComment', () => {
+  describe('removeComment', () => {
 
-	});
+  });
 
-	describe('reportComment', () => {
+  describe('reportComment', () => {
 
-	});
-	
+  });
+
 });
 
 // ~/test/init/json/comments.js

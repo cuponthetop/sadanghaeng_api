@@ -13,10 +13,8 @@ describe('User API Auth', () => {
   describe('#access without token', () => {
     it('should not permit access to generateResetToken for user without a valid access token', (done) => {
       request
-        .get('/api/v1/users/password_reset')
-        .send({
-          id: '11bc6f7b9b0d0b0457673daf'
-        })
+        .get('/api/v1/users/11bc6f7b9b0d0b0457673daf')
+        .send({})
         .expect(200)
         .end((err, res) => {
           res.body
@@ -69,10 +67,8 @@ describe('User API Auth', () => {
   describe('#access with token', () => {
     it('should allow access to generateResetToken', (done) => {
       request
-        .get('/api/v1/users/password_reset')
-        .send({
-          id: '11bc6f7b9b0d0b0457673daf'
-        })
+        .get('/api/v1/users/11bc6f7b9b0d0b0457673daf')
+        .send({})
         .expect(200)
         .end((err, res) => {
           res.body
@@ -88,10 +84,8 @@ describe('User API Auth', () => {
       // wait till access token gets invalidated
 
       request
-        .get('/api/v1/users/password_reset')
-        .send({
-          id: '11bc6f7b9b0d0b0457673daf'
-        })
+        .get('/api/v1/users/11bc6f7b9b0d0b0457673daf')
+        .send({})
         .expect(200)
         .end((err, res) => {
           res.body
@@ -112,7 +106,6 @@ describe('User API Auth', () => {
           res.body
             .should.have.property('status', 0).and
             .notify(done);
-            
           // test for invalidating session
         });
     });
