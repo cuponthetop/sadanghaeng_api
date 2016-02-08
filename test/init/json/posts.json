@@ -10,7 +10,7 @@
     "written": "2016-01-01T08:11:10.000Z",
     "edited": "2016-01-01T08:11:10.000Z",
 
-    "votes": [],
+    "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "type": "up" }],
     "comments": ["77ac6f7b9b0d0b0457673daf"]
   },
   {
@@ -24,7 +24,7 @@
     "written": "2016-01-02T08:11:10.000Z",
     "edited": "2016-01-02T08:11:10.000Z",
 
-    "votes": [],
+    "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "type": "down" }],
     "comments": []
   },
   {
@@ -38,7 +38,7 @@
     "written": "2016-01-03T08:11:10.000Z",
     "edited": "2016-01-03T08:11:10.000Z",
 
-    "votes": [],
+    "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "type": "report" }],
     "comments": []
   },
   {

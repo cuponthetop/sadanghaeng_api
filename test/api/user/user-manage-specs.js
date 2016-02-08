@@ -26,6 +26,8 @@ describe('User API Manage', () => {
         .get('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
       //.set('Accept', 'application/json')
         .end((err, res) => {
+          console.log(err);
+          console.log(JSON.stringify(res));
           expect(res.body.value.email).to.equal('test@test.com');
           done();
         });

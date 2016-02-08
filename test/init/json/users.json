@@ -5,10 +5,16 @@
     "nickname": "test",
     "hashed_password": "$2a$10$aZB36UooZpL.fAgbQVN/j.pfZVVvkHxEnj7vfkVSqwBOBZbB/IAAK",
     "verified": true,
-    "reset_token": "ABCDEFGRESET",
-    "reset_token_expires": "2016-06-30T06:00:00.000Z",
-    "verify_token": "ABCDEFGVERIFY",
-    "verify_token_expires": "2016-06-30T06:00:00.000Z",
+    "univID": "56ac6f7b9b0d0b0457673daf",
+    "memberSince": "2016-01-01T08:11:10.000Z",
+    "reportCounts": "0"
+  }, 
+  {
+    "_id": "21bc6f7b900d0aa457673daf",
+    "email": "test2@test.com",
+    "nickname": "test2",
+    "hashed_password": "$2a$10$aZB36UooZpL.fAgbQVN/j.pfZVVvkHxEnj7vfkVSqwBOBZbB/IAAK",
+    "verified": true,
     "univID": "56ac6f7b9b0d0b0457673daf",
     "memberSince": "2016-01-01T08:11:10.000Z",
     "reportCounts": "0"
