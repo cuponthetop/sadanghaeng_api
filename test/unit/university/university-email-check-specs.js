@@ -41,8 +41,8 @@ describe('UniversityController', () => {
     });
 
     it('should reject email domain where no university accepts', (done) => {
-      UnivCtrl.getUniversityFromEmail('test@test3.com')
-        .should.be.rejectedWith('none of universities we support have ' + 'test3.com')
+      UnivCtrl.getUniversityFromEmail('test@surelynosuchdomaingetsaccepted.com')
+        .should.be.rejectedWith('none of universities we support have ' + 'surelynosuchdomaingetsaccepted.com')
         .notify(done);
     });
 

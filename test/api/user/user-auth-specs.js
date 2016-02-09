@@ -4,7 +4,6 @@ process.env.NODE_ENV = 'test';
 var chai = require('../../helper/setup-chai')
   , status = require('../../../lib/server/status')
   , request = require('supertest-session')('http://localhost:3001')
-  // , request = require('supertest')('http://localhost:3001')
   ;
 
 describe('User API Auth', () => {
@@ -16,8 +15,7 @@ describe('User API Auth', () => {
         .send({})
         .expect(200)
         .end((err, res) => {
-          res.body
-            .should.have.property('status', status.codes.UserAuthRequired.code);
+          res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
           done();
         });
     });
@@ -30,14 +28,12 @@ describe('User API Auth', () => {
         .post('/api/v1/users/login')
         .send({
           email: 'test@test.com',
-          password: 'definitelywrongpassword',
+          password: 'definitelywrongpassword'
         })
         .expect(500)
         .end((err, res) => {
-          res.body
-            .should.have.property('status', status.codes.UserCredentialsNotMatch.code);
-          res.body.value
-            .should.have.property('message');
+          res.body.status.should.be.equal(status.codes.UserCredentialsNotMatch.code);
+          res.body.value.message.should.exist;
           done();
         });
     });
@@ -47,12 +43,11 @@ describe('User API Auth', () => {
         .post('/api/v1/users/login')
         .send({
           email: 'test@test.com',
-          password: 'test',
+          password: 'test'
         })
         .expect(200)
         .end((err, res) => {
-          res.body
-            .should.have.property('status', 0);
+          res.body.status.should.be.equal(0);
           done();
         });
     });
@@ -67,8 +62,7 @@ describe('User API Auth', () => {
         .send({})
         .expect(200)
         .end((err, res) => {
-          res.body
-            .should.have.property('status', 0);
+          res.body.status.should.be.equal(0);
           done();
         });
     });
@@ -84,8 +78,7 @@ describe('User API Auth', () => {
         .send({})
         .expect(200)
         .end((err, res) => {
-          res.body
-            .should.have.property('status', 0);
+          res.body.status.should.be.equal(0);
           done();
         });
     });
@@ -98,8 +91,7 @@ describe('User API Auth', () => {
         .post('/api/v1/users/logout')
         .expect(200)
         .end((err, res) => {
-          res.body
-            .should.have.property('status', 0);
+          res.body.status.should.be.equal(0);
           done();
           // test for invalidating session
         });
@@ -112,8 +104,7 @@ describe('User API Auth', () => {
         .post('/api/v1/users/logout')
         .expect(500)
         .end((err, res) => {
-          res.body
-            .should.have.property('status', status.codes.UserLoggingOutWhenNotLoggedIn.code);
+          res.body.status.should.be.equal(status.codes.UserLoggingOutWhenNotLoggedIn.code);
           done();
         });
     });
