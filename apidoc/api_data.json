@@ -449,6 +449,20 @@
             "optional": false,
             "field": "email",
             "description": "<p>User's email address.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "resetToken",
+            "description": "<p>password reset token</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "newPassword",
+            "description": "<p>new password</p>"
           }
         ]
       }
@@ -594,6 +608,13 @@
             "optional": false,
             "field": "email",
             "description": "<p>User's email address.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "verifyToken",
+            "description": "<p>verification token</p>"
           }
         ]
       }
