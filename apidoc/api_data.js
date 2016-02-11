@@ -18,6 +18,9 @@ define({ "api": [
         ]
       }
     },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/user.js",
+    "groupTitle": "User",
     "success": {
       "fields": {
         "Success 200": [
@@ -26,14 +29,11 @@ define({ "api": [
             "type": "Number",
             "optional": false,
             "field": "status",
-            "description": ""
+            "description": "<p>status of request</p>"
           }
         ]
       }
     },
-    "version": "0.0.0",
-    "filename": "lib/route/v1/user.js",
-    "groupTitle": "User",
     "error": {
       "fields": {
         "Error 4xx": [
@@ -72,6 +72,9 @@ define({ "api": [
         ]
       }
     },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/user.js",
+    "groupTitle": "User",
     "success": {
       "fields": {
         "Success 200": [
@@ -80,14 +83,11 @@ define({ "api": [
             "type": "Number",
             "optional": false,
             "field": "status",
-            "description": ""
+            "description": "<p>status of request</p>"
           }
         ]
       }
     },
-    "version": "0.0.0",
-    "filename": "lib/route/v1/user.js",
-    "groupTitle": "User",
     "error": {
       "fields": {
         "Error 4xx": [
@@ -120,12 +120,15 @@ define({ "api": [
             "group": "Parameter",
             "type": "ObjectId",
             "optional": false,
-            "field": "id",
+            "field": ":userid",
             "description": "<p>User's unique ID.</p>"
           }
         ]
       }
     },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/user.js",
+    "groupTitle": "User",
     "success": {
       "fields": {
         "Success 200": [
@@ -170,6 +173,13 @@ define({ "api": [
             "optional": false,
             "field": "value.verified",
             "description": "<p>is verified User</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "value.admin",
+            "description": "<p>is admin User</p>"
           },
           {
             "group": "Success 200",
@@ -223,9 +233,6 @@ define({ "api": [
         ]
       }
     },
-    "version": "0.0.0",
-    "filename": "lib/route/v1/user.js",
-    "groupTitle": "User",
     "error": {
       "fields": {
         "Error 4xx": [
@@ -347,7 +354,18 @@ define({ "api": [
           "content": "{\n  \"status\": \"0\"\n}",
           "type": "json"
         }
-      ]
+      ],
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
     },
     "error": {
       "examples": [
@@ -403,17 +421,17 @@ define({ "api": [
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "status",
-            "description": ""
-          },
-          {
-            "group": "Success 200",
             "type": "String",
             "optional": false,
             "field": "value",
             "description": "<p>user id of newly registered user.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
           }
         ]
       }
@@ -467,6 +485,9 @@ define({ "api": [
         ]
       }
     },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/user.js",
+    "groupTitle": "User",
     "success": {
       "fields": {
         "Success 200": [
@@ -475,14 +496,11 @@ define({ "api": [
             "type": "Number",
             "optional": false,
             "field": "status",
-            "description": ""
+            "description": "<p>status of request</p>"
           }
         ]
       }
     },
-    "version": "0.0.0",
-    "filename": "lib/route/v1/user.js",
-    "groupTitle": "User",
     "error": {
       "fields": {
         "Error 4xx": [
@@ -533,19 +551,29 @@ define({ "api": [
             "group": "Parameter",
             "type": "ObjectId",
             "optional": false,
-            "field": "id",
+            "field": ":userid",
             "description": "<p>User's unique ID.</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "User",
-            "description": "<p>'s new nickname.</p>"
+            "field": "nickname",
+            "description": "<p>User's new nickname.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User's new password.</p>"
           }
         ]
       }
     },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/user.js",
+    "groupTitle": "User",
     "success": {
       "fields": {
         "Success 200": [
@@ -554,14 +582,102 @@ define({ "api": [
             "type": "Number",
             "optional": false,
             "field": "status",
-            "description": ""
+            "description": "<p>status of request</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "value",
+            "description": "<p>User Information</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value._id",
+            "description": "<p>User unique id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.email",
+            "description": "<p>User email address</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.nickname",
+            "description": "<p>User nickname</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "value.verified",
+            "description": "<p>is verified User</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "value.admin",
+            "description": "<p>is admin User</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.reset_token",
+            "description": "<p>User password reset token</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "value.reset_token_expires",
+            "description": "<p>password reset token expiration date</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.verify_token",
+            "description": "<p>User verification token</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "value.verify_token_expires",
+            "description": "<p>verification token expiration date</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.univID",
+            "description": "<p>University ID User is in</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "value.memberSince",
+            "description": "<p>When user registered</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.reportCounts",
+            "description": "<p>The number of times this user was reported by other users</p>"
           }
         ]
       }
     },
-    "version": "0.0.0",
-    "filename": "lib/route/v1/user.js",
-    "groupTitle": "User",
     "error": {
       "fields": {
         "Error 4xx": [
@@ -619,6 +735,9 @@ define({ "api": [
         ]
       }
     },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/user.js",
+    "groupTitle": "User",
     "success": {
       "fields": {
         "Success 200": [
@@ -627,14 +746,11 @@ define({ "api": [
             "type": "Number",
             "optional": false,
             "field": "status",
-            "description": ""
+            "description": "<p>status of request</p>"
           }
         ]
       }
     },
-    "version": "0.0.0",
-    "filename": "lib/route/v1/user.js",
-    "groupTitle": "User",
     "error": {
       "fields": {
         "Error 4xx": [
