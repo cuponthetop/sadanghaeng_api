@@ -7,7 +7,7 @@ var request = require('supertest-session')('http://localhost:3001')
   , status = require('../../../lib/server/status')
   , login = require('../../helper/login')
   , UnivModel = require('../../../lib/model/university')
-  , UnivData = require('../../init/json/universities.json')
+  , UnivData = require('../../init/json/universitys.json')
   , mongoose = require('mongoose')
   , config = require('../../../config/config')
   ;
@@ -103,11 +103,11 @@ describe('University API Manage', () => {
         .send({
           name: 'testUniv4',
           displayName: 'testUniv4',
-          emailDomainLists: ['test4.com']
+          emailDomainList: ['test4.com']
         })
         .end((err, res) => {
           res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
-          res.body.should.not.have.property('value');
+          res.body.value.should.have.property('message');
           done();
         });
     });
@@ -119,11 +119,11 @@ describe('University API Manage', () => {
           .send({
             name: 'testUniv4',
             displayName: 'testUniv4',
-            emailDomainLists: ['test4.com']
+            emailDomainList: ['test4.com']
           })
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
-            res.body.should.not.have.property('value');
+            res.body.value.should.have.property('message');
             login.logout(request).then(() => {
               done();
             });
@@ -138,11 +138,11 @@ describe('University API Manage', () => {
           .send({
             name: 'testUniv4',
             displayName: 'testUniv4',
-            emailDomainLists: ['test4']
+            emailDomainList: ['test4']
           })
           .end((err, res) => {
-            res.body.status.should.be.equal(0);
-            newUnivId = res.body.value;
+            res.body.status.should.be.equal(status.codes.InvalidEmailDomain.code);
+            res.body.value.should.have.property('message');
             login.logout(request).then(() => {
               done();
             });
@@ -157,11 +157,11 @@ describe('University API Manage', () => {
           .send({
             name: 'testUniv3',
             displayName: 'testUniv4',
-            emailDomainLists: ['test4.com']
+            emailDomainList: ['test4.com']
           })
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UnivAlreadyExisting.code);
-            newUnivId = res.body.value;
+            res.body.value.should.have.property('message');
             login.logout(request).then(() => {
               done();
             });
@@ -176,7 +176,7 @@ describe('University API Manage', () => {
           .send({
             name: 'testUniv4',
             displayName: 'testUniv4',
-            emailDomainLists: ['test4.com']
+            emailDomainList: ['test4.com']
           })
           .end((err, res) => {
             res.body.status.should.be.equal(0);
@@ -196,11 +196,11 @@ describe('University API Manage', () => {
         .send({
           name: 'shouldnot accept this',
           displayName: 'should not accept this',
-          emailDomainLists: ['should not accept this']
+          emailDomainList: ['should not accept this']
         })
         .end((err, res) => {
           res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
-          res.body.should.not.have.property('value');
+          res.body.value.should.have.property('message');
           done();
         });
     });
@@ -212,11 +212,11 @@ describe('University API Manage', () => {
           .send({
             name: 'shouldnotaccept',
             displayName: 'shouldnotaccept',
-            emailDomainLists: ['shouldnotaccepts']
+            emailDomainList: ['shouldnotaccepts']
           })
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
-            res.body.should.not.have.property('value');
+            res.body.value.should.have.property('message');
             login.logout(request).then(() => {
               done();
             });
@@ -231,11 +231,11 @@ describe('University API Manage', () => {
           .send({
             name: 'changeUniv4',
             displayName: 'changeUniv4',
-            emailDomainLists: ['test4']
+            emailDomainList: ['test4']
           })
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.InvalidEmailDomain.code);
-            res.body.should.not.have.property('value');
+            res.body.value.should.have.property('message');
             login.logout(request).then(() => {
               done();
             });
@@ -250,11 +250,11 @@ describe('University API Manage', () => {
           .send({
             name: 'changeUniv4',
             displayName: 'changeUniv4',
-            emailDomainLists: ['test4.com']
+            emailDomainList: ['test4.com']
           })
           .end((err, res) => {
             res.body.status.should.be.equal(0);
-            newUnivId = res.body.value;
+            res.body.should.have.property('value', null);
             login.logout(request).then(() => {
               done();
             });
@@ -266,10 +266,10 @@ describe('University API Manage', () => {
   describe('#destroyUniversity', () => {
     it('should not allow anonymous users to destroy university', (done) => {
       request
-        .del('/api/v1/universities/' + newUnivId)
+        .delete('/api/v1/universities/' + newUnivId)
         .end((err, res) => {
           res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
-          res.body.should.not.have.property('value');
+          res.body.value.should.have.property('message');
           done();
         });
     });
@@ -277,10 +277,10 @@ describe('University API Manage', () => {
     it('should not allow normal users to destroy university', (done) => {
       login.login(request, 'test@test.com', 'test').then(() => {
         request
-          .del('/api/v1/universities/' + newUnivId)
+          .delete('/api/v1/universities/' + newUnivId)
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
-            res.body.should.not.have.property('value');
+            res.body.value.should.have.property('message');
             login.logout(request).then(() => {
               done();
             });
@@ -291,10 +291,10 @@ describe('University API Manage', () => {
     it('should allow admin users to destroy university', (done) => {
       login.login(request, 'admin@test.com', 'test').then(() => {
         request
-          .del('/api/v1/universities/' + newUnivId)
+          .delete('/api/v1/universities/' + newUnivId)
           .end((err, res) => {
             res.body.status.should.be.equal(0);
-            res.body.should.not.have.property('value');
+            res.body.should.have.property('value', null);
             login.logout(request).then(() => {
               done();
             });
