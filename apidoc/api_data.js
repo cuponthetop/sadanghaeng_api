@@ -113,6 +113,14 @@ define({ "api": [
     "title": "Request User information",
     "name": "GetUser",
     "group": "User",
+    "permission": [
+      {
+        "name": "owner"
+      },
+      {
+        "name": "admin"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -544,6 +552,11 @@ define({ "api": [
     "title": "Update User information",
     "name": "UpdateUser",
     "group": "User",
+    "permission": [
+      {
+        "name": "owner"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
