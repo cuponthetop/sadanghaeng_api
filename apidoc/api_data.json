@@ -1,5 +1,412 @@
 [
   {
+    "type": "post",
+    "url": "/comments/:cid/reportes",
+    "title": "Report the comment",
+    "name": "reportComment",
+    "group": "Comment",
+    "version": "0.0.0",
+    "filename": "lib/route/v1/comment.js",
+    "groupTitle": "Comment"
+  },
+  {
+    "type": "get",
+    "url": "/posts/:pid/comments",
+    "title": "Request comments on the post",
+    "name": "GetCommentsOnPost",
+    "group": "Post",
+    "version": "0.0.0",
+    "filename": "lib/route/v1/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "post",
+    "url": "/posts/:pid/votes",
+    "title": "Vote for the post",
+    "name": "voteForPost",
+    "group": "Post",
+    "version": "0.0.0",
+    "filename": "lib/route/v1/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "post",
+    "url": "/universities",
+    "title": "Create University Information",
+    "name": "CreateUniversity",
+    "group": "University",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>University's name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "displayName",
+            "description": "<p>University's displayName</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String[]",
+            "optional": false,
+            "field": "emailDomainList",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value",
+            "description": "<p>university id of newly created university</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/university.js",
+    "groupTitle": "University",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnivUpdateFailed",
+            "description": "<p>University update failed</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserAuthRequired",
+            "description": "<p>Selected request requires a valid logged-in user session.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserPermissionNotAllowed",
+            "description": "<p>permission current user posesses is not enough to perform selected action</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnivAlreadyExisting",
+            "description": "<p>university with given name is already existing</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidEmailDomain",
+            "description": "<p>not valid email domain</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "delete",
+    "url": "/universities/:univid",
+    "title": "Destroy University",
+    "name": "DestroyUniversity",
+    "group": "University",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": ":univid",
+            "description": "<p>University's unique ID</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/university.js",
+    "groupTitle": "University",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserAuthRequired",
+            "description": "<p>Selected request requires a valid logged-in user session.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserPermissionNotAllowed",
+            "description": "<p>permission current user posesses is not enough to perform selected action</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnivNotFound",
+            "description": "<p>Requested University is not found</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnivRemovalFailed",
+            "description": "<p>University removal failed</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/universities/:univid",
+    "title": "Get University Information",
+    "name": "GetUniversity",
+    "group": "University",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": ":univid",
+            "description": "<p>University's unique ID</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/university.js",
+    "groupTitle": "University",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "value",
+            "description": "<p>University Information</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value._id",
+            "description": "<p>University unique id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.name",
+            "description": "<p>University name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.displayName",
+            "description": "<p>How each students in this university will be represented</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String[]",
+            "optional": false,
+            "field": "value.emailDomainList",
+            "description": "<p>list of email domains (string after @) this university accepts</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserAuthRequired",
+            "description": "<p>Selected request requires a valid logged-in user session.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserPermissionNotAllowed",
+            "description": "<p>permission current user posesses is not enough to perform selected action</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnivNotFound",
+            "description": "<p>Requested University is not found</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/universities/:univid/search",
+    "title": "Search for posts in University",
+    "name": "Search",
+    "group": "University",
+    "version": "0.0.0",
+    "filename": "lib/route/v1/university.js",
+    "groupTitle": "University"
+  },
+  {
+    "type": "put",
+    "url": "/universities/:univid",
+    "title": "Update University Information",
+    "name": "UpdateUniversity",
+    "group": "University",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": ":univid",
+            "description": "<p>University's unique ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>University's name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "displayName",
+            "description": "<p>University's displayName</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String[]",
+            "optional": false,
+            "field": "emailDomainList",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/university.js",
+    "groupTitle": "University",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserAuthRequired",
+            "description": "<p>Selected request requires a valid logged-in user session.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserPermissionNotAllowed",
+            "description": "<p>permission current user posesses is not enough to perform selected action</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnivNotFound",
+            "description": "<p>Requested University is not found</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnivUpdateFailed",
+            "description": "<p>University update failed</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidEmailDomain",
+            "description": "<p>not valid email domain</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "get",
     "url": "/users/reset_password",
     "title": "Generate reset token for password reset",
@@ -249,6 +656,12 @@
             "optional": false,
             "field": "UserAuthRequired",
             "description": "<p>Selected request requires a valid logged-in user session.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserPermissionNotAllowed",
+            "description": "<p>permission current user posesses is not enough to perform selected action</p>"
           },
           {
             "group": "Error 4xx",
@@ -699,6 +1112,12 @@
             "optional": false,
             "field": "UserAuthRequired",
             "description": "<p>Selected request requires a valid logged-in user session.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserPermissionNotAllowed",
+            "description": "<p>permission current user posesses is not enough to perform selected action</p>"
           },
           {
             "group": "Error 4xx",
