@@ -97,31 +97,31 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "UnivUpdateFailed",
-            "description": "<p>University update failed</p>"
+            "description": "<p>(202) University update failed</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserAuthRequired",
-            "description": "<p>Selected request requires a valid logged-in user session.</p>"
+            "description": "<p>(111) user authentication is required</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserPermissionNotAllowed",
-            "description": "<p>permission current user posesses is not enough to perform selected action</p>"
+            "description": "<p>(106) permission current user posesses is not enough to perform selected action</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UnivAlreadyExisting",
-            "description": "<p>university with given name is already existing</p>"
+            "description": "<p>(209) university with given name is already existing</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "InvalidEmailDomain",
-            "description": "<p>not valid email domain</p>"
+            "description": "<p>(208) not valid email domain</p>"
           }
         ]
       }
@@ -174,25 +174,25 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "UserAuthRequired",
-            "description": "<p>Selected request requires a valid logged-in user session.</p>"
+            "description": "<p>(111) user authentication is required</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserPermissionNotAllowed",
-            "description": "<p>permission current user posesses is not enough to perform selected action</p>"
+            "description": "<p>(106) permission current user posesses is not enough to perform selected action</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UnivNotFound",
-            "description": "<p>Requested University is not found</p>"
+            "description": "<p>(201) Requested University is not found</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UnivRemovalFailed",
-            "description": "<p>University removal failed</p>"
+            "description": "<p>(203) University removal failed</p>"
           }
         ]
       }
@@ -280,19 +280,19 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "UserAuthRequired",
-            "description": "<p>Selected request requires a valid logged-in user session.</p>"
+            "description": "<p>(111) user authentication is required</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserPermissionNotAllowed",
-            "description": "<p>permission current user posesses is not enough to perform selected action</p>"
+            "description": "<p>(106) permission current user posesses is not enough to perform selected action</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UnivNotFound",
-            "description": "<p>Requested University is not found</p>"
+            "description": "<p>(201) Requested University is not found</p>"
           }
         ]
       }
@@ -376,31 +376,31 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "UserAuthRequired",
-            "description": "<p>Selected request requires a valid logged-in user session.</p>"
+            "description": "<p>(111) user authentication is required</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserPermissionNotAllowed",
-            "description": "<p>permission current user posesses is not enough to perform selected action</p>"
+            "description": "<p>(106) permission current user posesses is not enough to perform selected action</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UnivNotFound",
-            "description": "<p>Requested University is not found</p>"
+            "description": "<p>(201) Requested University is not found</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UnivUpdateFailed",
-            "description": "<p>University update failed</p>"
+            "description": "<p>(202) University update failed</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "InvalidEmailDomain",
-            "description": "<p>not valid email domain</p>"
+            "description": "<p>(208) not valid email domain</p>"
           }
         ]
       }
@@ -448,13 +448,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "UserNotVerified",
-            "description": "<p>User is trying to use not verified account.</p>"
+            "description": "<p>(115) provided user is not yet verified</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserNotFound",
-            "description": "<p>requested User is not found in our database.</p>"
+            "description": "<p>(101) Requested User was not found on DB</p>"
           }
         ]
       }
@@ -502,13 +502,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "UserAlreadyVerified",
-            "description": "<p>User account you are trying to verify its email address has already done a verification.</p>"
+            "description": "<p>(105) user already verified oneself</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserNotFound",
-            "description": "<p>requested User is not found in our database.</p>"
+            "description": "<p>(101) Requested User was not found on DB</p>"
           }
         ]
       }
@@ -655,25 +655,25 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "UserAuthRequired",
-            "description": "<p>Selected request requires a valid logged-in user session.</p>"
+            "description": "<p>(111) user authentication is required</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserPermissionNotAllowed",
-            "description": "<p>permission current user posesses is not enough to perform selected action</p>"
+            "description": "<p>(106) permission current user posesses is not enough to perform selected action</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserNotFound",
-            "description": "<p>requested User is not found in our database.</p>"
+            "description": "<p>(101) Requested User was not found on DB</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserNotVerified",
-            "description": "<p>User is trying to use not verified account.</p>"
+            "description": "<p>(115) provided user is not yet verified</p>"
           }
         ]
       }
@@ -735,25 +735,25 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "UserCredentialsNotMatch",
-            "description": "<p>Provided user credentials do not match to those on our database.</p>"
+            "description": "<p>(114) provided user credential is not correct</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserAlreadyLoggedIn",
-            "description": "<p>User is trying to login, but the user was already logged in and had valid session.</p>"
+            "description": "<p>(112) user is trying to login but this userwas already logged in as an user</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserNotVerified",
-            "description": "<p>User is trying to use not verified account.</p>"
+            "description": "<p>(115) provided user is not yet verified</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserNotFound",
-            "description": "<p>requested User is not found in our database.</p>"
+            "description": "<p>(101) Requested User was not found on DB</p>"
           }
         ]
       }
@@ -802,7 +802,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "UserLoggingOutWhenNotLoggedIn",
-            "description": "<p>You are trying to logout when you are not logged in.</p>"
+            "description": "<p>(113) user is trying to logout but this useris not logged in as any user</p>"
           }
         ]
       }
@@ -867,7 +867,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "UserEmailAlreadyInUse",
-            "description": "<p>The email address you are trying to use is already in use.</p>"
+            "description": "<p>(116) provided user email is already in use</p>"
           }
         ]
       }
@@ -929,31 +929,31 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "UserNotVerified",
-            "description": "<p>User is trying to use not verified account.</p>"
+            "description": "<p>(115) provided user is not yet verified</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserNotFound",
-            "description": "<p>requested User is not found in our database.</p>"
+            "description": "<p>(101) Requested User was not found on DB</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserTokenAlreadyExpired",
-            "description": "<p>Provided token has already expired, generate new one and try again.</p>"
+            "description": "<p>(104) provided token is already expired</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserTokenMismatch",
-            "description": "<p>Provided token for behavior does not match with our database hence not permitting operation.</p>"
+            "description": "<p>(103) provided token mismatch</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserUpdateFailed",
-            "description": "<p>Our database failed to update user information.</p>"
+            "description": "<p>(102) User update failed</p>"
           }
         ]
       }
@@ -1111,31 +1111,31 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "UserAuthRequired",
-            "description": "<p>Selected request requires a valid logged-in user session.</p>"
+            "description": "<p>(111) user authentication is required</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserPermissionNotAllowed",
-            "description": "<p>permission current user posesses is not enough to perform selected action</p>"
+            "description": "<p>(106) permission current user posesses is not enough to perform selected action</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserNotFound",
-            "description": "<p>requested User is not found in our database.</p>"
+            "description": "<p>(101) Requested User was not found on DB</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserUpdateFailed",
-            "description": "<p>Our database failed to update user information.</p>"
+            "description": "<p>(102) User update failed</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserNotVerified",
-            "description": "<p>User is trying to use not verified account.</p>"
+            "description": "<p>(115) provided user is not yet verified</p>"
           }
         ]
       }
@@ -1190,31 +1190,31 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "UserAlreadyVerified",
-            "description": "<p>User account you are trying to verify its email address has already done a verification.</p>"
+            "description": "<p>(105) user already verified oneself</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserNotFound",
-            "description": "<p>requested User is not found in our database.</p>"
+            "description": "<p>(101) Requested User was not found on DB</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserTokenAlreadyExpired",
-            "description": "<p>Provided token has already expired, generate new one and try again.</p>"
+            "description": "<p>(104) provided token is already expired</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserTokenMismatch",
-            "description": "<p>Provided token for behavior does not match with our database hence not permitting operation.</p>"
+            "description": "<p>(103) provided token mismatch</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "UserUpdateFailed",
-            "description": "<p>Our database failed to update user information.</p>"
+            "description": "<p>(102) User update failed</p>"
           }
         ]
       }
