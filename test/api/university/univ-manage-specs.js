@@ -13,7 +13,7 @@ var request = require('supertest-session')('http://localhost:3001')
   ;
 
 
-describe('User API Manage', () => {
+describe('University API Manage', () => {
 
   before((done) => {
     // 몽고 db 연결
@@ -94,7 +94,7 @@ describe('User API Manage', () => {
     });
   });
 
-  describe('createUniversity', () => {
+  describe('#createUniversity', () => {
 
   });
   

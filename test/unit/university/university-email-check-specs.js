@@ -24,7 +24,7 @@ describe('UniversityController', () => {
       }
     });
 
-    after((done) => {
+    after(() => {
       if (wasConnected === 0) {
         mongoose.disconnect();
       }
