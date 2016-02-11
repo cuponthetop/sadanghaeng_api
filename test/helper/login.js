@@ -2,11 +2,10 @@
 
 var chai = require('./setup-chai')
   , status = require('../../lib/server/status')
-  , request = require('supertest-session')('http://localhost:3001')
   , Q = require('q')
   ;
 
-module.exports.login = function (email, password) {
+module.exports.login = function (request, email, password) {
   var deferred = Q.defer();
 
   request
@@ -23,7 +22,7 @@ module.exports.login = function (email, password) {
   return deferred.promise;
 };
 
-module.exports.logout = function () {
+module.exports.logout = function (request) {
   var deferred = Q.defer();
 
   request
