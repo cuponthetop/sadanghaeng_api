@@ -30,8 +30,8 @@ gulp.task('jscs', function () {
 function generateMochaOpts() {
   return {
     flags: {
-      //u: 'bdd-with-opts',
-      R: process.env.MOCHA_REPORTER || 'nyan',
+      t: 5000,
+      R: process.env.MOCHA_REPORTER || 'spec',
       'c': true
     },
     env: _.clone(process.env),
@@ -39,58 +39,6 @@ function generateMochaOpts() {
     concurrency: 1
   };
 }
-
-// gulp.task('init-mongo-universitys', function () {
-  
-//   process.env.NODE_ENV = 'test';
-//   var config = require('./config/config');
-  
-//   return gulp.src('test/init/json/universitys.json')
-//     .pipe(mongoData({
-//       mongoUrl: config.db.uri + config.db.dbName,
-//       collectionName: 'universitys',
-//       dropCollection: true
-//     }));
-// });
-
-// gulp.task('init-mongo-users', function () {
-  
-//   process.env.NODE_ENV = 'test';
-//   var config = require('./config/config');
-  
-//   return gulp.src('test/init/json/users.json')
-//     .pipe(mongoData({
-//       mongoUrl: config.db.uri + config.db.dbName,
-//       collectionName: 'users',
-//       dropCollection: true
-//     }));
-// });
-
-// gulp.task('init-mongo-posts', function () {
-  
-//   process.env.NODE_ENV = 'test';
-//   var config = require('./config/config');
-  
-//   return gulp.src('test/init/json/posts.json')
-//     .pipe(mongoData({
-//       mongoUrl: config.db.uri + config.db.dbName,
-//       collectionName: 'posts',
-//       dropCollection: true
-//     }));
-// });
-
-// gulp.task('init-mongo-comments', function () {
-  
-//   process.env.NODE_ENV = 'test';
-//   var config = require('./config/config');
-  
-//   return gulp.src('test/init/json/comments.json')
-//     .pipe(mongoData({
-//       mongoUrl: config.db.uri + config.db.dbName,
-//       collectionName: 'comments',
-//       dropCollection: true
-//     }));
-// });
 
 gulp.task('init-mongo', function () {
   // return runSequence('init-mongo-universitys', 'init-mongo-users'
@@ -109,8 +57,17 @@ gulp.task('test-unit', function () {
     .on('error', console.warn.bind(console));
 });
 
+gulp.task('test-api', function () {
+  var opts = generateMochaOpts();
+  var mocha = mochaStream(opts);
+
+  return gulp.src('test/api/**/*-specs.js', {read: false})
+    .pipe(mocha)
+    .on('error', console.warn.bind(console));
+});
+
 gulp.task('test', function () {
-  return runSequence('init-mongo', 'test-unit');
+  return runSequence('init-mongo', 'test-unit', 'test-api');
 });
 
 gulp.task('lint', ['jshint', 'jscs']);

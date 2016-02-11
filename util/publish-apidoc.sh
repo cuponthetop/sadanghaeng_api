@@ -2,7 +2,7 @@ BRANCH=`git rev-parse --abbrev-ref HEAD`
 
 apidoc="./node_modules/.bin/apidoc"
 
-out=$($apidoc -i ./lib/route/v1/ -o apidocout/ 2>&1)
+out=$($apidoc -i ./lib/route/ -o apidocout/ 2>&1)
 status=$?
 if [ "$status" != "0" ]; then
     rm -rf apidocout/

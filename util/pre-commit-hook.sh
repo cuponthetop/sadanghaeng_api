@@ -9,8 +9,7 @@ if [ "$status" != "0" ]; then
     exit $status
 fi
 echo "Running unit tests..."
-mocha="./node_modules/.bin/mocha"
-out=$($mocha --recursive test/unit/ 2>&1)
+out=$($gulp test-unit 2>&1)
 status=$?
 if [ "$status" != "0" ]; then
     echo "$out"

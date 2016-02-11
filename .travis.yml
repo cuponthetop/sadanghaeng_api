@@ -4,7 +4,21 @@ node_js:
 services: mongodb
 before_script:
   - npm install -g gulp
-script: gulp test
-
-#notifications:
-#  slack: cuponthetop:z2GNywU1vQo5C1A7ndEVaZIs
+script: 
+  - git clone --branch=master https://github.com/cuponthetop/sadanghaeng_auth.git
+  - cd sadanghaeng_auth
+  - npm install
+  - node test/init/test-init.js
+  - node lib/server/server.js &
+  - cd ..
+  - node test/init/test-init.js
+  - node lib/server/server.js &
+  - gulp test
+env:
+  - NODE_ENV=test CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8

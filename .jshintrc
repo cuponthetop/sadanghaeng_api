@@ -7,5 +7,6 @@
   "eqeqeq": true,
   "trailing": true,
   "indent": 2,
-  "shelljs": false
+  "shelljs": false,
+  "esversion": 6
 }
