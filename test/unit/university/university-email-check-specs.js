@@ -2,8 +2,10 @@
 
 process.env.NODE_ENV = 'test';
 
-var chai = require('../../helper/setup-chai');
-var UnivCtrl = require('../../../lib/controller/university');
+var chai = require('../../helper/setup-chai')
+  , UnivCtrl = require('../../../lib/controller/university')
+  , status = require('../../../lib/server/status')
+  ;
 
 describe('UniversityController', () => {
   describe('#getUniversityFromEmail', () => {
@@ -30,25 +32,25 @@ describe('UniversityController', () => {
 
     it('should reject invalid email address', (done) => {
       UnivCtrl.getUniversityFromEmail('shouldreject')
-        .should.be.rejectedWith('not valid email address')
+        .should.be.rejectedWith(status.codes.InvalidEmailAddress.code)
         .notify(done);
     });
 
     it('should reject more badass email address', (done) => {
       UnivCtrl.getUniversityFromEmail('shouldreject@shouldreject@shouldreject.com')
-        .should.be.rejectedWith('not valid email address')
+        .should.be.rejectedWith(status.codes.InvalidEmailAddress.code)
         .notify(done);
     });
 
     it('should reject email domain where no university accepts', (done) => {
       UnivCtrl.getUniversityFromEmail('test@surelynosuchdomaingetsaccepted.com')
-        .should.be.rejectedWith('none of universities we support have ' + 'surelynosuchdomaingetsaccepted.com')
+        .should.be.rejectedWith(status.codes.NotAcceptedEmailAddress.code)
         .notify(done);
     });
 
     it('should reject email domain where more than 2 universities accepts', (done) => {
       UnivCtrl.getUniversityFromEmail('test@test2.com')
-        .should.be.rejectedWith('many of universities we support have ' + 'test2.com' + ' as their email!!')
+        .should.be.rejectedWith(status.codes.MultipleAcceptedEmailAddress.code)
         .notify(done);
     });
 
