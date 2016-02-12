@@ -15,7 +15,7 @@ var request = require('supertest-session')('http://localhost:3001')
   ;
 
 
-describe('User API Manage', () => {
+describe('User API Report', () => {
 
   before((done) => {
     // 몽고 db 연결
