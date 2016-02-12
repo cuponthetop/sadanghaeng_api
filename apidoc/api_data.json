@@ -128,6 +128,18 @@
           {
             "group": "Error 4xx",
             "optional": false,
+            "field": "CantReportSelf",
+            "description": "<p>(117) user cannot report oneself</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserAlreadyReported",
+            "description": "<p>(118) user can only get reported once</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
             "field": "UnivNotFound",
             "description": "<p>(201) Requested University is not found</p>"
           },
@@ -631,6 +643,12 @@
           {
             "group": "Error 4xx",
             "optional": false,
+            "field": "InvalidEmailAddress",
+            "description": "<p>(207) not valid email address</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
             "field": "UserNotVerified",
             "description": "<p>(115) provided user is not yet verified</p>"
           },
@@ -682,6 +700,12 @@
     "error": {
       "fields": {
         "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidEmailAddress",
+            "description": "<p>(207) not valid email address</p>"
+          },
           {
             "group": "Error 4xx",
             "optional": false,
@@ -938,6 +962,12 @@
             "optional": false,
             "field": "UserNotFound",
             "description": "<p>(101) Requested User was not found on DB</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidEmailAddress",
+            "description": "<p>(207) not valid email address</p>"
           }
         ]
       }
@@ -1052,6 +1082,89 @@
             "optional": false,
             "field": "UserEmailAlreadyInUse",
             "description": "<p>(116) provided user email is already in use</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidEmailAddress",
+            "description": "<p>(207) not valid email address</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "/users/:userid/report",
+    "title": "Report User",
+    "name": "ReportUser",
+    "group": "User",
+    "permission": [
+      {
+        "name": "member"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": ":userid",
+            "description": "<p>User's unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/user.js",
+    "groupTitle": "User",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserAuthRequired",
+            "description": "<p>(111) user authentication is required</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>(101) Requested User was not found on DB</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CantReportSelf",
+            "description": "<p>(117) user cannot report oneself</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserUpdateFailed",
+            "description": "<p>(102) User update failed</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotVerified",
+            "description": "<p>(115) provided user is not yet verified</p>"
           }
         ]
       }
@@ -1109,6 +1222,12 @@
     "error": {
       "fields": {
         "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidEmailAddress",
+            "description": "<p>(207) not valid email address</p>"
+          },
           {
             "group": "Error 4xx",
             "optional": false,
@@ -1375,6 +1494,12 @@
             "optional": false,
             "field": "UserAlreadyVerified",
             "description": "<p>(105) user already verified oneself</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidEmailAddress",
+            "description": "<p>(207) not valid email address</p>"
           },
           {
             "group": "Error 4xx",
