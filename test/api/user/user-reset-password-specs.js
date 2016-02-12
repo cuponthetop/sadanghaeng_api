@@ -52,6 +52,29 @@ describe('User API Reset Password', () => {
   });
 
   describe('#reset password', () => {
+
+    it('should not generate reset password token for unregistered user', (done) => {
+      request
+        .get('/api/v1/users/reset_password')
+        .send({ email: 'definitelynotregistered@test.com' })
+        .expect(500)
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.UserNotFound.code);
+          done();
+        });
+    });
+
+    it('should reject reset password request from user with weird email address', (done) => {
+      request
+        .get('/api/v1/users/reset_password')
+        .send({ email: 'test2@we!r%..test.com' })
+        .expect(500)
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.InvalidEmailAddress.code);
+          done();
+        });
+    });
+
     it('should generate reset password token', (done) => {
       request
         .get('/api/v1/users/reset_password')

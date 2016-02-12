@@ -67,6 +67,20 @@ describe('User API Register', () => {
         });
     });
 
+    it('should not allow user to use weird email address', (done) => {
+      request
+        .post('/api/v1/users/register')
+        .send({
+          email: 'test@test.fqf##..s.com',
+          password: 'definitelywrongpassword',
+        })
+        .expect(500)
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.InvalidEmailAddress.code);
+          done();
+        });
+    });
+
     it('should allow new user to register', (done) => {
       request
         .post('/api/v1/users/register')
@@ -115,6 +129,28 @@ describe('User API Register', () => {
         });
     });
 
+    it('should not generate tokens for not registered user', (done) => {
+      request
+        .get('/api/v1/users/verify')
+        .send({ email: 'notregistered@test.com' })
+        .expect(500)
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.UserNotFound.code);
+          done();
+        });
+    });
+
+    it('should not generate tokens for user with weird email address', (done) => {
+      request
+        .get('/api/v1/users/verify')
+        .send({ email: 'test3@test!#.a.com' })
+        .expect(500)
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.InvalidEmailAddress.code);
+          done();
+        });
+    });
+
     it('should allow users to generate verification token', (done) => {
       request
         .get('/api/v1/users/verify')
@@ -131,6 +167,20 @@ describe('User API Register', () => {
           res.body.status.should.be.equal(0);
           done();
         });
+    });
+
+    it('should reject verification request from user with weird email', (done) => {
+      request
+        .post('/api/v1/users/verify')
+        .send({
+          email: 'test3@test41.gdg...com',
+          verifyToken: "totalweird"
+        })
+        .expect(500)
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.InvalidEmailAddress.code);
+          done();
+        })
     });
 
     it('should properly verify user', (done) => {
