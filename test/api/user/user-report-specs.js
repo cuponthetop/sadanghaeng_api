@@ -141,6 +141,20 @@ describe('User API Manage', () => {
       });
     });
 
+    it('should not allow user to report same user twice', (done) => {
+      login('test2@test.com', 'test').then(() => {
+        request
+          .post('/api/v1/users/' + testId + '/report')
+          .expect(500)
+          .end((err, res) => {
+            res.body.status.should.be.equal(status.codes.UserAlreadyReported.code);
+            res.body.value.should.have.property('message');
+            logout().then(() => {
+              done();
+            });
+          });
+      });
+    });
   });
 });
 
