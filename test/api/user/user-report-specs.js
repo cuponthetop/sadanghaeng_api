@@ -75,9 +75,7 @@ describe('User API Report', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.CantReportSelf.code);
             res.body.value.should.have.property('message');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -91,9 +89,7 @@ describe('User API Report', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UserNotFound.code);
             res.body.value.should.have.property('message');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -117,9 +113,7 @@ describe('User API Report', () => {
               .end((err, res) => {
                 res.body.status.should.be.equal(status.codes.UserNotVerified.code);
                 res.body.value.should.have.property('message');
-                logout().then(() => {
-                  done();
-                });
+                logout().then(done);
               });
           });
         });
@@ -133,9 +127,7 @@ describe('User API Report', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(0);
             res.body.should.have.property('value', null);
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -148,9 +140,7 @@ describe('User API Report', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UserAlreadyReported.code);
             res.body.value.should.have.property('message');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });

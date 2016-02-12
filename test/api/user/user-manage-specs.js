@@ -71,9 +71,7 @@ describe('User API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
             res.body.value.should.not.have.property('email');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -85,9 +83,7 @@ describe('User API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(0);
             res.body.value.email.should.be.equal('test@test.com');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -99,9 +95,7 @@ describe('User API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(0);
             res.body.value.email.should.be.equal('test@test.com');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -132,9 +126,7 @@ describe('User API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
             res.body.value.should.not.have.property('nickname');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -149,9 +141,7 @@ describe('User API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(0);
             res.body.value.nickname.should.be.equal('should update');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -166,9 +156,7 @@ describe('User API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
             res.body.value.should.not.have.property('nickname');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -202,9 +190,7 @@ describe('User API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(0);
             res.body.value.email.should.be.equal('test@test.com');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -233,9 +219,7 @@ describe('User API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
             res.body.value.should.have.property('message');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -247,9 +231,7 @@ describe('User API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(0);
             res.body.should.have.property('value', null);
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -261,9 +243,7 @@ describe('User API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UserNotFound.code);
             res.body.value.should.have.property('message');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });

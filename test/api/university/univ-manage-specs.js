@@ -75,9 +75,7 @@ describe('University API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
             res.body.value.should.not.have.property('displayName');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -89,9 +87,7 @@ describe('University API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(0);
             res.body.value.displayName.should.be.equal('testUniv');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -125,9 +121,7 @@ describe('University API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
             res.body.value.should.have.property('message');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -144,9 +138,7 @@ describe('University API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.InvalidEmailDomain.code);
             res.body.value.should.have.property('message');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -163,9 +155,7 @@ describe('University API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UnivAlreadyExisting.code);
             res.body.value.should.have.property('message');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -182,9 +172,7 @@ describe('University API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(0);
             newUnivId = res.body.value;
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -218,9 +206,7 @@ describe('University API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
             res.body.value.should.have.property('message');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -237,9 +223,7 @@ describe('University API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.InvalidEmailDomain.code);
             res.body.value.should.have.property('message');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -256,9 +240,7 @@ describe('University API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(0);
             res.body.should.have.property('value', null);
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -282,9 +264,7 @@ describe('University API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
             res.body.value.should.have.property('message');
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
@@ -296,9 +276,7 @@ describe('University API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(0);
             res.body.should.have.property('value', null);
-            logout().then(() => {
-              done();
-            });
+            logout().then(done);
           });
       });
     });
