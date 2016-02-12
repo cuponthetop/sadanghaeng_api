@@ -7,10 +7,8 @@ var request = require('supertest-session')('http://localhost:3001')
   , status = require('../../../lib/server/status')
   , login = require('../../helper/login')(request)
   , logout = require('../../helper/logout')(request)
-  , UnivModel = require('../../../lib/model/university')
-  , UnivData = require('../../init/json/universitys.json')
-  , mongoose = require('mongoose')
-  , config = require('../../../config/config')
+  , mongoInit = require('../../init/mongo-init')
+  , univInit = require('../../init/universitys-init')
   ;
 
 
@@ -19,41 +17,13 @@ describe('University API Manage', () => {
   var newUnivId = '';
 
   before((done) => {
-    // 몽고 db 연결
-    var dbUri = config.db.uri + config.db.dbName;
-    var dbOptions = {
-      username: config.db.username,
-      password: config.db.password
-    };
-    mongoose.connect(dbUri, dbOptions);
-
-    UnivModel.remove({}).exec().then(
-      UnivModel.create(UnivData).then(() => {
-        done();
-      }, (err) => {
-        console.log(err);
-        done();
-      }), (err) => {
-        console.log(err);
-        done();
-      });
+    mongoInit.connect().then(univInit).catch(console.log).fin(done);
   });
 
   after((done) => {
-    UnivModel.remove({}).exec().then(
-      UnivModel.create(UnivData).then(() => {
-        mongoose.disconnect();
-        done();
-      }, (err) => {
-        console.log(err);
-        mongoose.disconnect();
-        done();
-      }), (err) => {
-        console.log(err);
-        mongoose.disconnect();
-        done();
-      });
+    univInit().then(mongoInit.disconnect).catch(console.log).fin(done);
   });
+
 
   describe('#getUniversity', () => {
     var univId = '56ac6f7b9b0d0b0457673daf';

@@ -7,50 +7,19 @@ var request = require('supertest-session')('http://localhost:3001')
   , status = require('../../../lib/server/status')
   , login = require('../../helper/login')(request)
   , logout = require('../../helper/logout')(request)
-  , UserModel = require('../../../lib/model/user')
-  , UserData = require('../../init/json/users.json')
-  , mongoose = require('mongoose')
-  , config = require('../../../config/config')
+  , mongoInit = require('../../init/mongo-init')
+  , userInit = require('../../init/users-init')
   ;
 
 
 describe('User API Report', () => {
 
   before((done) => {
-    // 몽고 db 연결
-    var dbUri = config.db.uri + config.db.dbName;
-    var dbOptions = {
-      username: config.db.username,
-      password: config.db.password
-    };
-    mongoose.connect(dbUri, dbOptions);
-
-    UserModel.remove({}).exec().then(
-      UserModel.create(UserData).then(() => {
-        done();
-      }, (err) => {
-        console.log(err);
-        done();
-      }), (err) => {
-        console.log(err);
-        done();
-      });
+    mongoInit.connect().then(userInit).catch(console.log).fin(done);
   });
 
   after((done) => {
-    UserModel.remove({}).exec().then(
-      UserModel.create(UserData).then(() => {
-        mongoose.disconnect();
-        done();
-      }, (err) => {
-        console.log(err);
-        mongoose.disconnect();
-        done();
-      }), (err) => {
-        console.log(err);
-        mongoose.disconnect();
-        done();
-      });
+    userInit().then(mongoInit.disconnect).catch(console.log).fin(done);
   });
 
   describe('#reportUser', () => {
