@@ -26,13 +26,13 @@ describe('UniversityController', () => {
         .should.be.not.ok;
         done();
     });
-    
+
     it('should reject more badass email domain #3', (done) => {
       UnivCtrl.isValidEmailDomain('shouldreject@shouldreject....com')
         .should.be.not.ok;
         done();
     });
-    
+
     it('should accept valid email domain', (done) => {
       UnivCtrl.isValidEmailDomain('test.com').should.be.ok;
       done();
