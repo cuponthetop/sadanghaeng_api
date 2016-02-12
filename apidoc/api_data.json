@@ -140,6 +140,12 @@
           {
             "group": "Error 4xx",
             "optional": false,
+            "field": "UserRemovalFailed",
+            "description": "<p>(119) user removal failed</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
             "field": "UnivNotFound",
             "description": "<p>(201) Requested University is not found</p>"
           },
@@ -597,6 +603,168 @@
             "optional": false,
             "field": "InvalidEmailDomain",
             "description": "<p>(208) not valid email domain</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "delete",
+    "url": "/users/:userid",
+    "title": "Destroy User information",
+    "name": "DestroyUser",
+    "group": "User",
+    "permission": [
+      {
+        "name": "owner admin"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": ":userid",
+            "description": "<p>User's unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/user.js",
+    "groupTitle": "User",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "value",
+            "description": "<p>User Information</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value._id",
+            "description": "<p>User unique id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.email",
+            "description": "<p>User email address</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.nickname",
+            "description": "<p>User nickname</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "value.verified",
+            "description": "<p>is verified User</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "value.admin",
+            "description": "<p>is admin User</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.reset_token",
+            "description": "<p>User password reset token</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "value.reset_token_expires",
+            "description": "<p>password reset token expiration date</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.verify_token",
+            "description": "<p>User verification token</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "value.verify_token_expires",
+            "description": "<p>verification token expiration date</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.univID",
+            "description": "<p>University ID User is in</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "value.memberSince",
+            "description": "<p>When user registered</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.reportCounts",
+            "description": "<p>The number of times this user was reported by other users</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserAuthRequired",
+            "description": "<p>(111) user authentication is required</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserPermissionNotAllowed",
+            "description": "<p>(106) permission current user posesses is not enough to perform selected action</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>(101) Requested User was not found on DB</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserRemovalFailed",
+            "description": "<p>(119) user removal failed</p>"
           }
         ]
       }
