@@ -5,7 +5,7 @@ apidoc="./node_modules/.bin/apidoc"
 # generate status_api.js
 node ./util/status_api_creator.js
 
-git add ./lib/route/status_api.js
+git add ./lib/route/status_api.js ./lib/route/status_all.js
 
 git commit -m "status_api autogen"
 
