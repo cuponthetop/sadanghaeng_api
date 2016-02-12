@@ -201,11 +201,72 @@ describe('User API Manage', () => {
           .end((err, res) => {
             res.body.status.should.be.equal(0);
             res.body.value.email.should.be.equal('test@test.com');
-            done();
+            login.logout(request).then(() => {
+              done();
+            });
+          });
+      });
+    });
+  });
+
+  describe('#removeUser', () => {
+    var testId = '11bc6f7b9b0d0b0457673daf';
+    var test2Id = '21bc6f7b900d0aa457673daf';
+
+    it('should not allow access to anonymous users', (done) => {
+      request
+        .delete('/api/v1/users/' + testId)
+        .expect(500)
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
+          res.body.value.should.have.property('message');
+          done();
+        });
+    });
+
+    it('should not allow to destory other users', (done) => {
+      login.login(request, 'test2@test.com', 'test').then(() => {
+        request
+          .delete('/api/v1/users/' + testId)
+          .expect(500)
+          .end((err, res) => {
+            res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
+            res.body.value.should.have.property('message');
+            login.logout(request).then(() => {
+              done();
+            });
+          });
+      });
+    });
+
+    it('should allow admin users to remove user', (done) => {
+      login.login(request, 'admin@test.com', 'test').then(() => {
+        request
+          .delete('/api/v1/users/' + test2Id)
+          .end((err, res) => {
+            res.body.status.should.be.equal(0);
+            res.body.should.have.property('value', null);
+            login.logout(request).then(() => {
+              done();
+            });
+          });
+      });
+    });
+
+    it('should not allow admin users to remove non-existing user', (done) => {
+      login.login(request, 'admin@test.com', 'test').then(() => {
+        request
+          .delete('/api/v1/users/' + test2Id)
+          .end((err, res) => {
+            res.body.status.should.be.equal(status.codes.UserNotFound.code);
+            res.body.value.should.have.property('message');
+            login.logout(request).then(() => {
+              done();
+            });
           });
       });
     });
 
   });
-});
 
+});
