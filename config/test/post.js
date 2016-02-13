@@ -9,5 +9,6 @@ module.exports = {
   sortTypes: ['asc', 'desc'],
   defaultSort: 'desc',
   defaultPerPage: 10,
-  defaultAge: 7
+  defaultAge: 7,
+  hotThreshold: 10
 };
