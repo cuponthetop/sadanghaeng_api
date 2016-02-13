@@ -8,7 +8,7 @@
     "admin": false,
     "univID": "56ac6f7b9b0d0b0457673daf",
     "memberSince": "2016-01-01T08:11:10.000Z",
-    "reportCounts": "0"
+    "reported": []
   }, 
   {
     "_id": "21bc6f7b900d0aa457673daf",
@@ -19,7 +19,18 @@
     "admin": false,
     "univID": "56ac6f7b9b0d0b0457673daf",
     "memberSince": "2016-01-01T08:11:10.000Z",
-    "reportCounts": "0"
+    "reported": []
+  }, 
+  {
+    "_id": "22cc6f7b900d0aa457673daf",
+    "email": "noverify@test.com",
+    "nickname": "noverify",
+    "hashed_password": "$2a$10$aZB36UooZpL.fAgbQVN/j.pfZVVvkHxEnj7vfkVSqwBOBZbB/IAAK",
+    "verified": false,
+    "admin": false,
+    "univID": "56ac6f7b9b0d0b0457673daf",
+    "memberSince": "2016-01-01T08:11:10.000Z",
+    "reported": []
   }, 
   {
     "_id": "27bc6f7b900d0aa457673daf",
@@ -30,6 +41,6 @@
     "admin": true,
     "univID": "56ac6f7b9b0d0b0457673daf",
     "memberSince": "2016-01-01T08:11:10.000Z",
-    "reportCounts": "0"
+    "reported": []
   }
 ]

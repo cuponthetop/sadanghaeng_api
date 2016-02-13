@@ -5,9 +5,8 @@ var chai = require('../../helper/setup-chai')
   , status = require('../../../lib/server/status')
   , request = require('supertest-session')('http://localhost:3001')
   , UserModel = require('../../../lib/model/user')
-  , UserData = require('../../init/json/users.json')
-  , mongoose = require('mongoose')
-  , config = require('../../../config/config')
+  , mongoInit = require('../../init/mongo-init')
+  , userInit = require('../../init/users-init')
   ;
 
 describe('User API Register', () => {
@@ -15,40 +14,11 @@ describe('User API Register', () => {
   var test4Id;
 
   before((done) => {
-    // 몽고 db 연결
-    var dbUri = config.db.uri + config.db.dbName;
-    var dbOptions = {
-      username: config.db.username,
-      password: config.db.password
-    };
-    mongoose.connect(dbUri, dbOptions);
-
-    UserModel.remove({}).exec().then(
-      UserModel.create(UserData).then(() => {
-        done();
-      }, (err) => {
-        console.log(err);
-        done();
-      }), (err) => {
-        console.log(err);
-        done();
-      });
+    mongoInit.connect().then(userInit).catch(console.log).fin(done);
   });
 
   after((done) => {
-    UserModel.remove({}).exec().then(
-      UserModel.create(UserData).then(() => {
-        mongoose.disconnect();
-        done();
-      }, (err) => {
-        console.log(err);
-        mongoose.disconnect();
-        done();
-      }), (err) => {
-        console.log(err);
-        mongoose.disconnect();
-        done();
-      });
+    userInit().then(mongoInit.disconnect).catch(console.log).fin(done);
   });
 
   describe('#register user', () => {
@@ -63,6 +33,20 @@ describe('User API Register', () => {
         .expect(500)
         .end((err, res) => {
           res.body.status.should.be.equal(status.codes.UserEmailAlreadyInUse.code);
+          done();
+        });
+    });
+
+    it('should not allow user to use weird email address', (done) => {
+      request
+        .post('/api/v1/users/register')
+        .send({
+          email: 'test@test.fqf##..s.com',
+          password: 'definitelywrongpassword',
+        })
+        .expect(500)
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.InvalidEmailAddress.code);
           done();
         });
     });
@@ -115,6 +99,28 @@ describe('User API Register', () => {
         });
     });
 
+    it('should not generate tokens for not registered user', (done) => {
+      request
+        .get('/api/v1/users/verify')
+        .send({ email: 'notregistered@test.com' })
+        .expect(500)
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.UserNotFound.code);
+          done();
+        });
+    });
+
+    it('should not generate tokens for user with weird email address', (done) => {
+      request
+        .get('/api/v1/users/verify')
+        .send({ email: 'test3@test!#.a.com' })
+        .expect(500)
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.InvalidEmailAddress.code);
+          done();
+        });
+    });
+
     it('should allow users to generate verification token', (done) => {
       request
         .get('/api/v1/users/verify')
@@ -131,6 +137,20 @@ describe('User API Register', () => {
           res.body.status.should.be.equal(0);
           done();
         });
+    });
+
+    it('should reject verification request from user with weird email', (done) => {
+      request
+        .post('/api/v1/users/verify')
+        .send({
+          email: 'test3@test41.gdg...com',
+          verifyToken: "totalweird"
+        })
+        .expect(500)
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.InvalidEmailAddress.code);
+          done();
+        })
     });
 
     it('should properly verify user', (done) => {

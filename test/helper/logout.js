@@ -6,15 +6,12 @@ var chai = require('./setup-chai')
   ;
 
 module.exports = function (requestBound) {
-  return function (request, email, password) {
+  return function (request) {
     var deferred = Q.defer();
 
     request
-      .post('/api/v1/users/login')
-      .send({
-        email: email,
-        password: password,
-      })
+      .post('/api/v1/users/logout')
+      .send({})
       .end((err, res) => {
         res.body.status.should.be.equal(0);
         deferred.resolve();
