@@ -230,8 +230,8 @@ describe('University API Posts', () => {
           return request
             .get('/api/v1/universities/' + univId + '/posts')
             .send({
-          filter: 'hot',
-          age: 20
+              filter: 'hot',
+              age: 20
             })
             .expect(500)
             .toPromise();
@@ -477,4 +477,4 @@ describe('University API Posts', () => {
     });
 
   });
-
+})

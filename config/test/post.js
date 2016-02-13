@@ -6,5 +6,8 @@ module.exports = {
   maxPerPage: 30,
   searchFields: ['title', 'text'],
   filterTypes: ['hot', 'new'],
-  sortTypes: ['asc', 'desc']
+  sortTypes: ['asc', 'desc'],
+  defaultSort: 'desc',
+  defaultPerPage: 10,
+  defaultAge: 7
 };
