@@ -41,17 +41,15 @@ var makeModule = function (Promise) {
       set: (val) => { factory.cookies = val; }
     });
 
+
+    out.destroy = factory.destroy.bind(factory);
+
     return out;
   };
 
   var out = function (app, options) {
     return wrap(session(app, options));
   }
-
-  // out.agent = function () {
-  //   var agent = session.agent.apply(null, arguments);
-  //   return wrap(agent);
-  // };
 
   return out;
 };
