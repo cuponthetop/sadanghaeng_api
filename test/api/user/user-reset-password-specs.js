@@ -3,7 +3,7 @@ process.env.NODE_ENV = 'test';
 
 var chai = require('../../helper/setup-chai')
   , status = require('../../../lib/server/status')
-  , request = require('supertest-session')('http://localhost:3001')
+  , request = require('../../helper/setup-supertest')('http://localhost:3001')
   , UserModel = require('../../../lib/model/user')
   , mongoInit = require('../../init/mongo-init')
   , userInit = require('../../init/users-init')
@@ -29,10 +29,13 @@ describe('User API Reset Password', () => {
         .get('/api/v1/users/reset_password')
         .send({ email: 'definitelynotregistered@test.com' })
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.UserNotFound.code);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should reject reset password request from user with weird email address', (done) => {
@@ -40,10 +43,13 @@ describe('User API Reset Password', () => {
         .get('/api/v1/users/reset_password')
         .send({ email: 'test2@we!r%..test.com' })
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.InvalidEmailAddress.code);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should generate reset password token', (done) => {
@@ -51,17 +57,23 @@ describe('User API Reset Password', () => {
         .get('/api/v1/users/reset_password')
         .send({ email: 'test@test.com' })
         .expect(200)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(0);
-        });
-      request
-        .get('/api/v1/users/reset_password')
-        .send({ email: 'test2@test.com' })
-        .expect(200)
-        .end((err, res) => {
+        })
+        .then(() => {
+          return request
+            .get('/api/v1/users/reset_password')
+            .send({ email: 'test2@test.com' })
+            .expect(200)
+            .toPromise();
+        })
+        .then((res) => {
           res.body.status.should.be.equal(0);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should not accept wrong token', (done) => {
@@ -73,10 +85,13 @@ describe('User API Reset Password', () => {
           newPassword: 'thisshouldnotbeaccepted'
         })
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.UserTokenMismatch.code);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should not accept expired token', (done) => {
@@ -90,10 +105,13 @@ describe('User API Reset Password', () => {
             newPassword: 'thisshouldnotbeaccepted'
           })
           .expect(500)
-          .end((err, res) => {
+          .toPromise()
+          .then((res) => {
             res.body.status.should.be.equal(status.codes.UserTokenAlreadyExpired.code);
-            done();
-          });
+          })
+          .then(done)
+          .catch(done)
+          .done();
       }, (err) => {
         err.should.not.exist;
         done();
@@ -111,10 +129,13 @@ describe('User API Reset Password', () => {
             newPassword: 'newpassword'
           })
           .expect(200)
-          .end((err, res) => {
+          .toPromise()
+          .then((res) => {
             res.body.status.should.be.equal(0);
-            done();
-          });
+          })
+          .then(done)
+          .catch(done)
+          .done();
       }, (err) => {
         err.should.not.exist;
         done();
@@ -129,10 +150,13 @@ describe('User API Reset Password', () => {
           password: 'test'
         })
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.UserCredentialsNotMatch.code);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should allow user to use new password to login', (done) => {
@@ -143,10 +167,13 @@ describe('User API Reset Password', () => {
           password: 'newpassword'
         })
         .expect(200)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(0);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
   });
 });

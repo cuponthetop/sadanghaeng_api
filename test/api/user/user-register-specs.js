@@ -3,7 +3,7 @@ process.env.NODE_ENV = 'test';
 
 var chai = require('../../helper/setup-chai')
   , status = require('../../../lib/server/status')
-  , request = require('supertest-session')('http://localhost:3001')
+  , request = require('../../helper/setup-supertest')('http://localhost:3001')
   , UserModel = require('../../../lib/model/user')
   , mongoInit = require('../../init/mongo-init')
   , userInit = require('../../init/users-init')
@@ -31,10 +31,13 @@ describe('User API Register', () => {
           password: 'definitelywrongpassword',
         })
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.UserEmailAlreadyInUse.code);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should not allow user to use weird email address', (done) => {
@@ -45,10 +48,13 @@ describe('User API Register', () => {
           password: 'definitelywrongpassword',
         })
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.InvalidEmailAddress.code);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should allow new user to register', (done) => {
@@ -59,11 +65,14 @@ describe('User API Register', () => {
           password: 'test3',
         })
         .expect(200)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           test3Id = res.body.value;
           res.body.status.should.be.equal(0);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should allow new user to register #2', (done) => {
@@ -74,16 +83,18 @@ describe('User API Register', () => {
           password: 'test4',
         })
         .expect(200)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           test4Id = res.body.value;
           res.body.status.should.be.equal(0);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
   });
 
   describe('#verify user', () => {
-
 
     it('should not allow access to not verified user', (done) => {
       request
@@ -93,10 +104,13 @@ describe('User API Register', () => {
           password: 'test3'
         })
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.UserNotVerified.code);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should not generate tokens for not registered user', (done) => {
@@ -104,10 +118,13 @@ describe('User API Register', () => {
         .get('/api/v1/users/verify')
         .send({ email: 'notregistered@test.com' })
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.UserNotFound.code);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should not generate tokens for user with weird email address', (done) => {
@@ -115,10 +132,13 @@ describe('User API Register', () => {
         .get('/api/v1/users/verify')
         .send({ email: 'test3@test!#.a.com' })
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.InvalidEmailAddress.code);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should allow users to generate verification token', (done) => {
@@ -126,17 +146,23 @@ describe('User API Register', () => {
         .get('/api/v1/users/verify')
         .send({ email: 'test3@test.com' })
         .expect(200)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(0);
-        });
-      request
-        .get('/api/v1/users/verify')
-        .send({ email: 'test4@test3.com' })
-        .expect(200)
-        .end((err, res) => {
+        })
+        .then(() => {
+          return request
+            .get('/api/v1/users/verify')
+            .send({ email: 'test4@test3.com' })
+            .expect(200)
+            .toPromise();
+        })
+        .then((res) => {
           res.body.status.should.be.equal(0);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should reject verification request from user with weird email', (done) => {
@@ -147,10 +173,13 @@ describe('User API Register', () => {
           verifyToken: "totalweird"
         })
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.InvalidEmailAddress.code);
-          done();
         })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should properly verify user', (done) => {
@@ -162,10 +191,13 @@ describe('User API Register', () => {
             verifyToken: user.verify_token
           })
           .expect(200)
-          .end((err, res) => {
+          .toPromise()
+          .then((res) => {
             res.body.status.should.be.equal(0);
-            done();
           })
+          .then(done)
+          .catch(done)
+          .done();
       }, (err) => {
         err.should.not.exist;
         done();
@@ -180,11 +212,14 @@ describe('User API Register', () => {
           password: 'test3'
         })
         .expect(200)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(0);
           request.destroy();
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should not verify user with invalid token', (done) => {
@@ -195,10 +230,13 @@ describe('User API Register', () => {
           verifyToken: 'definitelywrongverificationtoken'
         })
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.UserTokenMismatch.code);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should not verify user with expired token', (done) => {
@@ -211,10 +249,13 @@ describe('User API Register', () => {
             verifyToken: user.verify_token
           })
           .expect(500)
-          .end((err, res) => {
+          .toPromise()
+          .then((res) => {
             res.body.status.should.be.equal(status.codes.UserTokenAlreadyExpired.code);
-            done();
-          });
+          })
+          .then(done)
+          .catch(done)
+          .done();
       }, (err) => {
         err.should.not.exist;
         done();
@@ -226,10 +267,13 @@ describe('User API Register', () => {
         .get('/api/v1/users/verify')
         .send({ email: 'test3@test.com' })
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.UserAlreadyVerified.code);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
   });
 });
