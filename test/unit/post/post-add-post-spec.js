@@ -19,7 +19,6 @@
 //     after(() => {
 //       mongoose.disconnect();
 //     });
-    
 //     it('should write a title of the post', (done) => {
 //       PostCtrl.addPost(/* req, res */)
 //         .should.be.rejectedWith('title doesn\'t exist')
