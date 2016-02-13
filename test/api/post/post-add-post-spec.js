@@ -60,7 +60,7 @@ describe('PostController', () => {
       request
         .post('/api/v1/posts')
         .send({
-          title: null,
+          // title: null,
           text: 'testPost4',
           author: 'testPost4',
           university: 'testPost4'
@@ -75,7 +75,7 @@ describe('PostController', () => {
         .post('/api/v1/posts')
         .send({
           title: 'testPost4',
-          text: null,
+          // text: null,
           author: 'testPost4',
           university: 'testPost4'
         })
