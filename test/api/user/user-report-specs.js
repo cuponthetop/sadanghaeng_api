@@ -107,7 +107,7 @@ describe('User API Report', () => {
           .post('/api/v1/users/' + testId + '/report')
           .expect(500)
           .end((err, res) => {
-            res.body.status.should.be.equal(status.codes.UserAlreadyReported.code);
+            res.body.status.should.be.equal(status.codes.AlreadyReported.code);
             res.body.value.should.have.property('message');
             logout().then(done);
           });
