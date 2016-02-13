@@ -121,7 +121,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
-          age: 100
+          age: 366
         })
         .expect(500)
         .toPromise()

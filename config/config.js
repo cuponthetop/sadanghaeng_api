@@ -11,7 +11,8 @@ var config = {
   session: '',
   user: '',
   auth: '',
-  rate: ''
+  rate: '',
+  post: ''
 };
 
 module.exports = _.mapObject(config, function (val, configName) {
