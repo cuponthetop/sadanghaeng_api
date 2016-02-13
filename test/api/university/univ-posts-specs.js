@@ -18,18 +18,14 @@ describe('University API Posts', () => {
 
     before((done) => {
       login('test@test.com', 'test')
-        .then(() => { })
-        .then(done)
-        .catch(done)
-        .done();
+        .catch(console.log)
+        .fin(done);
     });
 
     after((done) => {
       logout()
-        .then(() => { })
-        .then(done)
-        .catch(done)
-        .done();
+        .catch(console.log)
+        .fin(done);
     });
 
     it('should reject query with invalid page number #1', (done) => {
@@ -296,18 +292,14 @@ describe('University API Posts', () => {
 
     before((done) => {
       login('test@test.com', 'test')
-        .then(() => { })
-        .then(done)
-        .catch(done)
-        .done();
+        .catch(console.log)
+        .fin(done);
     });
 
     after((done) => {
       logout()
-        .then(() => { })
-        .then(done)
-        .catch(done)
-        .done();
+        .catch(console.log)
+        .fin(done);
     });
 
     it('should query hot topics', (done) => {

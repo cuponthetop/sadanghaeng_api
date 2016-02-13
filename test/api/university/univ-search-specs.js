@@ -18,18 +18,14 @@ describe('University API Search', () => {
 
     before((done) => {
       login('test@test.com', 'test')
-        .then(() => { })
-        .then(done)
-        .catch(done)
-        .done();
+        .catch(console.log)
+        .fin(done);
     });
 
     after((done) => {
       logout()
-        .then(() => { })
-        .then(done)
-        .catch(done)
-        .done();
+        .catch(console.log)
+        .fin(done);
     });
 
     it('should reject search with empty query', (done) => {
@@ -310,18 +306,14 @@ describe('University API Search', () => {
 
     before((done) => {
       login('test@test.com', 'test')
-        .then(() => { })
-        .then(done)
-        .catch(done)
-        .done();
+        .catch(console.log)
+        .fin(done);
     });
 
     after((done) => {
       logout()
-        .then(() => { })
-        .then(done)
-        .catch(done)
-        .done();
+        .catch(console.log)
+        .fin(done);
     });
 
     it('should search with valid query string', (done) => {
