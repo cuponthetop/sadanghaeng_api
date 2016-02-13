@@ -23,6 +23,22 @@ describe('User API Auth', () => {
 
   describe('#login', () => {
 
+    it('should not allow login attempts with weird email address', (done) => {
+      request
+        .post('/api/v1/users/login')
+        .send({
+          email: 'test@test.@.com',
+          password: 'definitelywrongpassword'
+        })
+        .expect(500)
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.InvalidEmailAddress.code);
+          res.body.value.message.should.exist;
+          done();
+        });
+    });
+
+
     it('should not allow users with wrong password to get token', (done) => {
       request
         .post('/api/v1/users/login')
@@ -51,7 +67,6 @@ describe('User API Auth', () => {
           done();
         });
     });
-
 
   });
 

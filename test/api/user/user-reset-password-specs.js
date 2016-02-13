@@ -5,9 +5,8 @@ var chai = require('../../helper/setup-chai')
   , status = require('../../../lib/server/status')
   , request = require('supertest-session')('http://localhost:3001')
   , UserModel = require('../../../lib/model/user')
-  , UserData = require('../../init/json/users.json')
-  , mongoose = require('mongoose')
-  , config = require('../../../config/config')
+  , mongoInit = require('../../init/mongo-init')
+  , userInit = require('../../init/users-init')
   ;
 
 describe('User API Reset Password', () => {
@@ -15,43 +14,38 @@ describe('User API Reset Password', () => {
   var test2Id = '21bc6f7b900d0aa457673daf';
 
   before((done) => {
-    // 몽고 db 연결
-    var dbUri = config.db.uri + config.db.dbName;
-    var dbOptions = {
-      username: config.db.username,
-      password: config.db.password
-    };
-    mongoose.connect(dbUri, dbOptions);
-
-    UserModel.remove({}).exec().then(
-      UserModel.create(UserData).then(() => {
-        done();
-      }, (err) => {
-        console.log(err);
-        done();
-      }), (err) => {
-        console.log(err);
-        done();
-      });
+    mongoInit.connect().then(userInit).catch(console.log).fin(done);
   });
 
   after((done) => {
-    UserModel.remove({}).exec().then(
-      UserModel.create(UserData).then(() => {
-        mongoose.disconnect();
-        done();
-      }, (err) => {
-        console.log(err);
-        mongoose.disconnect();
-        done();
-      }), (err) => {
-        console.log(err);
-        mongoose.disconnect();
-        done();
-      });
+    userInit().then(mongoInit.disconnect).catch(console.log).fin(done);
   });
 
+
   describe('#reset password', () => {
+
+    it('should not generate reset password token for unregistered user', (done) => {
+      request
+        .get('/api/v1/users/reset_password')
+        .send({ email: 'definitelynotregistered@test.com' })
+        .expect(500)
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.UserNotFound.code);
+          done();
+        });
+    });
+
+    it('should reject reset password request from user with weird email address', (done) => {
+      request
+        .get('/api/v1/users/reset_password')
+        .send({ email: 'test2@we!r%..test.com' })
+        .expect(500)
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.InvalidEmailAddress.code);
+          done();
+        });
+    });
+
     it('should generate reset password token', (done) => {
       request
         .get('/api/v1/users/reset_password')

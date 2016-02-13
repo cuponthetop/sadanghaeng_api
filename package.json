@@ -56,7 +56,7 @@
   },
   "homepage": "https://github.com/cuponthetop/sadanghaeng_auth#readme",
   "apidoc": {
-    "title": "Custom apiDoc browser title",
-    "url": "https://api.github.com/v1"
+    "title": "Garim API",
+    "url": "https://garim.com/api/v1"
   }
 }
