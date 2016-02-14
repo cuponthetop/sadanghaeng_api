@@ -234,7 +234,7 @@ describe('University API Posts', () => {
         })
         .then((res) => {
           res.body.status.should.be.equal(0);
-          res.body.value.should.have.length(5);
+          res.body.value.should.have.length(1);
         })
         .then(logout)
         .then(done)
@@ -248,7 +248,7 @@ describe('University API Posts', () => {
           return request
             .get('/api/v1/universities/' + univ3Id + '/posts')
             .send({
-              filter: 'hot',
+              filter: 'new',
               age: 20
 
             })
@@ -313,9 +313,8 @@ describe('University API Posts', () => {
         .toPromise()
         .then((res) => {
           res.body.status.should.be.equal(0);
-          res.body.value.should.have.length(5);
+          res.body.value.should.have.length(1);
           res.body.value[0].should.have.property('title', 'Test Post1');
-          res.body.value[4].should.have.property('title', 'Test Post2');
         })
         .then(done)
         .catch(done)
@@ -375,7 +374,7 @@ describe('University API Posts', () => {
         .then((res) => {
           res.body.status.should.be.equal(0);
           res.body.value.should.have.length(1);
-          res.body.value[0].should.have.property('title', 'Test Post2');
+          res.body.value[0].should.have.property('title', 'Test Post4');
         })
         .then(done)
         .catch(done)
@@ -396,7 +395,7 @@ describe('University API Posts', () => {
         .then((res) => {
           res.body.status.should.be.equal(0);
           res.body.value.should.have.length(2);
-          res.body.value[0].should.have.property('title', 'Test Post4');
+          res.body.value[0].should.have.property('title', 'Test Post2');
         })
         .then(done)
         .catch(done)
@@ -431,7 +430,8 @@ describe('University API Posts', () => {
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
           filter: 'new',
-          sort: 'desc'
+          sort: 'desc',
+          age: 20
         })
         .expect(200)
         .toPromise()
