@@ -3,7 +3,7 @@ process.env.NODE_ENV = 'test';
 
 var chai = require('../../helper/setup-chai')
   , status = require('../../../lib/server/status')
-  , request = require('supertest-session')('http://localhost:3001')
+  , request = require('../../helper/setup-supertest')('http://localhost:3001')
   ;
 
 describe('User API Auth', () => {
@@ -12,12 +12,14 @@ describe('User API Auth', () => {
     it('should not permit access to generateResetToken for user without a valid access token', (done) => {
       request
         .get('/api/v1/users/11bc6f7b9b0d0b0457673daf')
-        .send({})
-        .expect(200)
-        .end((err, res) => {
+        .expect(500)
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
   });
 
@@ -31,11 +33,14 @@ describe('User API Auth', () => {
           password: 'definitelywrongpassword'
         })
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.InvalidEmailAddress.code);
           res.body.value.message.should.exist;
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
 
@@ -47,11 +52,14 @@ describe('User API Auth', () => {
           password: 'definitelywrongpassword'
         })
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.UserCredentialsNotMatch.code);
           res.body.value.message.should.exist;
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should allow users to login', (done) => {
@@ -62,10 +70,13 @@ describe('User API Auth', () => {
           password: 'test'
         })
         .expect(200)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(0);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
   });
@@ -76,10 +87,13 @@ describe('User API Auth', () => {
         .get('/api/v1/users/11bc6f7b9b0d0b0457673daf')
         .send({})
         .expect(200)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(0);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
   });
 
@@ -92,10 +106,13 @@ describe('User API Auth', () => {
         .get('/api/v1/users/11bc6f7b9b0d0b0457673daf')
         .send({})
         .expect(200)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(0);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
   });
 
@@ -105,11 +122,14 @@ describe('User API Auth', () => {
       request
         .post('/api/v1/users/logout')
         .expect(200)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(0);
-          done();
           // test for invalidating session
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
 
@@ -118,10 +138,13 @@ describe('User API Auth', () => {
       request
         .post('/api/v1/users/logout')
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.UserLoggingOutWhenNotLoggedIn.code);
-          done();
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
   });
 

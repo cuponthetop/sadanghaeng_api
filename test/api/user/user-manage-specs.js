@@ -2,7 +2,7 @@
 
 process.env.NODE_ENV = 'test';
 
-var request = require('supertest-session')('http://localhost:3001')
+var request = require('../../helper/setup-supertest')('http://localhost:3001')
   , chai = require('../../helper/setup-chai')
   , status = require('../../../lib/server/status')
   , login = require('../../helper/login')(request)
@@ -26,47 +26,65 @@ describe('User API Manage', () => {
     it('should not allow access to anonymous users', (done) => {
       request
         .get('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
           res.body.value.should.not.have.property('email');
-          done(err);
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should not allow access to other users', (done) => {
-      login('test2@test.com', 'test').then(() => {
-        request
-          .get('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
-          .end((err, res) => {
-            res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
-            res.body.value.should.not.have.property('email');
-            logout().then(done);
-          });
-      });
+      login('test2@test.com', 'test')
+        .then(() => {
+          return request
+            .get('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
+          res.body.value.should.not.have.property('email');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should allow access to owner users', (done) => {
-      login('test@test.com', 'test').then(() => {
-        request
-          .get('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
-          .end((err, res) => {
-            res.body.status.should.be.equal(0);
-            res.body.value.email.should.be.equal('test@test.com');
-            logout().then(done);
-          });
-      });
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .get('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(0);
+          res.body.value.email.should.be.equal('test@test.com');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should allow access to admin users', (done) => {
-      login('admin@test.com', 'test').then(() => {
-        request
-          .get('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
-          .end((err, res) => {
-            res.body.status.should.be.equal(0);
-            res.body.value.email.should.be.equal('test@test.com');
-            logout().then(done);
-          });
-      });
+      login('admin@test.com', 'test')
+        .then(() => {
+          return request
+            .get('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(0);
+          res.body.value.email.should.be.equal('test@test.com');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
     });
   });
 
@@ -78,90 +96,119 @@ describe('User API Manage', () => {
         .send({
           nickname: 'should not update'
         })
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
           res.body.value.should.not.have.property('nickname');
-          done(err);
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should not allow access to other users', (done) => {
-      login('test2@test.com', 'test').then(() => {
-        request
-          .put('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
-          .send({
-            nickname: 'should not update'
-          })
-          .end((err, res) => {
-            res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
-            res.body.value.should.not.have.property('nickname');
-            logout().then(done);
-          });
-      });
+      login('test2@test.com', 'test')
+        .then(() => {
+          return request
+            .put('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
+            .send({
+              nickname: 'should not update'
+            })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
+          res.body.value.should.not.have.property('nickname');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should allow access to owner users', (done) => {
-      login('test@test.com', 'test').then(() => {
-        request
-          .put('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
-          .send({
-            nickname: "should update"
-          })
-          .end((err, res) => {
-            res.body.status.should.be.equal(0);
-            res.body.value.nickname.should.be.equal('should update');
-            logout().then(done);
-          });
-      });
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .put('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
+            .send({
+              nickname: "should update"
+            })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(0);
+          res.body.value.nickname.should.be.equal('should update');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should not allow access to admin users', (done) => {
-      login('admin@test.com', 'test').then(() => {
-        request
-          .put('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
-          .send({
-            nickname: 'should not update'
-          })
-          .end((err, res) => {
-            res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
-            res.body.value.should.not.have.property('nickname');
-            logout().then(done);
-          });
-      });
+      login('admin@test.com', 'test')
+        .then(() => {
+          return request
+            .put('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
+            .send({
+              nickname: 'should not update'
+            })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
+          res.body.value.should.not.have.property('nickname');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should expire login session after changing password', (done) => {
-      login('test@test.com', 'test').then(() => {
-        request
-          .put('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
-          .send({
-            password: 'test2'
-          })
-          .end((err, res) => {
-            res.body.status.should.be.equal(0);
-            res.body.value.nickname.should.be.equal('should update');
-
-            request
-              .get('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
-              .end((err, res) => {
-                res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
-                res.body.value.should.not.have.property('email');
-                done(err);
-              });
-          });
-      });
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .put('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
+            .send({
+              password: 'test2'
+            })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(0);
+          res.body.value.nickname.should.be.equal('should update');
+        })
+        .then(() => {
+          return request
+            .get('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
+          res.body.value.should.not.have.property('email');
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should allow login with new password', (done) => {
-      login('test@test.com', 'test2').then(() => {
-        request
-          .get('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
-          .end((err, res) => {
-            res.body.status.should.be.equal(0);
-            res.body.value.email.should.be.equal('test@test.com');
-            logout().then(done);
-          });
-      });
+      login('test@test.com', 'test2')
+        .then(() => {
+          return request
+            .get('/api/v1/users/' + '11bc6f7b9b0d0b0457673daf')
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(0);
+          res.body.value.email.should.be.equal('test@test.com');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
     });
   });
 
@@ -173,50 +220,67 @@ describe('User API Manage', () => {
       request
         .delete('/api/v1/users/' + testId)
         .expect(500)
-        .end((err, res) => {
+        .toPromise()
+        .then((res) => {
           res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
           res.body.value.should.have.property('message');
-          done(err);
-        });
+        })
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should not allow to destory other users', (done) => {
-      login('test2@test.com', 'test').then(() => {
-        request
-          .delete('/api/v1/users/' + testId)
-          .expect(500)
-          .end((err, res) => {
-            res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
-            res.body.value.should.have.property('message');
-            logout().then(done);
-          });
-      });
+      login('test2@test.com', 'test')
+        .then(() => {
+          return request
+            .delete('/api/v1/users/' + testId)
+            .expect(500)
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should allow admin users to remove user', (done) => {
-      login('admin@test.com', 'test').then(() => {
-        request
-          .delete('/api/v1/users/' + test2Id)
-          .end((err, res) => {
-            res.body.status.should.be.equal(0);
-            res.body.should.have.property('value', null);
-            logout().then(done);
-          });
-      });
+      login('admin@test.com', 'test')
+        .then(() => {
+          return request
+            .delete('/api/v1/users/' + test2Id)
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(0);
+          res.body.should.have.property('value', null);
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     it('should not allow admin users to remove non-existing user', (done) => {
-      login('admin@test.com', 'test').then(() => {
-        request
-          .delete('/api/v1/users/' + test2Id)
-          .end((err, res) => {
-            res.body.status.should.be.equal(status.codes.UserNotFound.code);
-            res.body.value.should.have.property('message');
-            logout().then(done);
-          });
-      });
+      login('admin@test.com', 'test')
+        .then(() => {
+          return request
+            .delete('/api/v1/users/' + test2Id)
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.UserNotFound.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
     });
-
   });
-
+  
 });
