@@ -257,6 +257,202 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/stats/comments",
+    "title": "Get Comment Statistics",
+    "name": "GetCommentStat",
+    "group": "Stat",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "value",
+            "description": "<p>returned value</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.count",
+            "description": "<p>number of comments</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/stat.js",
+    "groupTitle": "Stat",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFetchCount",
+            "description": "<p>(700) error when calling db</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/stats/posts",
+    "title": "Get Post Statistics",
+    "name": "GetPostStat",
+    "group": "Stat",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "value",
+            "description": "<p>returned value</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.count",
+            "description": "<p>number of posts</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/stat.js",
+    "groupTitle": "Stat",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFetchCount",
+            "description": "<p>(700) error when calling db</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/stats/universities",
+    "title": "Get University Statistics",
+    "name": "GetUnivStat",
+    "group": "Stat",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "value",
+            "description": "<p>returned value</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.count",
+            "description": "<p>number of universities</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/stat.js",
+    "groupTitle": "Stat",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFetchCount",
+            "description": "<p>(700) error when calling db</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/stats/users",
+    "title": "Get User Statistics",
+    "name": "GetUserStat",
+    "group": "Stat",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "value",
+            "description": "<p>returned value</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.count",
+            "description": "<p>number of users</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/stat.js",
+    "groupTitle": "Stat",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFetchCount",
+            "description": "<p>(700) error when calling db</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
     "url": "/",
     "title": "Status Codes",
     "name": "StatusCodes",
