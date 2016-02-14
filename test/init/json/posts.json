@@ -11,6 +11,7 @@
     "edited": "2016-02-01T08:11:10.000Z",
 
     "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "voteType": "up" }],
+    "voteScore": 1,
     "comments": ["77ac6f7b9b0d0b0457673daf"]
   },
   {
@@ -25,6 +26,7 @@
     "edited": "2016-02-02T08:11:10.000Z",
 
     "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "voteType": "down" }],
+    "voteScore": -1,
     "comments": []
   },
   {
@@ -39,7 +41,9 @@
     "edited": "2016-02-03T08:11:10.000Z",
 
     "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "voteType": "report" }],
-    "comments": []
+    "voteScore": 0,
+    "comments": [],
+    "reported": ["21bc6f7b900d0aa457673daf"]
   },
   {
     "_id": "37bc6f7b9b0d0b0457673daf",
@@ -53,6 +57,7 @@
     "edited": "2016-02-04T08:11:10.000Z",
 
     "votes": [],
+    "voteScore": 0,
     "comments": []
   },
   {
@@ -67,6 +72,7 @@
     "edited": "2016-02-05T08:11:10.000Z",
 
     "votes": [],
+    "voteScore": 0,
     "comments": []
   },
   {
@@ -81,6 +87,7 @@
     "edited": "2016-02-14T08:11:10.000Z",
 
     "votes": [],
+    "voteScore": 0,
     "comments": []
   }
 ]

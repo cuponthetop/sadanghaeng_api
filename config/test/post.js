@@ -10,5 +10,5 @@ module.exports = {
   defaultSort: 'desc',
   defaultPerPage: 10,
   defaultAge: 7,
-  hotThreshold: 10
+  hotThreshold: 1
 };
