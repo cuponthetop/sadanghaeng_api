@@ -229,7 +229,7 @@ describe('University API Posts', () => {
               filter: 'hot',
               age: 20
             })
-            .expect(500)
+            .expect(200)
             .toPromise();
         })
         .then((res) => {
@@ -252,7 +252,7 @@ describe('University API Posts', () => {
               age: 20
 
             })
-            .expect(500)
+            .expect(200)
             .toPromise();
         })
         .then((res) => {

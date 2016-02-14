@@ -245,7 +245,7 @@ describe('University API Search', () => {
               query: 'Test',
               fields: ['title']
             })
-            .expect(500)
+            .expect(200)
             .toPromise();
         })
         .then((res) => {
@@ -267,7 +267,7 @@ describe('University API Search', () => {
               query: 'Test',
               fields: ['title']
             })
-            .expect(500)
+            .expect(200)
             .toPromise();
         })
         .then((res) => {
@@ -367,7 +367,7 @@ describe('University API Search', () => {
         .then((res) => {
           res.body.status.should.be.equal(0);
           res.body.value.should.have.length(1);
-          res.body.value[0].should.have.property('title', 'Test Post2');
+          res.body.value[0].should.have.property('title', 'Test Post4');
         })
         .then(done)
         .catch(done)
@@ -388,7 +388,7 @@ describe('University API Search', () => {
         .then((res) => {
           res.body.status.should.be.equal(0);
           res.body.value.should.have.length(2);
-          res.body.value[0].should.have.property('title', 'Test Post4');
+          res.body.value[0].should.have.property('title', 'Test Post2');
         })
         .then(done)
         .catch(done)
