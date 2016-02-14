@@ -1,6 +1,95 @@
 define({ "api": [
   {
     "type": "post",
+    "url": "/comments",
+    "title": "Add new comment",
+    "name": "PostComment",
+    "group": "Comment",
+    "version": "0.0.0",
+    "filename": "lib/route/v1/comment.js",
+    "groupTitle": "Comment",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CommentAddFailed",
+            "description": "<p>(502) failed to add comment</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "/comments/:cid/votes",
+    "title": "Add a vote for a comment",
+    "name": "VoteComment",
+    "group": "Comment",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": ":cid",
+            "description": "<p>Comment's unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/comment.js",
+    "groupTitle": "Comment",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CommentNotFound",
+            "description": "<p>(500) Requested comment was not found on DB</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "AddVoteFailed",
+            "description": "<p>(602) adding vote failed</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
     "url": "/comments/:cid/reportes",
     "title": "Report the comment",
     "name": "reportComment",
@@ -18,6 +107,143 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "lib/route/v1/post.js",
     "groupTitle": "Post"
+  },
+  {
+    "type": "delete",
+    "url": "/posts/:pid",
+    "title": "Get individual post",
+    "name": "DeletePost",
+    "group": "Posts",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": ":pid",
+            "description": "<p>Post's unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/post.js",
+    "groupTitle": "",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFindPost",
+            "description": "<p>(404) failed to find individual post</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "PostRemoveFailed",
+            "description": "<p>(405) failed to remove post</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/posts/:pid",
+    "title": "Get individual post",
+    "name": "GetPost",
+    "group": "Posts",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": ":pid",
+            "description": "<p>Post's unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/post.js",
+    "groupTitle": "",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFindPost",
+            "description": "<p>(404) failed to find individual post</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/posts",
+    "title": "Get all posts",
+    "name": "GetPosts",
+    "group": "Posts",
+    "version": "0.0.0",
+    "filename": "lib/route/v1/post.js",
+    "groupTitle": "",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "GetPostsFailed",
+            "description": "<p>(403) failed to get posts</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "post",
@@ -134,12 +360,6 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "UserAlreadyReported",
-            "description": "<p>(118) user can only get reported once</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
             "field": "UserRemovalFailed",
             "description": "<p>(119) user removal failed</p>"
           },
@@ -200,6 +420,54 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
+            "field": "InvalidPageNumberRequested",
+            "description": "<p>(250) requested page number is invalid</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidSortRequested",
+            "description": "<p>(251) requested sort type is invalid</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidFilterRequested",
+            "description": "<p>(252) requested filter type is invalid</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidSearchFieldRequested",
+            "description": "<p>(253) one of requested search field type is invalid</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidAgeRequested",
+            "description": "<p>(254) requested post age range is invalid</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "EmptyQueryStringRequested",
+            "description": "<p>(255) requested query string is empty</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidPerPageRequested",
+            "description": "<p>(256) requested per page is invalid</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "PostNotFound",
+            "description": "<p>(400) Requested Post was not found on DB</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
             "field": "CommentsOnPostGottenFailed",
             "description": "<p>(401) fail to get comments on the post</p>"
           },
@@ -212,20 +480,80 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
+            "field": "GetPostsFailed",
+            "description": "<p>(403) failed to get posts</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFindPost",
+            "description": "<p>(404) failed to find individual post</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "PostRemoveFailed",
+            "description": "<p>(405) failed to remove post</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CommentNotFound",
+            "description": "<p>(500) Requested comment was not found on DB</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
             "field": "CommentRemovalFailed",
-            "description": "<p>(500) fail to remove the comment</p>"
+            "description": "<p>(501) fail to remove the comment</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "CommentUpdateFailed",
-            "description": "<p>(501) fail to update the comment</p>"
+            "description": "<p>(502) fail to update the comment</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CommentAddFailed",
+            "description": "<p>(502) failed to add comment</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "AlreadyReported",
+            "description": "<p>(600) user can only get reported once</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "AlreadyVoted",
+            "description": "<p>(601) user can only vote once</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "AddVoteFailed",
+            "description": "<p>(602) adding vote failed</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "AddReportFailed",
+            "description": "<p>(603) adding report failed</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "RateLimitExceeded",
             "description": "<p>(40004) Too many requests, please try again later.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CouldNotFetchCount",
+            "description": "<p>(700) error when calling db</p>"
           }
         ]
       }
@@ -402,6 +730,153 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/universities/:univid/posts",
+    "title": "Get posts in University",
+    "name": "GetPostsInUniversity",
+    "group": "University",
+    "permission": [
+      {
+        "name": "student"
+      },
+      {
+        "name": "admin"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": ":univid",
+            "description": "<p>University's unique ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Page Number (1)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "sort",
+            "description": "<p>Sort Type (asc/desc)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "filter",
+            "description": "<p>Filter Type (hot/new)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "age",
+            "description": "<p>apply filter to posts younger than specified age in days (7)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "perPage",
+            "description": "<p>Number of Posts in a page (10)</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/university.js",
+    "groupTitle": "University",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "value",
+            "description": "<p>Post Information</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value[]",
+            "description": "<p>.pid Post unique id</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserAuthRequired",
+            "description": "<p>(111) user authentication is required</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserPermissionNotAllowed",
+            "description": "<p>(106) permission current user posesses is not enough to perform selected action</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnivNotFound",
+            "description": "<p>(201) Requested University is not found</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidPageNumberRequested",
+            "description": "<p>(250) requested page number is invalid</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidSortRequested",
+            "description": "<p>(251) requested sort type is invalid</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidFilterRequested",
+            "description": "<p>(252) requested filter type is invalid</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidAgeRequested",
+            "description": "<p>(254) requested post age range is invalid</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidPerPageRequested",
+            "description": "<p>(256) requested per page is invalid</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
     "url": "/universities/:univid",
     "title": "Get University Information",
     "name": "GetUniversity",
@@ -506,9 +981,146 @@ define({ "api": [
     "title": "Search for posts in University",
     "name": "Search",
     "group": "University",
+    "permission": [
+      {
+        "name": "student"
+      },
+      {
+        "name": "admin"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": ":univid",
+            "description": "<p>University's unique ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "query",
+            "description": "<p>Query string. empty query string results in error. this string will be sanitized (&quot;&quot;)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Page Number (1)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "sort",
+            "description": "<p>Sort Type (asc/desc)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String[]",
+            "optional": false,
+            "field": "fields",
+            "description": "<p>Search Fields combination of (title/text)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "perPage",
+            "description": "<p>Number of Posts in a page (10)</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "lib/route/v1/university.js",
-    "groupTitle": "University"
+    "groupTitle": "University",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "value",
+            "description": "<p>Post Information</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value[]",
+            "description": "<p>.pid Post unique id</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserAuthRequired",
+            "description": "<p>(111) user authentication is required</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserPermissionNotAllowed",
+            "description": "<p>(106) permission current user posesses is not enough to perform selected action</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnivNotFound",
+            "description": "<p>(201) Requested University is not found</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "EmptyQueryStringRequested",
+            "description": "<p>(255) requested query string is empty</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidPageNumberRequested",
+            "description": "<p>(250) requested page number is invalid</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidSortRequested",
+            "description": "<p>(251) requested sort type is invalid</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidSearchFieldRequested",
+            "description": "<p>(253) one of requested search field type is invalid</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidPerPageRequested",
+            "description": "<p>(256) requested per page is invalid</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "put",
@@ -1315,6 +1927,12 @@ define({ "api": [
             "optional": false,
             "field": "UserNotFound",
             "description": "<p>(101) Requested User was not found on DB</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "AlreadyReported",
+            "description": "<p>(600) user can only get reported once</p>"
           },
           {
             "group": "Error 4xx",
