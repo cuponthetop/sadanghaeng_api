@@ -3,6 +3,7 @@ node_js:
   - "4.1"
 services: mongodb
 before_script:
+  - sleep 10
   - npm install -g gulp
 script: 
   - git clone --branch=master https://github.com/cuponthetop/sadanghaeng_auth.git
