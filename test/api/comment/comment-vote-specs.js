@@ -28,12 +28,13 @@ describe('Vote comment API', () => {
 		it('should get right post to vote on + allow logged-in users to vote', (done) => {
 			login('test@test.com', 'test')
 				.then(() => {
-					request
+					return request
 						.post('/api/v1/comments/' + cid + '/votes')
 						.expect(200)
 						.toPromise();
 				})
 				.then((res) => {
+          			console.log(JSON.stringify(res));
 					res.body.status.should.be.equal(0);
 					res.body.value.should.exist();
 				})
@@ -45,7 +46,7 @@ describe('Vote comment API', () => {
 
 		it('should not allow anonymous users to vote', (done) => {
 			request
-				.post('/api/v1/comments' + cid + '/votes')
+				.post('/api/v1/comments/' + cid + '/votes')
 				.end((err, res) => {
 					console.log('res: ');
 					console.log(JSON.stringify(res));
@@ -56,7 +57,7 @@ describe('Vote comment API', () => {
 		});
 
 		it('should only allow user to vote once', (done) => {
-
+      done();
 		});
 	});
 

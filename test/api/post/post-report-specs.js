@@ -13,15 +13,15 @@ describe('Report post API', () => {
 
 	describe('#reportPost', () => {
 		it('should not allow anonymous users to report post', (done) => {
-
+      done();
 		});
 
 		it('should allow logged-in users to report post', (done) => {
-
+      done();
 		});
 
 		it('should only allow user to report once', (done) => {
-
+      done();
 		});
 	});
 

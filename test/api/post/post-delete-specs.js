@@ -13,15 +13,15 @@ describe('Delete post API', () => {
 
 	describe('#deletePost', () => {
 		it('should not allow anonymous users to delete post', (done) => {
-
+      done();
 		});
 
 		it('should not allow non-owners to delete the post', (done) => {
-
+      done();
 		});
 
 		it('should allow the owner or admin to delete the post', (done) => {
-
+      done();
 		});
 	});
 

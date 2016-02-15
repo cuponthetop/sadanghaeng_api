@@ -13,15 +13,15 @@ describe('Get All University Posts API', () => {
 
 	describe('#getPosts', () => {
 		it('should get posts for user\'s university', (done) => {
-
+      done();
 		});
 
 		it('posts for other universities should not show', (done) => {
-
+      done();
 		});
 
 		it('should not allow anonymous users to get posts', (done) => {
-
+      done();
 		});
 	});
 
@@ -31,15 +31,15 @@ describe('Get Individual Post API', () => {
 
 	describe('#getPost', () => {
 		it('should get the correct individual post', (done) => {
-
+      done();
 		});
 
 		it('should only allow members of university to see the individual post', (done) => {
-
+      done();
 		});
 
 		it('should not allow anonymous users to get a post', (done) => {
-
+      done();
 		});
 	});
 
