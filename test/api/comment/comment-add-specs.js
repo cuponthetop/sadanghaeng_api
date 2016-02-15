@@ -13,19 +13,19 @@ describe('Add Comment API', () => {
 
 	describe('#postComment', () => {
 		it('should not allow anonymous users to post new comment', (done) => {
-
+      done();
 		});
 
 		it('should allow logged-in users to post new comment', (done) => {
-
+      done();
 		});
 
 		it('should have a title', (done) => {
-
+      done();
 		});
 
 		it('should not be an empty post', (done) => {
-
+      done();
 		});
 	});
 
