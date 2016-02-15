@@ -1,8 +1,9 @@
 "use strict";
 
 var gulp = require('gulp'),
-    path = require('path'),
-    mochaStream = require('spawn-mocha-parallel').mochaStream,
+    // path = require('path'),
+    // mochaStream = require('spawn-mocha-parallel').mochaStream,
+    mochaa = require('gulp-mocha'),
     jshint = require('gulp-jshint'),
     jshintStylish = require('jshint-stylish'),
     jscs = require('gulp-jscs'),
@@ -35,7 +36,7 @@ function generateMochaOpts() {
       'c': true
     },
     env: _.clone(process.env),
-    bin: path.join(__dirname,  'node_modules/.bin/mocha'),
+    // bin: path.join(__dirname,  'node_modules/.bin/mocha'),
     concurrency: 1
   };
 }
@@ -50,7 +51,8 @@ gulp.task('init-mongo', function () {
 
 gulp.task('test-unit', function () {
   var opts = generateMochaOpts();
-  var mocha = mochaStream(opts);
+  // var mocha = mochaStream(opts);
+  var mocha = mochaa(opts);
 
   return gulp.src('test/unit/**/*-specs.js', {read: false})
     .pipe(mocha)
@@ -59,7 +61,8 @@ gulp.task('test-unit', function () {
 
 gulp.task('test-api', function () {
   var opts = generateMochaOpts();
-  var mocha = mochaStream(opts);
+  // var mocha = mochaStream(opts);
+  var mocha = mochaa(opts);
 
   return gulp.src('test/api/**/*-specs.js', {read: false})
     .pipe(mocha)
