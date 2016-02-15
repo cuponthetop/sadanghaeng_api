@@ -25,7 +25,7 @@ describe('Vote comment API', () => {
 	describe('#voteComment', () => {
 		var cid = '77ac6f7b9b0d0b0457673daf';
 
-		it('should get right post to vote on', (done) => {
+		it('should get right post to vote on + allow logged-in users to vote', (done) => {
 			login('test@test.com', 'test')
 				.then(() => {
 					request
@@ -35,6 +35,7 @@ describe('Vote comment API', () => {
 				})
 				.then((res) => {
 					res.body.status.should.be.equal(0);
+					res.body.value.should.exist();
 				})
 				.then(logout)
 				.then(done)
@@ -52,10 +53,6 @@ describe('Vote comment API', () => {
 					res.body.value.should.have.property('message');
 					done();
 				});
-		});
-
-		it('should allow logged-in users to vote for comment', (done) => {
-
 		});
 
 		it('should only allow user to vote once', (done) => {
