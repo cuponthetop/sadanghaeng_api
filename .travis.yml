@@ -5,8 +5,6 @@ services: mongodb
 before_script:
   - sleep 10
   - npm install -g gulp
-  - mongod --version
-  - mongo --version
 script: 
   - git clone --branch=master https://github.com/cuponthetop/sadanghaeng_auth.git
   - cd sadanghaeng_auth
