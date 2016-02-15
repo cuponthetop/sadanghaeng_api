@@ -7,14 +7,51 @@ var request = require('../../helper/setup-supertest')('http://localhost:3001')
   , status = require('../../../lib/server/status')
   , login = require('../../helper/login')(request)
   , logout = require('../../helper/logout')(request)
+  , mongoInit = require('../../init/mongo-init')
+  , commentInit = require('../../init/comments-init')
   ;
 
-
 describe('Vote comment API', () => {
+	
+
+	before((done) => {
+		mongoInit.connect().then(commentInit).catch(console.log).fin(done);
+	});		
+
+	after((done) => {
+		commentInit().then(mongoInit.disconnect).catch(console.log).fin(done);
+	});
 
 	describe('#voteComment', () => {
-		it('should not allow anonymous users to vote', (done) => {
+		var cid = '77ac6f7b9b0d0b0457673daf';
 
+		it('should get right post to vote on', (done) => {
+			login('test@test.com', 'test')
+				.then(() => {
+					request
+						.post('/api/v1/comments/' + cid + '/votes')
+						.expect(200)
+						.toPromise();
+				})
+				.then((res) => {
+					res.body.status.should.be.equal(0);
+				})
+				.then(logout)
+				.then(done)
+				.catch(done)
+				.done();
+		});
+
+		it('should not allow anonymous users to vote', (done) => {
+			request
+				.post('/api/v1/comments' + cid + '/votes')
+				.end((err, res) => {
+					console.log('res: ');
+					console.log(JSON.stringify(res));
+					res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
+					res.body.value.should.have.property('message');
+					done();
+				});
 		});
 
 		it('should allow logged-in users to vote for comment', (done) => {
@@ -27,5 +64,3 @@ describe('Vote comment API', () => {
 	});
 
 });
-
-// it 
