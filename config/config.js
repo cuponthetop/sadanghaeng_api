@@ -12,7 +12,8 @@ var config = {
   user: '',
   auth: '',
   rate: '',
-  post: ''
+  post: '',
+  mail: '',
 };
 
 module.exports = _.mapObject(config, function (val, configName) {
