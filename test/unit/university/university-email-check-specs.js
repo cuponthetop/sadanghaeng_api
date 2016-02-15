@@ -5,6 +5,8 @@ process.env.NODE_ENV = 'test';
 var chai = require('../../helper/setup-chai')
   , UnivCtrl = require('../../../lib/controller/university')
   , status = require('../../../lib/server/status')
+  , mongoInit = require('../../init/mongo-init')
+  , univInit = require('../../init/universitys-init')
   ;
 
 describe('UniversityController', () => {
@@ -14,20 +16,12 @@ describe('UniversityController', () => {
     var mongoose = require('mongoose');
     var wasConnected = mongoose.connection.readyState;
 
-    before(() => {
-      if (wasConnected === 0) {
-
-        // 몽고 db 연결
-        var dbUri = config.db.uri + config.db.dbName;
-        var dbOptions = { username: config.db.username, password: config.db.password };
-        mongoose.connect(dbUri, dbOptions);
-      }
+    before((done) => {
+      mongoInit.connect().then(univInit).catch(console.log).fin(done);
     });
 
-    after(() => {
-      if (wasConnected === 0) {
-        mongoose.disconnect();
-      }
+    after((done) => {
+      univInit().then(mongoInit.disconnect).catch(console.log).fin(done);
     });
 
     it('should reject invalid email address', (done) => {
