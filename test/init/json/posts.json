@@ -7,10 +7,11 @@
     "author": "11bc6f7b9b0d0b0457673daf",
     "university": "56ac6f7b9b0d0b0457673daf",
 
-    "written": "2016-01-01T08:11:10.000Z",
-    "edited": "2016-01-01T08:11:10.000Z",
+    "written": "2016-02-01T08:11:10.000Z",
+    "edited": "2016-02-01T08:11:10.000Z",
 
     "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "voteType": "up" }],
+    "voteScore": 1,
     "comments": ["77ac6f7b9b0d0b0457673daf"]
   },
   {
@@ -21,10 +22,11 @@
     "author": "11bc6f7b9b0d0b0457673daf",
     "university": "56ac6f7b9b0d0b0457673daf",
 
-    "written": "2016-01-02T08:11:10.000Z",
-    "edited": "2016-01-02T08:11:10.000Z",
+    "written": "2016-02-02T08:11:10.000Z",
+    "edited": "2016-02-02T08:11:10.000Z",
 
     "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "voteType": "down" }],
+    "voteScore": -1,
     "comments": []
   },
   {
@@ -35,11 +37,13 @@
     "author": "11bc6f7b9b0d0b0457673daf",
     "university": "56ac6f7b9b0d0b0457673daf",
 
-    "written": "2016-01-03T08:11:10.000Z",
-    "edited": "2016-01-03T08:11:10.000Z",
+    "written": "2016-02-03T08:11:10.000Z",
+    "edited": "2016-02-03T08:11:10.000Z",
 
     "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "voteType": "report" }],
-    "comments": []
+    "voteScore": 0,
+    "comments": [],
+    "reported": ["21bc6f7b900d0aa457673daf"]
   },
   {
     "_id": "37bc6f7b9b0d0b0457673daf",
@@ -49,10 +53,41 @@
     "author": "11bc6f7b9b0d0b0457673daf",
     "university": "56ac6f7b9b0d0b0457673daf",
 
-    "written": "2016-01-04T08:11:10.000Z",
-    "edited": "2016-01-04T08:11:10.000Z",
+    "written": "2016-02-04T08:11:10.000Z",
+    "edited": "2016-02-04T08:11:10.000Z",
 
     "votes": [],
+    "voteScore": 0,
+    "comments": []
+  },
+  {
+    "_id": "38bc6f7b9b0d0b0457673daf",
+    "title": "Test Post5",
+    "text": "55Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text",
+
+    "author": "11bc6f7b9b0d0b0457673daf",
+    "university": "77cc6f7b9b0d0b0457673daa",
+
+    "written": "2016-02-05T08:11:10.000Z",
+    "edited": "2016-02-05T08:11:10.000Z",
+
+    "votes": [],
+    "voteScore": 0,
+    "comments": []
+  },
+  {
+    "_id": "39bc6f7b9b0d0b0457673daf",
+    "title": "Test Post6",
+    "text": "66Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text",
+
+    "author": "11bc6f7b9b0d0b0457673daf",
+    "university": "56ac6f7b9b0d0b0457673daf",
+
+    "written": "2016-02-14T08:11:10.000Z",
+    "edited": "2016-02-14T08:11:10.000Z",
+
+    "votes": [],
+    "voteScore": 0,
     "comments": []
   }
 ]
