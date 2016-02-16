@@ -86,7 +86,21 @@ describe('Vote comment API', () => {
 		});
 
 		it('should only allow user to vote once', (done) => {
-			done();
+			login('test@test.com', 'test').then(() => {
+				request
+				.post('/api/v1/comments/' + cid + '/votes')
+				.send({type: 'upvote'})
+				.end((err, res) => {
+					request
+					.post('/api/v1/comments/' + cid + '/votes')
+					.send({type: 'downvote'})
+					.end((err, res) => {
+						res.body.status.shoud.be.equal(status.codes.AlreadyVoted.code);
+            			res.body.value.should.have.property('message');
+					});
+				});
+			logout().then(done);
+			});
 		});
 	});
 
