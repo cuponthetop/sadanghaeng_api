@@ -28,13 +28,7 @@ describe('Vote comment API', () => {
 		it('should not allow anonymous users to vote', (done) => {
 			request
 				.post('/api/v1/comments/' + cid + '/votes')
-				.send({type: 'malicious text'})
 				.end((err, res) => {
-					// console.log('res: ');
-					// console.log(JSON.stringify(res));
-					// console.log('\n');
-					// console.log('err: ');
-					// console.log(err);
 					res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
 					res.body.value.should.have.property('message');
 					done();
@@ -60,12 +54,14 @@ describe('Vote comment API', () => {
 				.post('/api/v1/comments/' + cid + '/votes')
 				.send({type: 'lol'})
 				.end((err, res) => {
-					res.body.status.shoud.be.equal(status.codes.WrongVote.code);
+					console.log('res: ');
+					console.log(res);
+					res.body.status.should.be.equal(status.codes.WrongVote.code);
             		res.body.value.should.have.property('message');
 				});
 			logout().then(done);
 			});
-		})
+		});
 
 		it('should get right post to vote on and allow logged-in users to vote', (done) => {
 			login('test@test.com', 'test').then(() => {
