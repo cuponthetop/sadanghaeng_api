@@ -70,7 +70,6 @@ describe('Get Individual Post API', () => {
 				request
 					.get('/api/v1/posts/' + '91231241')
         			.end((err, res) => {
-        				console.log(JSON.stringify(res));
         				res.body.status.should.be.equal(status.codes.PostNotFound.code);
             			res.body.value.should.have.property('message');
             		});
