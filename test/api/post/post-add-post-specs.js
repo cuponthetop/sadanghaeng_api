@@ -35,41 +35,38 @@ describe('PostController', () => {
         });
     });
 
-    it('should not allow access to other users', (done) => {
-      login('test2@test.com', 'test').then(() => {
-        request
-          .post('/api/v1/posts')
-          .send({
-            title: 'testPost4',
-            text: 'testPost4',
-            author: 'testPost4',
-            university: 'testPost4'
-          })
-          .end((err, res) => {
-            res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
-            // res.body.value.should.not.exist();
-            res.body.value.should.have.property('message');
-            logout().then(done);
-          });
-      });
-    });
-    // it('should allow access to admin users', (done) => {
-    //   login('admin@test.com', 'test').then(() => {
+    // it('should not allow access to other users', (done) => {
+    //   login('test@test.com', 'test').then(() => {
     //     request
     //       .post('/api/v1/posts')
     //       .send({
     //         title: 'testPost4',
-    //         text: 'testPost4',
-    //         author: 'testPost4',
-    //         university: 'testPost4'
+    //         text: 'testPost4'
     //       })
     //       .end((err, res) => {
-    //         res.body.status.should.be.equal(0);
+    //         res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
+    //         // res.body.value.should.not.exist();
     //         res.body.value.should.have.property('message');
     //         logout().then(done);
     //       });
     //   });
     // });
+    it('should allow access to admin users', (done) => {
+      login('admin@test.com', 'test')
+        .then(() => {
+        request
+          .post('/api/v1/posts')
+          .send({
+            title: 'testPost4',
+            text: 'testPost4'
+          })
+          .end((err, res) => {
+            res.body.status.should.be.equal(0);
+            res.body.value.should.have.property('message');
+            logout().then(done);
+          });
+      });
+    });
 
     it('should write a title of the post', (done) => {
       login('test@test.com', 'test').then(() => {
@@ -77,33 +74,58 @@ describe('PostController', () => {
         .post('/api/v1/posts')
         .send({
           // title: null,
-          text: 'testPost4',
-          author: 'testPost4',
-          university: 'testPost4'
+          text: 'testPost4'
         })
         .end((err, res) => {
-          res.body.status.should.be.equal(status.codes.PostAddedFailed.code);
+          res.body.status.should.be.equal(status.codes.TitleOfPostIsInvalid.code);
           res.body.value.should.have.property('message');
           logout().then(done);
         });
       });
-
+    });
+    it('should write not only white space and newline but also something meaningful in a title of the post', (done) => {
+      login('test@test.com', 'test').then(() => {
+        request
+        .post('/api/v1/posts')
+        .send({
+          title: "       ",
+          text: 'testPost4'
+        })
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.TitleOfPostIsInvalid.code);
+          res.body.value.should.have.property('message');
+          logout().then(done);
+        });
+      });
     });
     it('should write some texts of the post', (done) => {
       login('test@test.com', 'test').then(() => {
         request
           .post('/api/v1/posts')
           .send({
-            title: 'testPost4',
+            title: 'testPost4'
             // text: null,
-            author: 'testPost4',
-            university: 'testPost4'
           })
           .end((err, res) => {
-            res.body.status.should.be.equal(status.codes.PostAddedFailed.code);
+            res.body.status.should.be.equal(status.codes.TextOfPostIsInvalid.code);
             res.body.value.should.have.property('message');
+            logout().then(done);
           });
-        logout().then(done);
+      });
+    });
+    it('should write not only white space and newline but also something meaningful in text of the post', (done) => {
+      login('test@test.com', 'test').then(() => {
+        request
+        .post('/api/v1/posts')
+        .send({
+          title: "testPost4",
+          text: '        '
+        })
+        .end((err, res) => {
+          res.body.status.should.be.equal(status.codes.TextOfPostIsInvalid.code);
+          res.body.value.should.have.property('message');
+          logout().then(done);
+        });
       });
     });
     it('should get the right pid of the post', (done) => {
@@ -113,9 +135,7 @@ describe('PostController', () => {
           .post('/api/v1/posts')
           .send({
             title: 'testPostTitle4',
-            text: 'testPostText4',
-            author: 'testPostAuthor4',
-            university: 'testPostUniv4'
+            text: 'testPostText4'
           })
           .end((err, res) => {
             res.body.status.shoud.be.equal(0);
@@ -126,13 +146,11 @@ describe('PostController', () => {
               .end((err, res) => {
                 expect(res.body.value).to.include.members({
                   title: 'testPostTitle4',
-                  text: 'testPostText4',
-                  author: 'testPostAuthor4',
-                  university: 'testPostUniv4'
+                  text: 'testPostText4'
                 });
+                logout().then(done);
               });
           });
-        logout().then(done);
       });
             // done();
         // })
