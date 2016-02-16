@@ -54,8 +54,6 @@ describe('Vote comment API', () => {
 				.post('/api/v1/comments/' + cid + '/votes')
 				.send({type: 'lol'})
 				.end((err, res) => {
-					console.log('res: ');
-					console.log(res);
 					res.body.status.should.be.equal(status.codes.WrongVote.code);
             		res.body.value.should.have.property('message');
 				});
