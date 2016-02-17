@@ -1,0 +1,81 @@
+'use strict';
+
+process.env.NODE_ENV = 'test';
+
+var request = require('../../helper/setup-supertest')('http://localhost:3001')
+  , chai = require('../../helper/setup-chai')
+  , status = require('../../../lib/server/status')
+  ,	login = require('../../helper/login')(request)
+  ,	logout = require('../../helper/logout')(request)
+  , mongoInit = require('../../init/mongo-init')
+  , postsInit = require('../../init/posts-init')
+  ;
+
+// already done in univ
+// describe('Get All University Posts API', () => {
+
+// 	describe('#getPosts', () => {
+// 		it('should get posts for user\'s university', (done) => {
+//       done();
+// 		});
+
+// 		it('posts for other universities should not show', (done) => {
+//       done();
+// 		});
+
+// 		it('should not allow anonymous users to get posts', (done) => {
+//       done();
+// 		});
+// 	});
+
+// });
+
+describe('Get Individual Post API', () => {
+
+	before((done) => {
+		mongoInit.connect().then(postsInit).catch(console.log).fin(done);
+	});		
+
+	after((done) => {
+		postsInit().then(mongoInit.disconnect).catch(console.log).fin(done);
+	});
+
+	describe('#getPost', () => {
+		var pid = "35bc6f7b9b0d0b0457673daf";
+
+		it('should not allow anonymous users to get a post', (done) => {
+      		request
+				.get('/api/v1/posts' + pid)
+				.end((err, res) => 
+					res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
+					res.body.value.should.have.property('message');
+					done();
+				});
+		});
+
+		it('should get the correct individual post', (done) => {
+			login('test@test.com', 'test').then(() => {
+				request
+					.get('/api/v1/posts/' + pid)
+        			.end((err, res) => {
+        				res.body.status.should.be.equal(0);
+            			res.body.value.title.should.be.equal('Test Post2');
+            		});
+            	logout().then(done);
+			});
+		});
+
+		it('should throw error if post not found', (done) => {
+			login('test@test.com', 'test').then(() => {
+				request
+					.get('/api/v1/posts/' + '91231241')
+        			.end((err, res) => {
+        				res.body.status.should.be.equal(status.codes.PostNotFound.code);
+            			res.body.value.should.have.property('message');
+            		});
+            	logout().then(done);
+			});
+		});
+	});
+
+});
