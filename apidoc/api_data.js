@@ -562,6 +562,12 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
+            "field": "EmailSendFailed",
+            "description": "<p>(119) sending email to user failed</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
             "field": "UnivNotFound",
             "description": "<p>(201) Requested University is not found</p>"
           },
@@ -1010,8 +1016,50 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "value[]",
-            "description": "<p>.pid Post unique id</p>"
+            "field": "value.pid",
+            "description": "<p>Post unique id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.title",
+            "description": "<p>Post title</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.author",
+            "description": "<p>author's nickname</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "value.written",
+            "description": "<p>when this post was written</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.voteCount",
+            "description": "<p>vote score for this post</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.commentCount",
+            "description": "<p>number of comments on this post</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.reportCount",
+            "description": "<p>number of reports this post got</p>"
           }
         ]
       }
@@ -1257,8 +1305,50 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "value[]",
-            "description": "<p>.pid Post unique id</p>"
+            "field": "value.pid",
+            "description": "<p>Post unique id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.title",
+            "description": "<p>Post title</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.author",
+            "description": "<p>author's nickname</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "value.written",
+            "description": "<p>when this post was written</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.voteCount",
+            "description": "<p>vote score for this post</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.commentCount",
+            "description": "<p>number of comments on this post</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.reportCount",
+            "description": "<p>number of reports this post got</p>"
           }
         ]
       }
@@ -1527,7 +1617,7 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "value.univID",
+            "field": "value.university",
             "description": "<p>University ID User is in</p>"
           },
           {
@@ -1812,7 +1902,7 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "value.univID",
+            "field": "value.university",
             "description": "<p>University ID User is in</p>"
           },
           {
@@ -2369,7 +2459,7 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "value.univID",
+            "field": "value.university",
             "description": "<p>University ID User is in</p>"
           },
           {
