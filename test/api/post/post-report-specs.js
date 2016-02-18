@@ -47,22 +47,22 @@ describe('Report post API', () => {
 			});
 		});
 
-		it('should allow logged-in users to report post', (done) => {
-      		login('test@test.com', 'test').then(() => {
-				request
-				.post('/api/v1/posts/' + pid + '/reports')
-				.end((err, res) => {
-					res.body.status.shoud.be.equal(0);
-            		res.body.value.should.exist();
-            		request
-            			.get('/api/v1/posts/' + pid)
-            			.end((err, res) => {
-            				expect(res.body.value).to.include.members({ reported: ['uid'] });
-            			});
-				});
-			logout().then(done);
-			});
-		});
+		// it('should allow logged-in users to report post', (done) => {
+  //     		login('test@test.com', 'test').then(() => {
+		// 		request
+		// 		.post('/api/v1/posts/' + pid + '/reports')
+		// 		.end((err, res) => {
+		// 			res.body.status.shoud.be.equal(0);
+  //           		res.body.value.should.exist();
+  //           		request
+  //           			.get('/api/v1/posts/' + pid)
+  //           			.end((err, res) => {
+  //           				expect(res.body.value).to.include.members({ reported: ['uid'] });
+  //           			});
+		// 		});
+		// 	logout().then(done);
+		// 	});
+		// });
 
 		it('should only allow user to report once', (done) => {
 			login('test@test.com', 'test').then(() => {

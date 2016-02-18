@@ -11,25 +11,6 @@ var request = require('../../helper/setup-supertest')('http://localhost:3001')
   , postsInit = require('../../init/posts-init')
   ;
 
-// already done in univ
-// describe('Get All University Posts API', () => {
-
-// 	describe('#getPosts', () => {
-// 		it('should get posts for user\'s university', (done) => {
-//       done();
-// 		});
-
-// 		it('posts for other universities should not show', (done) => {
-//       done();
-// 		});
-
-// 		it('should not allow anonymous users to get posts', (done) => {
-//       done();
-// 		});
-// 	});
-
-// });
-
 describe('Get Individual Post API', () => {
 
 	before((done) => {
@@ -44,10 +25,10 @@ describe('Get Individual Post API', () => {
 		var pid = "35bc6f7b9b0d0b0457673daf";
 
 		it('should not allow anonymous users to get a post', (done) => {
-      		request
+      	request
 				.get('/api/v1/posts' + pid)
-				.end((err, res) => 
-					res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
+				.end((err, res) => {
+					res.body.status.should.be.equal(status.codes.PostNotFound.code);
 					res.body.value.should.have.property('message');
 					done();
 				});
@@ -59,7 +40,7 @@ describe('Get Individual Post API', () => {
 					.get('/api/v1/posts/' + pid)
         			.end((err, res) => {
         				res.body.status.should.be.equal(0);
-            			res.body.value.title.should.be.equal('Test Post2');
+            		res.body.value.title.should.be.equal('Test Post2');
             		});
             	logout().then(done);
 			});
@@ -71,11 +52,11 @@ describe('Get Individual Post API', () => {
 					.get('/api/v1/posts/' + '91231241')
         			.end((err, res) => {
         				res.body.status.should.be.equal(status.codes.PostNotFound.code);
-            			res.body.value.should.have.property('message');
+            		res.body.value.should.have.property('message');
             		});
-            	logout().then(done);
+          logout().then(done);
 			});
 		});
-	});
 
+	});
 });
