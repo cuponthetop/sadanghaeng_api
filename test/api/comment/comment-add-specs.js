@@ -23,17 +23,16 @@ describe('Add Comment API', () => {
 
 	describe('#postComment', () => {
 		
-		// wrong error
-		// it('should not allow anonymous users to post new comment', (done) => {
- 	// 		request
-		// 		.post('/api/v1/comments/')
-		// 		.send({text: 'malicious text'})
-		// 		.end((err, res) => {
-		// 			res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
-		// 			res.body.value.should.have.property('message');
-		// 			done();
-		// 		});
-		// });
+		it('should not allow anonymous users to post new comment', (done) => {
+ 			request
+				.post('/api/v1/comments/')
+				.send({text: 'malicious text'})
+				.end((err, res) => {
+					res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
+					res.body.value.should.have.property('message');
+					done();
+				});
+		});
 
 		it('should not be an empty post', (done) => {
 			login('test@test.com', 'test').then(() => {

@@ -66,18 +66,7 @@ describe('Delete post API', () => {
             	logout().then(done);
 			});
 		});
-
-		it('should throw error if post not found', (done) => {
-			login('test@test.com', 'test').then(() => {
-				request
-					.get('/api/v1/posts/' + '91231241')
-        			.end((err, res) => {
-        				res.body.status.should.be.equal(status.codes.PostNotFound.code);
-            			res.body.value.should.have.property('message');
-            		});
-            	logout().then(done);
-			});
-		});
+    
 	});
 
 });
