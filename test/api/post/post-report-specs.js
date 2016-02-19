@@ -13,72 +13,92 @@ var request = require('../../helper/setup-supertest')('http://localhost:3001')
 
 describe('Report post API', () => {
 
-	before((done) => {
-		mongoInit.connect().then(postsInit).catch(console.log).fin(done);
-	});		
+  before((done) => {
+    mongoInit.connect().then(postsInit).catch(console.log).fin(done);
+  });
 
-	after((done) => {
-		postsInit().then(mongoInit.disconnect).catch(console.log).fin(done);
-	});
+  after((done) => {
+    postsInit().then(mongoInit.disconnect).catch(console.log).fin(done);
+  });
 
-	describe('#reportPost', () => {
-		var pid = "35bc6f7b9b0d0b0457673daf";
+  describe('#reportPost', () => {
+    var pid = "35bc6f7b9b0d0b0457673daf";
 
-		it('should not allow anonymous users to report post', (done) => {
-			request
-				.post('/api/v1/posts/' + pid + '/reports')
-				.end((err, res) => {
-					res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
-					res.body.value.should.have.property('message');
-					done();
-				});
-		});
+    it('should not allow anonymous users to report post', (done) => {
+      request
+        .post('/api/v1/posts/' + pid + '/reports')
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(done)
+        .catch(done)
+        .done();
+    });
 
-		it('should throw error if post not found', (done) => {
-			login('test@test.com', 'test').then(() => {
-				var fakePID = "881929481";
-				request
-				.post('/api/v1/posts/' + fakePID + '/reports')
-				.end((err, res) => {
-					res.body.status.shoud.be.equal(status.codes.PostNotFound.code);
-            		res.body.value.should.have.property('message');
-				});
-			logout().then(done);
-			});
-		});
+    it('should throw error if post not found', (done) => {
+      var fakePID = "881929481";
 
-		// it('should allow logged-in users to report post', (done) => {
-  //     		login('test@test.com', 'test').then(() => {
-		// 		request
-		// 		.post('/api/v1/posts/' + pid + '/reports')
-		// 		.end((err, res) => {
-		// 			res.body.status.shoud.be.equal(0);
-  //           		res.body.value.should.exist();
-  //           		request
-  //           			.get('/api/v1/posts/' + pid)
-  //           			.end((err, res) => {
-  //           				expect(res.body.value).to.include.members({ reported: ['uid'] });
-  //           			});
-		// 		});
-		// 	logout().then(done);
-		// 	});
-		// });
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .post('/api/v1/posts/' + fakePID + '/reports')
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.shoud.be.equal(status.codes.PostNotFound.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
 
-		it('should only allow user to report once', (done) => {
-			login('test@test.com', 'test').then(() => {
-				request
-				.post('/api/v1/posts/' + pid + '/reports')
-				.end((err, res) => {
-					request
-					.post('/api/v1/posts/' + pid + '/reports')
-					.end((err, res) => {
-						res.body.status.shoud.be.equal(status.codes.AlreadyReported.code);
-            			res.body.value.should.have.property('message');
-					});
-				});
-			logout().then(done);
-			});
-		});
-	});
+    it('should allow logged-in users to report post', (done) => {
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .post('/api/v1/posts/' + pid + '/reports')
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.shoud.be.equal(0);
+          res.body.value.should.exist();
+          return request
+            .get('/api/v1/posts/' + pid)
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.shoud.be.equal(0);
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
 
+    it('should only allow user to report once', (done) => {
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .post('/api/v1/posts/' + pid + '/reports')
+            .toPromise();
+        })
+        .then((res) => {
+          return request
+            .post('/api/v1/posts/' + pid + '/reports')
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.shoud.be.equal(status.codes.AlreadyReported.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
+
+  });
 });
