@@ -44,7 +44,7 @@ describe('CommentController', () => {
       login('test2@test.com', 'test')
         .then(() => {
           return request
-            .post('/api/v1/comments/' + cID + 'reports')
+            .post('/api/v1/comments/' + cID + '/reports')
             .send({
               reported: '21bc6f7b900d0aa457673daf'
             })
@@ -65,7 +65,7 @@ describe('CommentController', () => {
       login('test2@test.com', 'test')
         .then(() => {
           return request
-            .post('/api/v1/comments/' + cID + 'reports')
+            .post('/api/v1/comments/' + cID + '/reports')
             .send({
               reported: '21bc6f7b900d0aa457673daf'
             })
