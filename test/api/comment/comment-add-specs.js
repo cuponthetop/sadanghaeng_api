@@ -22,11 +22,15 @@ describe('Add Comment API', () => {
   });
 
   describe('#postComment', () => {
+    var pid = '';
 
     it('should not allow anonymous users to post new comment', (done) => {
       request
         .post('/api/v1/comments/')
-        .send({ text: 'malicious text' })
+        .send({
+          text: 'malicious text',
+          pid: pid
+        })
         .toPromise()
         .then((res) => {
           res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
@@ -42,7 +46,10 @@ describe('Add Comment API', () => {
         .then(() => {
           return request
             .post('/api/v1/comments/')
-            .send({ text: '' })
+            .send({
+              text: '',
+              pid: pid
+            })
             .toPromise();
         })
         .then((res) => {
@@ -60,7 +67,10 @@ describe('Add Comment API', () => {
         .then(() => {
           return request
             .post('/api/v1/comments/')
-            .send({ text: 'yay im logged in' })
+            .send({
+              text: 'yay im logged in',
+              pid: pid
+            })
             .toPromise();
         })
         .then((res) => {
