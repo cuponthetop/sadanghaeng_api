@@ -31,7 +31,7 @@ describe('PostController', () => {
       request
         .post('/api/v1/posts/37bc6f7b9b0d0b0457673daf/votes')
         .send({
-          'vote': { 'uid': '21bc6f7b900d0aa457673daf', 'voteType': 'down' }
+          voteType: 'down'
         })
         .toPromise()
         .then((res) => {
@@ -52,7 +52,7 @@ describe('PostController', () => {
           return request
             .post('/api/v1/posts/37bc6f7b9b0d0b0457673daf/votes')
             .send({
-              'vote': { 'uid': '21bc6f7b900d0aa457673daf', 'voteType': 'up' }
+              voteType: 'up'
             })
             .toPromise();
         })
@@ -74,7 +74,7 @@ describe('PostController', () => {
           return request
             .post('/api/v1/posts/37bc6f7b9b0d0b0457673daf/votes')
             .send({
-              'vote': { 'uid': '21bc6f7b900d0aa457673daf', 'voteType': 'down' }
+              voteType: 'down'
             })
             .toPromise();
         })
@@ -96,7 +96,7 @@ describe('PostController', () => {
           return request
             .post('/api/v1/posts/36bc6f7b9b0d0b0457673daf/votes')
             .send({
-              'vote': { 'uid': '21bc6f7b900d0aa457673daf', 'voteType': 'down' }
+              voteType: 'down'
             })
             .toPromise();
         })
@@ -118,7 +118,7 @@ describe('PostController', () => {
           return request
             .post('/api/v1/posts/36bc6f7b9b0d0b0457673daf/votes')
             .send({
-              'vote': { 'uid': '11bc6f7b9b0d0b0457673daf', 'voteType': 'down' }
+              voteType: 'down'
             })
             .toPromise();
         })

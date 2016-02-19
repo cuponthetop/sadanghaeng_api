@@ -42,7 +42,7 @@ describe('Vote comment API', () => {
         .then(() => {
           return request
             .post('/api/v1/comments/' + cid + '/votes')
-            .send({ type: '' })
+            .send({ voteType: '' })
             .toPromise();
         })
         .then((res) => {
@@ -60,7 +60,7 @@ describe('Vote comment API', () => {
         .then(() => {
           return request
             .post('/api/v1/comments/' + cid + '/votes')
-            .send({ type: 'lol' })
+            .send({ voteType: 'lol' })
             .toPromise();
         })
         .then((res) => {
@@ -78,7 +78,7 @@ describe('Vote comment API', () => {
         .then(() => {
           return request
             .post('/api/v1/comments/' + cid + '/votes')
-            .send({ type: 'upvote' })
+            .send({ voteType: 'up' })
             .toPromise();
         })
         .then((res) => {
@@ -89,7 +89,7 @@ describe('Vote comment API', () => {
             .toPromise();
         })
         .then((res) => {
-          res.body.value.should.have.property('votes', 'upvote');
+          res.body.value.should.have.property('voteScore', 1);
         })
         .then(logout)
         .then(done)
@@ -102,14 +102,14 @@ describe('Vote comment API', () => {
         .then(() => {
           return request
             .post('/api/v1/comments/' + cid + '/votes')
-            .send({ type: 'upvote' })
+            .send({ voteType: 'up' })
             .toPromise();
         })
         .then((res) => {
           res.body.status.shoud.be.equal(0);
           return request
             .post('/api/v1/comments/' + cid + '/votes')
-            .send({ type: 'downvote' })
+            .send({ voteType: 'down' })
             .toPromise();
         })
         .then((res) => {
