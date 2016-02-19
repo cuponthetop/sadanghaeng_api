@@ -13,21 +13,26 @@ var chai = require('../../helper/setup-chai')
   , logout = require('../../helper/logout')(request)
   ;
 
-describe('PostController', () => {
+  describe('PostController', () => {
 
-  before((done) => {
-    mongoInit.connect().then(postInit).catch(console.log).fin(done);
-  });
-  after((done) => {
-    postInit().then(mongoInit.disconnect).catch(console.log).fin(done);
-  });
+    before((done) => {
+      mongoInit.connect().then(postInit).catch(console.log).fin(done);
+    });
+    after((done) => {
+      postInit().then(mongoInit.disconnect).catch(console.log).fin(done);
+    });
 
-  describe("#addPost", () => {
-    /* 익명의 사용자 접근 여부 테스트 */
-    it('should not allow access to anonymous users', (done) => {
-      request
+    describe("#addPost", () => {
+      /* 익명의 사용자 접근 여부 테스트 */
+      it('should not allow access to anonymous users', (done) => {
+        request
         .post('/api/v1/posts')
-        .send({ title: 'testPost4', text: 'testPost4'})
+        .send({ 
+          'title': 'testPost4',
+          'text': 'testPost4',
+          'author': '11bc6f7b9b0d0b0457673daf',
+          'university': '56ac6f7b9b0d0b0457673daf' 
+        })
         .toPromise()
         .then((res) => {
           res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
@@ -36,74 +41,148 @@ describe('PostController', () => {
         .then(done)
         .catch(done)
         .done();
-    });
-    /* 관리자 접근 여부 테스트 => 계속 fail 남 아ㅏㅇ라 마아람라ㅣ마람 */
-    it('should allow access to admin users', (done) => {
-      login('admin@test.com', 'test')
+      });
+      /* 관리자 접근 여부 테스트 => 계속 fail 남 아ㅏㅇ라 마아람라ㅣ마람 */
+      it('should allow access to admin users', (done) => {
+        login('admin@test.com', 'test')
         .then(() => {
           return request
-                   .post('/api/v1/posts')
-                   .send({ title: 'testPost4', text: 'testPost4'})
-                   .toPromise();
+          .post('/api/v1/posts')
+          .send({ 
+          'title': 'testPost4',
+          'text': 'testPost4',
+          'author': '11bc6f7b9b0d0b0457673daf',
+          'university': '56ac6f7b9b0d0b0457673daf' 
+        })
+          .toPromise();
         })
         .then((res) => {
+          // console.log("This is LLLLLLLLLLLLog : " + JSON.stringify(res));
           res.body.status.should.be.equal(0);
           res.body.value.should.have.length(24);
         })
+        .then(postInit)
         .then(logout)
         .then(done)
         .catch(done)
         .done();
-    });
-    /* 게시물 제목 */
-    // 1: 게시물 제목이 있어야
-    // it('should not have empty title', (done) => {
-    //   login('test2@test.com', 'test')
-    //     .then(() => {
-    //       return request
-    //       .post('/api/v1/posts')
-    //       .send({ /*title: '',*/ text: 'testPost4' })
-    //       .toPromise();
-    //     })
-    //     .then((res) => {
-    //       res.body.status.should.be.equal(status.codes.TitleOfPostIsInvalid.code);
-    //       res.body.value.should.have.property('message');
-    //     })
-    //     .then(logout)
-    //     .then(done)
-    //     .catch(done)
-    //     .done();
-    // });
+      });
+      /* 게시물 제목 */
+      // 1: 게시물 제목이 있어야
+      it('should not have empty title', (done) => {
+        // login('test2@test.com', 'test')
+        login('admin@test.com', 'test')
+        .then(() => {
+          return request
+          .post('/api/v1/posts')
+          .send( { 
+          // 'title': ,
+          'text': 'testPost4',
+          'author': '11bc6f7b9b0d0b0457673daf',
+          'university': '56ac6f7b9b0d0b0457673daf' 
+        } )
+          .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.TitleOfPostIsInvalid.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(postInit)
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+      });
     // 2: 게시물 제목에 space나 newline만 있으면 안 됨
-    // it('should have title with not only white space and newline but also meaningful words', (done) => {
-    //   login('test@test.com', 'test')
-    //   .then(() => {
-    //     return request
-    //     .post('/api/v1/posts')
-    //     .send({ title: '    \n      ', text: 'testPost4'})
-    //     .toPromise();
-    //   })
-    //   .then((res) => {
-    //     res.body.status.should.be.equal(status.codes.TitleOfPostIsInvalid.code);
-    //     res.body.value.should.have.property('message');
-    //   })
-    //   .then(logout)
-    //   .then(done)
-    //   .catch(done)
-    //   .done();
-    // });
-    // /* 게시물 내용 */
-    // // 1: 게시물 내용이 있어야
-    // it('should not have empty text', (done) => {
-
-    // });
-    // // 2: 게시물 내용에 space나 newline만 있으면 안 됨
-    // it('should have text with not only white space and newline but also meaningful words', (done) => {
-
-    // });
-
+    it('should have title with not only white space and newline but also meaningful words', (done) => {
+      // login('test@test.com', 'test')
+      login('admin@test.com', 'test')
+      .then(() => {
+        return request
+        .post('/api/v1/posts')
+        .send({ 
+          'title': '    \n    ',
+          'text': 'testPost4',
+          'author': '11bc6f7b9b0d0b0457673daf',
+          'university': '56ac6f7b9b0d0b0457673daf' 
+        })
+        .toPromise();
+      })
+      .then((res) => {
+        res.body.status.should.be.equal(status.codes.TitleOfPostIsInvalid.code);
+        res.body.value.should.have.property('message');
+      })
+         .then(postInit)
+      .then(logout)
+      .then(done)
+      .catch(done)
+      .done();
+    });
+    /* 게시물 내용 */
+    // 1: 게시물 내용이 있어야
+    it('should not have empty text', (done) => {
+     // login('test@test.com', 'test')
+     login('admin@test.com', 'test')
+     .then(() => {
+      return request
+      .post('/api/v1/posts')
+      .send({ 
+        'title': 'testPost4',
+        // 'text': 'testPost4',
+        'author': '11bc6f7b9b0d0b0457673daf',
+        'university': '56ac6f7b9b0d0b0457673daf' 
+      })
+      .toPromise();
+    })
+     .then((res) => {
+      res.body.status.should.be.equal(status.codes.TextOfPostIsInvalid.code);
+      res.body.value.should.have.property('message');
+    })
+     .then(postInit)
+     .then(logout)
+     .then(done)
+     .catch(done)
+     .done();
+   });
+    // 2: 게시물 내용에 space나 newline만 있으면 안 됨
+    it('should have text with not only white space and newline but also meaningful words', (done) => {
+     // login('test@test.com', 'test')
+     login('admin@test.com', 'test')
+     .then(() => {
+      return request
+      .post('/api/v1/posts')
+      .send({ 
+        'title': 'testPost4',
+        'text': '    \n   ',
+        'author': '11bc6f7b9b0d0b0457673daf',
+        'university': '56ac6f7b9b0d0b0457673daf' 
+      })
+      .toPromise();
+    })
+     .then((res) => {
+      res.body.status.should.be.equal(status.codes.TextOfPostIsInvalid.code);
+      res.body.value.should.have.property('message');
+    })
+     .then(postInit)
+     .then(logout)
+     .then(done)
+     .catch(done)
+     .done();
+   });
   });
 });
+
+// {
+//     "_id": "11bc6f7b9b0d0b0457673daf",
+//     "email": "test@test.com",
+//     "nickname": "test",
+//     "hashed_password": "$2a$10$aZB36UooZpL.fAgbQVN/j.pfZVVvkHxEnj7vfkVSqwBOBZbB/IAAK",
+//     "verified": true,
+//     "admin": false,
+//     "university": "56ac6f7b9b0d0b0457673daf",
+//     "memberSince": "2016-01-01T08:11:10.000Z",
+//     "reported": []
+//   },
 
 //  describe("#addPost", () => {
 

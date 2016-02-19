@@ -40,7 +40,7 @@
     "written": "2016-02-03T08:11:10.000Z",
     "edited": "2016-02-03T08:11:10.000Z",
 
-    "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "voteType": "report" }],
+    "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "voteType": "down" }],
     "voteScore": 0,
     "comments": [],
     "reported": ["21bc6f7b900d0aa457673daf"]
