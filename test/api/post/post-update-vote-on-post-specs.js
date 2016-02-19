@@ -109,10 +109,28 @@ var chai = require('../../helper/setup-chai')
       .catch(done)
       .done();
     });
-    // /*
-    //  * 
-    //  */
-    // it('', (done) => {});
+    /*
+     * post 주인이 vote하는 경우 
+     */
+    it('should not allow the person who is the owner of the post to vote', (done) => {
+      login('test@test.com', 'test')
+      .then(() => {
+        return request
+        .post('/api/v1/posts/36bc6f7b9b0d0b0457673daf/votes')
+        .send({
+          'vote': { 'uid': '11bc6f7b9b0d0b0457673daf', 'voteType': 'down' }
+        })
+        .toPromise();
+      })
+      .then((res) => {
+        res.body.status.should.be.equal(411);
+      })
+      .then(postInit)
+      .then(logout)
+      .then(done)
+      .catch(done)
+      .done();
+    });
 
   });
 });
