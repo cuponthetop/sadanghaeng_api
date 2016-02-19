@@ -53,7 +53,6 @@ describe('Add Comment API', () => {
             .toPromise();
         })
         .then((res) => {
-          console.log(res);
           res.body.status.should.be.equal(status.codes.EmptyComment.code);
           res.body.value.should.have.property('message');
         })
