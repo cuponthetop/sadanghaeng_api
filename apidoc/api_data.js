@@ -7,7 +7,7 @@ define({ "api": [
     "group": "Comment",
     "version": "0.0.0",
     "filename": "lib/route/v1/comment.js",
-    "groupTitle": "Comment",
+    "groupTitle": "",
     "success": {
       "fields": {
         "Success 200": [
@@ -28,7 +28,49 @@ define({ "api": [
             "group": "Error 4xx",
             "optional": false,
             "field": "CommentAddFailed",
-            "description": "<p>(502) failed to add comment</p>"
+            "description": "<p>(503) failed to add comment</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "/comments",
+    "title": "Add new comment",
+    "name": "PostComment",
+    "group": "Comment",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value",
+            "description": "<p>comment id of newly created comment</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/comment.js",
+    "groupTitle": "",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CommentAddFailed",
+            "description": "<p>(503) failed to add comment</p>"
           }
         ]
       }
@@ -55,7 +97,7 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "lib/route/v1/comment.js",
-    "groupTitle": "Comment",
+    "groupTitle": "",
     "success": {
       "fields": {
         "Success 200": [
@@ -81,8 +123,37 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
+            "field": "AlreadyVoted",
+            "description": "<p>(601) user can only vote once</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
             "field": "AddVoteFailed",
             "description": "<p>(602) adding vote failed</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/comments/:cid/remove",
+    "title": "a comment",
+    "name": "removeComment",
+    "group": "Comment",
+    "version": "0.0.0",
+    "filename": "lib/route/v1/comment.js",
+    "groupTitle": "",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
           }
         ]
       }
@@ -96,24 +167,27 @@ define({ "api": [
     "group": "Comment",
     "version": "0.0.0",
     "filename": "lib/route/v1/comment.js",
-    "groupTitle": "Comment"
-  },
-  {
-    "type": "get",
-    "url": "/posts/:pid/comments",
-    "title": "Request comments on the post",
-    "name": "GetCommentsOnPost",
-    "group": "Post",
-    "version": "0.0.0",
-    "filename": "lib/route/v1/post.js",
-    "groupTitle": "Post"
+    "groupTitle": "",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "delete",
     "url": "/posts/:pid",
-    "title": "Get individual post",
+    "title": "Delete post",
     "name": "DeletePost",
-    "group": "Posts",
+    "group": "Post",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -149,8 +223,8 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "CouldNotFindPost",
-            "description": "<p>(404) failed to find individual post</p>"
+            "field": "PostNotFound",
+            "description": "<p>(400) Requested Post was not found on DB</p>"
           },
           {
             "group": "Error 4xx",
@@ -167,7 +241,7 @@ define({ "api": [
     "url": "/posts/:pid",
     "title": "Get individual post",
     "name": "GetPost",
-    "group": "Posts",
+    "group": "Post",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -193,6 +267,188 @@ define({ "api": [
             "optional": false,
             "field": "status",
             "description": "<p>status of request</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "value",
+            "description": "<p>Single Post Information</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.pid",
+            "description": "<p>Post unique id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.title",
+            "description": "<p>Post title</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.text",
+            "description": "<p>Post text</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.author",
+            "description": "<p>author's nickname</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "value.written",
+            "description": "<p>when this post was written</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "value.edited",
+            "description": "<p>when this post was last edited</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.likeCount",
+            "description": "<p>number of likes for this post</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.dislikeCount",
+            "description": "<p>number of dislikes for this post</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.reportCount",
+            "description": "<p>number of reports this post got</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "value.didVote",
+            "description": "<p>did current user vote for this post?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.didVoteType",
+            "description": "<p>what did current user cast? null if user haven't voted</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "value.didReport",
+            "description": "<p>did current user report this post?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.commentCount",
+            "description": "<p>number of comments on this post</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "value.comments",
+            "description": "<p>Multiple Comment Information</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.comments.cid",
+            "description": "<p>comment unique id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.comments.text",
+            "description": "<p>comment text</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.comments.author",
+            "description": "<p>author's nickname</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "value.comments.written",
+            "description": "<p>when this post was written</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "value.comments.edited",
+            "description": "<p>when this post was last edited</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.comments.likeCount",
+            "description": "<p>number of likes for this comment</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.comments.dislikeCount",
+            "description": "<p>number of dislikes for this comment</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.comments.reportCount",
+            "description": "<p>number of reports this post got</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "value.comments.didVote",
+            "description": "<p>did current user vote for this post?</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value.comments.didVoteType",
+            "description": "<p>what did current user cast? null if user haven't voted</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "value.comments.didReport",
+            "description": "<p>did current user report this post?</p>"
           }
         ]
       }
@@ -203,19 +459,86 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "CouldNotFindPost",
-            "description": "<p>(404) failed to find individual post</p>"
+            "field": "PostNotFound",
+            "description": "<p>(400) Requested Post was not found on DB</p>"
           }
         ]
       }
     }
   },
   {
-    "type": "get",
-    "url": "/posts",
-    "title": "Get all posts",
-    "name": "GetPosts",
-    "group": "Posts",
+    "type": "post",
+    "url": "/posts/:pid/reports",
+    "title": "Report post",
+    "name": "ReportPost",
+    "group": "Post",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": ":pid",
+            "description": "<p>Post's unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "value",
+            "description": "<p>post id of reported post</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/route/v1/post.js",
+    "groupTitle": "",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "PostNotFound",
+            "description": "<p>(400) Requested Post was not found on DB</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "AlreadyReported",
+            "description": "<p>(600) user can only get reported once</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "AddReportFailed",
+            "description": "<p>(603) adding report failed</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "/posts/:pid/votes",
+    "title": "Add Vote for the post and update voteScore in db",
+    "name": "updateVoteOnPost",
+    "group": "Post",
     "version": "0.0.0",
     "filename": "lib/route/v1/post.js",
     "groupTitle": "",
@@ -231,29 +554,7 @@ define({ "api": [
           }
         ]
       }
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "GetPostsFailed",
-            "description": "<p>(403) failed to get posts</p>"
-          }
-        ]
-      }
     }
-  },
-  {
-    "type": "post",
-    "url": "/posts/:pid/votes",
-    "title": "Vote for the post",
-    "name": "voteForPost",
-    "group": "Post",
-    "version": "0.0.0",
-    "filename": "lib/route/v1/post.js",
-    "groupTitle": "Post"
   },
   {
     "type": "get",
@@ -676,8 +977,8 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "VotesOnPostGottenFailed",
-            "description": "<p>(402) fail to get votes on the post</p>"
+            "field": "UpdateVoteFailed",
+            "description": "<p>(402) fail to update votes on the post</p>"
           },
           {
             "group": "Error 4xx",
@@ -688,14 +989,44 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "CouldNotFindPost",
-            "description": "<p>(404) failed to find individual post</p>"
+            "field": "PostRemoveFailed",
+            "description": "<p>(405) failed to remove post</p>"
           },
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "PostRemoveFailed",
-            "description": "<p>(405) failed to remove post</p>"
+            "field": "PostAddedFailed",
+            "description": "<p>(406) fail to add the post</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "TitleOfPostIsInvalid",
+            "description": "<p>(407) title of the post is continuum of whitespace and newline</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "TextOfPostIsInvalid",
+            "description": "<p>(408) text of the post is continuum group of whitespace and newline</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "PostVotedAlready",
+            "description": "<p>(409) the post is already voted by the user</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UpdateVoteInDBFailed",
+            "description": "<p>(410) update vote in DB failed</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "PostOwnerCanNotVote",
+            "description": "<p>(411) one who voted is the post owner</p>"
           },
           {
             "group": "Error 4xx",
@@ -719,7 +1050,25 @@ define({ "api": [
             "group": "Error 4xx",
             "optional": false,
             "field": "CommentAddFailed",
-            "description": "<p>(502) failed to add comment</p>"
+            "description": "<p>(503) failed to add comment</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CommentReportFailed",
+            "description": "<p>(504) fail to report the comment</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CommentReportAlready",
+            "description": "<p>(505) already report the comment</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CommentOwnerCanNotVote",
+            "description": "<p>(506) one who voted is the comment owner</p>"
           },
           {
             "group": "Error 4xx",
@@ -744,6 +1093,24 @@ define({ "api": [
             "optional": false,
             "field": "AddReportFailed",
             "description": "<p>(603) adding report failed</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "EmptyComment",
+            "description": "<p>(604) comment does not have any text</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "EmptyVote",
+            "description": "<p>(605) need to vote</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "WrongVote",
+            "description": "<p>(606) vote has to be either &quot;up&quot; or &quot;down&quot;</p>"
           },
           {
             "group": "Error 4xx",
@@ -1010,7 +1377,7 @@ define({ "api": [
             "type": "Object[]",
             "optional": false,
             "field": "value",
-            "description": "<p>Post Information</p>"
+            "description": "<p>Multiple Post Information</p>"
           },
           {
             "group": "Success 200",
@@ -1042,10 +1409,24 @@ define({ "api": [
           },
           {
             "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "value.edited",
+            "description": "<p>when this post was last edited</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "Number",
             "optional": false,
-            "field": "value.voteCount",
-            "description": "<p>vote score for this post</p>"
+            "field": "value.likeCount",
+            "description": "<p>number of likes for this post</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.dislikeCount",
+            "description": "<p>number of dislikes for this post</p>"
           },
           {
             "group": "Success 200",
@@ -1299,7 +1680,7 @@ define({ "api": [
             "type": "Object[]",
             "optional": false,
             "field": "value",
-            "description": "<p>Post Information</p>"
+            "description": "<p>Multiple Post Information</p>"
           },
           {
             "group": "Success 200",
@@ -1331,10 +1712,24 @@ define({ "api": [
           },
           {
             "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "value.edited",
+            "description": "<p>when this post was last edited</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "Number",
             "optional": false,
-            "field": "value.voteCount",
-            "description": "<p>vote score for this post</p>"
+            "field": "value.likeCount",
+            "description": "<p>number of likes for this post</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.dislikeCount",
+            "description": "<p>number of dislikes for this post</p>"
           },
           {
             "group": "Success 200",
