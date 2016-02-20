@@ -17,7 +17,7 @@ describe('PostController', () => {
   before((done) => {
     mongoInit.connect().then(postInit).catch(console.log).fin(done);
   });
-  
+
   after((done) => {
     postInit().then(mongoInit.disconnect).catch(console.log).fin(done);
   });
@@ -28,10 +28,9 @@ describe('PostController', () => {
       request
         .post('/api/v1/posts')
         .send({
-          'title': 'testPost4',
-          'text': 'testPost4',
-          'author': '11bc6f7b9b0d0b0457673daf',
-          'university': '56ac6f7b9b0d0b0457673daf'
+          title: 'testPost4',
+          text: 'testPost4',
+          univid: '56ac6f7b9b0d0b0457673daf'
         })
         .toPromise()
         .then((res) => {
@@ -50,16 +49,16 @@ describe('PostController', () => {
           return request
             .post('/api/v1/posts')
             .send({
-              'title': 'testPost4',
-              'text': 'testPost4',
-              'author': '11bc6f7b9b0d0b0457673daf',
-              'university': '56ac6f7b9b0d0b0457673daf'
+              title: 'testPost4',
+              text: 'testPost4',
+              univid: '56ac6f7b9b0d0b0457673daf'
             })
             .toPromise();
         })
         .then((res) => {
           res.body.status.should.be.equal(0);
-          res.body.value.should.have.length(24);
+          // res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
+          // res.body.value.should.have.property('message');
         })
         .then(logout)
         .then(done)
@@ -70,16 +69,14 @@ describe('PostController', () => {
     /* 게시물 제목 */
     // 1: 게시물 제목이 있어야
     it('should not have empty title', (done) => {
-      // login('test2@test.com', 'test')
-      login('admin@test.com', 'test')
+      login('test@test.com', 'test')
         .then(() => {
           return request
             .post('/api/v1/posts')
             .send({
-              // 'title': ,
-              'text': 'testPost4',
-              'author': '11bc6f7b9b0d0b0457673daf',
-              'university': '56ac6f7b9b0d0b0457673daf'
+              // title: ,
+              text: 'testPost4',
+              univid: '56ac6f7b9b0d0b0457673daf'
             })
             .toPromise();
         })
@@ -96,15 +93,14 @@ describe('PostController', () => {
     // 2: 게시물 제목에 space나 newline만 있으면 안 됨
     it('should have title with not only white space and newline but also meaningful words', (done) => {
       // login('test@test.com', 'test')
-      login('admin@test.com', 'test')
+      login('test@test.com', 'test')
         .then(() => {
           return request
             .post('/api/v1/posts')
             .send({
-              'title': '    \n    ',
-              'text': 'testPost4',
-              'author': '11bc6f7b9b0d0b0457673daf',
-              'university': '56ac6f7b9b0d0b0457673daf'
+              title: '    \n    ',
+              text: 'testPost4',
+              univid: '56ac6f7b9b0d0b0457673daf'
             })
             .toPromise();
         })
@@ -122,15 +118,14 @@ describe('PostController', () => {
     // 1: 게시물 내용이 있어야
     it('should not have empty text', (done) => {
       // login('test@test.com', 'test')
-      login('admin@test.com', 'test')
+      login('test@test.com', 'test')
         .then(() => {
           return request
             .post('/api/v1/posts')
             .send({
-              'title': 'testPost4',
-              // 'text': 'testPost4',
-              'author': '11bc6f7b9b0d0b0457673daf',
-              'university': '56ac6f7b9b0d0b0457673daf'
+              title: 'testPost4',
+              // text: 'testPost4',
+              univid: '56ac6f7b9b0d0b0457673daf'
             })
             .toPromise();
         })
@@ -146,15 +141,14 @@ describe('PostController', () => {
     // 2: 게시물 내용에 space나 newline만 있으면 안 됨
     it('should have text with not only white space and newline but also meaningful words', (done) => {
       // login('test@test.com', 'test')
-      login('admin@test.com', 'test')
+      login('test@test.com', 'test')
         .then(() => {
           return request
             .post('/api/v1/posts')
             .send({
-              'title': 'testPost4',
-              'text': '    \n   ',
-              'author': '11bc6f7b9b0d0b0457673daf',
-              'university': '56ac6f7b9b0d0b0457673daf'
+              title: 'testPost4',
+              text: '    \n   ',
+              univid: '56ac6f7b9b0d0b0457673daf'
             })
             .toPromise();
         })
@@ -177,16 +171,17 @@ describe('PostController', () => {
             .post('/api/v1/posts')
             .send({
               title: 'testPostTitle4',
-              text: 'testPostText4'
+              text: 'testPostText4',
+              univid: '56ac6f7b9b0d0b0457673daf'
             })
             .toPromise();
         })
         .then((res) => {
           res.body.status.should.be.equal(0);
-          res.body.value.should.exist();
+          res.body.value.should.exist;
           pid = res.body.value;
           return request
-            .get('/posts/' + pid)
+            .get('/api/v1/posts/' + pid)
             .toPromise();
         })
         .then((res) => {
