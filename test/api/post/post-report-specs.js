@@ -46,7 +46,7 @@ describe('Report post API', () => {
             .toPromise();
         })
         .then((res) => {
-          res.body.status.shoud.be.equal(status.codes.PostNotFound.code);
+          res.body.status.should.be.equal(status.codes.PostNotFound.code);
           res.body.value.should.have.property('message');
         })
         .then(logout)
@@ -63,14 +63,14 @@ describe('Report post API', () => {
             .toPromise();
         })
         .then((res) => {
-          res.body.status.shoud.be.equal(0);
+          res.body.status.should.be.equal(0);
           res.body.value.should.exist();
           return request
             .get('/api/v1/posts/' + pid)
             .toPromise();
         })
         .then((res) => {
-          res.body.status.shoud.be.equal(0);
+          res.body.status.should.be.equal(0);
         })
         .then(logout)
         .then(done)
@@ -91,7 +91,7 @@ describe('Report post API', () => {
             .toPromise();
         })
         .then((res) => {
-          res.body.status.shoud.be.equal(status.codes.AlreadyReported.code);
+          res.body.status.should.be.equal(status.codes.AlreadyReported.code);
           res.body.value.should.have.property('message');
         })
         .then(logout)

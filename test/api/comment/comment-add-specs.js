@@ -22,7 +22,7 @@ describe('Add Comment API', () => {
   });
 
   describe('#postComment', () => {
-    var pid = '';
+    var pid = '35bc6f7b9b0d0b0457673daf';
 
     it('should not allow anonymous users to post new comment', (done) => {
       request
@@ -41,7 +41,7 @@ describe('Add Comment API', () => {
         .done();
     });
 
-    it('should not be an empty post', (done) => {
+    it('should not be an empty comment', (done) => {
       login('test@test.com', 'test')
         .then(() => {
           return request
@@ -74,14 +74,18 @@ describe('Add Comment API', () => {
             .toPromise();
         })
         .then((res) => {
-          res.body.status.shoud.be.equal(0);
-          res.body.value.should.exist();
+          res.body.status.should.be.equal(0);
+          res.body.value.should.exist;
+          var cid = res.body.value;
+
           return request
-            .get('/api/v1/comments/')
+            .get('/api/v1/posts/' + pid)
             .toPromise();
         })
         .then((res) => {
-          res.body.value.shoud.have.property('text', 'yay im logged in');
+          res.body.value.should.have.property('comments');
+          res.body.value.comments.should.have.length.above(0);
+          res.body.value.comments[0].should.have.property('text', 'yay im logged in');
         })
         .then(logout)
         .then(done)

@@ -182,7 +182,7 @@ describe('PostController', () => {
             .toPromise();
         })
         .then((res) => {
-          res.body.status.shoud.be.equal(0);
+          res.body.status.should.be.equal(0);
           res.body.value.should.exist();
           pid = res.body.value;
           return request

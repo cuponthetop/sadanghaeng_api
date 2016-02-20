@@ -21,13 +21,13 @@ describe('CommentController', () => {
 
   describe('#reportComment', () => {
     var cID = '77ac6f7b9b0d0b0457673daf';
+    var pid = '34bc6f7b9b0d0b0457673daf';
 
     /* 익명의 사용자 접근 여부 테스트 */
     it('should not allow access to anonymous users', (done) => {
       request
         .post('/api/v1/comments/' + cID + '/reports')
         .send({
-          reported: '21bc6f7b900d0aa457673daf'
         })
         .toPromise()
         .then((res) => {
@@ -46,7 +46,6 @@ describe('CommentController', () => {
           return request
             .post('/api/v1/comments/' + cID + '/reports')
             .send({
-              reported: '21bc6f7b900d0aa457673daf'
             })
             .toPromise();
         })
@@ -67,7 +66,6 @@ describe('CommentController', () => {
           return request
             .post('/api/v1/comments/' + cID + '/reports')
             .send({
-              reported: '21bc6f7b900d0aa457673daf'
             })
             .toPromise();
         })

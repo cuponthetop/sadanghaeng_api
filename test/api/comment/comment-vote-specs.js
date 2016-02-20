@@ -46,7 +46,7 @@ describe('Vote comment API', () => {
             .toPromise();
         })
         .then((res) => {
-          res.body.status.shoud.be.equal(status.codes.EmptyVote.code);
+          res.body.status.should.be.equal(status.codes.EmptyVote.code);
           res.body.value.should.have.property('message');
         })
         .then(logout)
@@ -82,7 +82,7 @@ describe('Vote comment API', () => {
             .toPromise();
         })
         .then((res) => {
-          res.body.status.shoud.be.equal(0);
+          res.body.status.should.be.equal(0);
           res.body.value.should.exist();
           return request
             .get('/api/v1/comments/' + cid)
@@ -106,14 +106,14 @@ describe('Vote comment API', () => {
             .toPromise();
         })
         .then((res) => {
-          res.body.status.shoud.be.equal(0);
+          res.body.status.should.be.equal(0);
           return request
             .post('/api/v1/comments/' + cid + '/votes')
             .send({ voteType: 'down' })
             .toPromise();
         })
         .then((res) => {
-          res.body.status.shoud.be.equal(status.codes.AlreadyVoted.code);
+          res.body.status.should.be.equal(status.codes.AlreadyVoted.code);
           res.body.value.should.have.property('message');
         })
         .then(logout)
