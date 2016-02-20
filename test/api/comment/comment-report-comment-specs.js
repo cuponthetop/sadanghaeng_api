@@ -70,7 +70,6 @@ describe('CommentController', () => {
             .toPromise();
         })
         .then((res) => {
-          // console.log("This is LLLLLLLLLLLLog : " + JSON.stringify(res));
           res.body.status.should.be.equal(505);
         })
         .then(commentInit)

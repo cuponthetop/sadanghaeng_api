@@ -24,6 +24,7 @@ describe('Vote comment API', () => {
 
   describe('#voteComment', () => {
     var cid = '77ac6f7b9b0d0b0457673daf';
+    var pid = '34bc6f7b9b0d0b0457673daf';
 
     it('should not allow anonymous users to vote', (done) => {
       request
@@ -46,7 +47,7 @@ describe('Vote comment API', () => {
             .toPromise();
         })
         .then((res) => {
-          res.body.status.should.be.equal(status.codes.EmptyVote.code);
+          res.body.status.should.be.equal(status.codes.WrongVote.code);
           res.body.value.should.have.property('message');
         })
         .then(logout)
@@ -74,7 +75,7 @@ describe('Vote comment API', () => {
     });
 
     it('should get right post to vote on and allow logged-in users to vote', (done) => {
-      login('test@test.com', 'test')
+      login('test2@test.com', 'test')
         .then(() => {
           return request
             .post('/api/v1/comments/' + cid + '/votes')
@@ -83,13 +84,14 @@ describe('Vote comment API', () => {
         })
         .then((res) => {
           res.body.status.should.be.equal(0);
-          res.body.value.should.exist();
+          res.body.should.have.property('value', null);
           return request
-            .get('/api/v1/comments/' + cid)
+            .get('/api/v1/posts/' + pid)
             .toPromise();
         })
         .then((res) => {
-          res.body.value.should.have.property('voteScore', 1);
+          res.body.value.comments.should.exist;
+          res.body.value.comments[0].should.have.property('likeCount', 1);
         })
         .then(logout)
         .then(done)
@@ -98,7 +100,8 @@ describe('Vote comment API', () => {
     });
 
     it('should only allow user to vote once', (done) => {
-      login('test@test.com', 'test')
+      commentInit()
+        .then(login.bind(undefined, 'test2@test.com', 'test'))
         .then(() => {
           return request
             .post('/api/v1/comments/' + cid + '/votes')
