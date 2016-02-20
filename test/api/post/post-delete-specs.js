@@ -62,6 +62,7 @@ describe('Delete post API', () => {
         .then((res) => {
           res.body.status.should.be.equal(0);
         })
+        .then(postsInit)
         .then(logout)
         .then(done)
         .catch(done)
@@ -69,8 +70,7 @@ describe('Delete post API', () => {
     });
 
     it('should allow the admin to delete the post', (done) => {
-      postsInit()
-        .then(login.bind(undefined, 'admin@test.com', 'test'))
+      login('admin@test.com', 'test')
         .then(() => {
           return request
             .delete('/api/v1/posts/' + pid)

@@ -56,7 +56,7 @@ describe('Report post API', () => {
     });
 
     it('should allow logged-in users to report post', (done) => {
-      login('test@test.com', 'test')
+      login('test2@test.com', 'test')
         .then(() => {
           return request
             .post('/api/v1/posts/' + pid + '/reports')
@@ -64,7 +64,7 @@ describe('Report post API', () => {
         })
         .then((res) => {
           res.body.status.should.be.equal(0);
-          res.body.value.should.exist();
+          res.body.value.should.exist;
           return request
             .get('/api/v1/posts/' + pid)
             .toPromise();
@@ -72,6 +72,7 @@ describe('Report post API', () => {
         .then((res) => {
           res.body.status.should.be.equal(0);
         })
+        .then(postsInit)
         .then(logout)
         .then(done)
         .catch(done)
@@ -79,7 +80,7 @@ describe('Report post API', () => {
     });
 
     it('should only allow user to report once', (done) => {
-      login('test@test.com', 'test')
+      login('test2@test.com', 'test')
         .then(() => {
           return request
             .post('/api/v1/posts/' + pid + '/reports')

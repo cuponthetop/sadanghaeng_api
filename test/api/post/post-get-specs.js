@@ -28,7 +28,7 @@ describe('Get Individual Post API', () => {
       request
         .get('/api/v1/posts/' + pid)
         .then((res) => {
-          res.body.status.should.be.equal(status.codes.PostNotFound.code);
+          res.body.status.should.be.equal(status.codes.UserAuthRequired.code);
           res.body.value.should.have.property('message');
         })
         .then(done)

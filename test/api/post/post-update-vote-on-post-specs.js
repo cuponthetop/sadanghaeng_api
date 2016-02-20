@@ -23,13 +23,14 @@ describe('PostController', () => {
   });
 
   describe('#updateVoteOnPost', () => {
+    var pid = '37bc6f7b9b0d0b0457673daf';
 
     /*
      * 익명의 사용자 접근 여부 테스트
      */
     it('should not allow access to anonymous users', (done) => {
       request
-        .post('/api/v1/posts/37bc6f7b9b0d0b0457673daf/votes')
+        .post('/api/v1/posts/' + pid + '/votes')
         .send({
           voteType: 'down'
         })
@@ -50,7 +51,7 @@ describe('PostController', () => {
       login('test2@test.com', 'test')
         .then(() => {
           return request
-            .post('/api/v1/posts/37bc6f7b9b0d0b0457673daf/votes')
+            .post('/api/v1/posts/' + pid + '/votes')
             .send({
               voteType: 'up'
             })
@@ -59,6 +60,7 @@ describe('PostController', () => {
         .then((res) => {
           res.body.status.should.be.equal(0);
         })
+        .then(postInit)
         .then(logout)
         .then(done)
         .catch(done)
@@ -72,7 +74,7 @@ describe('PostController', () => {
       login('test2@test.com', 'test')
         .then(() => {
           return request
-            .post('/api/v1/posts/37bc6f7b9b0d0b0457673daf/votes')
+            .post('/api/v1/posts/' + pid + '/votes')
             .send({
               voteType: 'down'
             })
@@ -81,6 +83,7 @@ describe('PostController', () => {
         .then((res) => {
           res.body.status.should.be.equal(0);
         })
+        .then(postInit)
         .then(logout)
         .then(done)
         .catch(done)
@@ -94,7 +97,18 @@ describe('PostController', () => {
       login('test2@test.com', 'test')
         .then(() => {
           return request
-            .post('/api/v1/posts/36bc6f7b9b0d0b0457673daf/votes')
+            .post('/api/v1/posts/' + pid + '/votes')
+            .send({
+              voteType: 'down'
+            })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(0);
+        })
+        .then(() => {
+          return request
+            .post('/api/v1/posts/' + pid + '/votes')
             .send({
               voteType: 'down'
             })
@@ -116,7 +130,7 @@ describe('PostController', () => {
       login('test@test.com', 'test')
         .then(() => {
           return request
-            .post('/api/v1/posts/36bc6f7b9b0d0b0457673daf/votes')
+            .post('/api/v1/posts/' + pid + '/votes')
             .send({
               voteType: 'down'
             })

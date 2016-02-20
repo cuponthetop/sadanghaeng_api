@@ -54,7 +54,7 @@
 //     			.toPromise()
 //     			.then((res) => {
 //     				res.body.status.should.be.equal(0);
-//     				res.body.value.should.exist();
+//     				res.body.value.should.exist;
 //     			})
 //     			.then(logout)
 //     			.then(done)

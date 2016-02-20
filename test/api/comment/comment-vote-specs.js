@@ -93,6 +93,7 @@ describe('Vote comment API', () => {
           res.body.value.comments.should.exist;
           res.body.value.comments[0].should.have.property('likeCount', 1);
         })
+        .then(commentInit)
         .then(logout)
         .then(done)
         .catch(done)
@@ -100,8 +101,7 @@ describe('Vote comment API', () => {
     });
 
     it('should only allow user to vote once', (done) => {
-      commentInit()
-        .then(login.bind(undefined, 'test2@test.com', 'test'))
+      login('test2@test.com', 'test')
         .then(() => {
           return request
             .post('/api/v1/comments/' + cid + '/votes')
