@@ -31,7 +31,7 @@ gulp.task('jscs', function () {
 function generateMochaOpts() {
   return {
     flags: {
-      t: 10000,
+      t: 15000,
       R: process.env.MOCHA_REPORTER || 'spec',
       'c': true
     },
