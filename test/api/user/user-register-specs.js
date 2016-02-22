@@ -148,9 +148,8 @@ describe('User API Register', () => {
         .expect(200)
         .toPromise()
         .then((res) => {
+          console.log('step a');
           res.body.status.should.be.equal(0);
-        })
-        .then(() => {
           return request
             .get('/api/v1/users/verify')
             .send({ email: 'test4@test3.com' })
@@ -158,6 +157,7 @@ describe('User API Register', () => {
             .toPromise();
         })
         .then((res) => {
+          console.log('step b');
           res.body.status.should.be.equal(0);
         })
         .then(done)

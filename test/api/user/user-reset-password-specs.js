@@ -59,9 +59,8 @@ describe('User API Reset Password', () => {
         .expect(200)
         .toPromise()
         .then((res) => {
+          console.log('step a');
           res.body.status.should.be.equal(0);
-        })
-        .then(() => {
           return request
             .get('/api/v1/users/reset_password')
             .send({ email: 'test2@test.com' })
@@ -69,6 +68,7 @@ describe('User API Reset Password', () => {
             .toPromise();
         })
         .then((res) => {
+          console.log('step b');
           res.body.status.should.be.equal(0);
         })
         .then(done)
