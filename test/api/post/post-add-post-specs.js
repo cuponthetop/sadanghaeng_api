@@ -60,6 +60,7 @@ describe('Add Post API', () => {
           // res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
           // res.body.value.should.have.property('message');
         })
+        .then(postInit)
         .then(logout)
         .then(done)
         .catch(done)
@@ -211,11 +212,46 @@ describe('Add Post API', () => {
           res.body.value.should.have.property('title', 'testPostTitle4');
           res.body.value.should.have.property('text', 'testPostText4');
         })
+        .then(postInit)
         .then(logout)
         .then(done)
         .catch(done)
         .done();
     });
 
+    /* addPost 했을 때, universities의 getPosts에서 제대로 추가 되어 있는지 확인 */
+    it('should get right posts when add post', (done) => {
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .post('/api/v1/posts')
+            .send({
+              title: 'TEST',
+              text: 'testPost4',
+              univid: '56ac6f7b9b0d0b0457673daf'
+            })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(0);
+          res.body.value.should.have.lengthOf(24);
+
+          var pid = res.body.value;
+          var univId = '56ac6f7b9b0d0b0457673daf';
+
+          return request
+            .get('/api/v1/universities/'+ univId +'/posts')
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.value[0].should.have.property('title', 'TEST'); /////////////// is this right? I thought 0th element is the most recent one
+        })
+        .then(postInit)
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
+    
   });
 });
