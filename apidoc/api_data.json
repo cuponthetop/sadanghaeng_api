@@ -5,41 +5,6 @@
     "title": "Add new comment",
     "name": "PostComment",
     "group": "Comment",
-    "version": "0.0.0",
-    "filename": "lib/route/v1/comment.js",
-    "groupTitle": "",
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "status",
-            "description": "<p>status of request</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "CommentAddFailed",
-            "description": "<p>(503) failed to add comment</p>"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "post",
-    "url": "/comments",
-    "title": "Add new comment",
-    "name": "PostComment",
-    "group": "Comment",
     "success": {
       "fields": {
         "Success 200": [
@@ -157,6 +122,18 @@
           }
         ]
       }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CommentRemovalFailed",
+            "description": "<p>(501) fail to remove the comment</p>"
+          }
+        ]
+      }
     }
   },
   {
@@ -177,6 +154,71 @@
             "optional": false,
             "field": "status",
             "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CommentReportFailed",
+            "description": "<p>(504) fail to report the comment</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CommentReportAlready",
+            "description": "<p>(505) already report the comment</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "/posts",
+    "title": "add post",
+    "name": "AddPost",
+    "group": "Post",
+    "version": "0.0.0",
+    "filename": "lib/route/v1/post.js",
+    "groupTitle": "",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "PostAddedFailed",
+            "description": "<p>(406) fail to add the post</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "TitleOfPostIsInvalid",
+            "description": "<p>(407) title of the post is continuum of whitespace and newline</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "TextOfPostIsInvalid",
+            "description": "<p>(408) text of the post is continuum group of whitespace and newline</p>"
           }
         ]
       }
@@ -316,6 +358,13 @@
             "optional": false,
             "field": "value.edited",
             "description": "<p>when this post was last edited</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.readCount",
+            "description": "<p>read count</p>"
           },
           {
             "group": "Success 200",
@@ -551,6 +600,30 @@
             "optional": false,
             "field": "status",
             "description": "<p>status of request</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "PostVotedAlready",
+            "description": "<p>(409) the post is already voted by the user</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UpdateVoteInDBFailed",
+            "description": "<p>(410) update vote in DB failed</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "PostOwnerCanNotVote",
+            "description": "<p>(411) one who voted is the post owner</p>"
           }
         ]
       }
@@ -1418,6 +1491,13 @@
             "group": "Success 200",
             "type": "Number",
             "optional": false,
+            "field": "value.readCount",
+            "description": "<p>read count</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
             "field": "value.likeCount",
             "description": "<p>number of likes for this post</p>"
           },
@@ -1716,6 +1796,13 @@
             "optional": false,
             "field": "value.edited",
             "description": "<p>when this post was last edited</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "value.readCount",
+            "description": "<p>read count</p>"
           },
           {
             "group": "Success 200",
