@@ -23,9 +23,9 @@ describe('Remove Comment API', () => {
   describe('#removeComment', () => {
   	var pid = '34bc6f7b9b0d0b0457673daf';
   	var cid = '77ac6f7b9b0d0b0457673daf';
+
 		/* 익명의 사용자 접근 여부 테스트 */
     it('should not allow access to anonymous users', (done) => {
-
       request
         .delete('/api/v1/comments/' + cid + '/remove')
         .then((res) => {
