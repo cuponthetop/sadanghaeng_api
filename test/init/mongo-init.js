@@ -20,5 +20,5 @@ module.exports.connect = function () {
 };
 
 module.exports.disconnect = function () {
-  return Q(mongoose.disconnect());
+  return Q(mongoose.disconnect()).timeout(300);
 };
