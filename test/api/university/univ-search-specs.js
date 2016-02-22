@@ -389,6 +389,7 @@ describe('University API Search', () => {
           res.body.status.should.be.equal(0);
           res.body.value.should.have.length(2);
           res.body.value[0].should.have.property('title', 'Test Post2');
+          res.body.value[0].should.have.property('readCount', 2);
         })
         .then(done)
         .catch(done)

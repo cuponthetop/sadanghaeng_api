@@ -3,6 +3,8 @@
 ## Status
 [![Build Status](https://travis-ci.org/cuponthetop/sadanghaeng_api.png)](https://travis-ci.org/cuponthetop/sadanghaeng_api)
 
+## API Documentation
+Documentation can be found [here](http://cuponthetop.github.io/sadanghaeng_api/).
 
 ## 디렉토리 및 파일 설명
 
@@ -61,4 +63,4 @@ apidoc을 실행시켜 문서를 만들고, 깃허브의 gh-pages 브랜치에 �
 - 테스트 DB에 데이터 넣기
 node test/init/test-init.js
 - 테스트 데이터로 서버 띄우기
-node lib/server/test-server.js
+node lib/server/server.js

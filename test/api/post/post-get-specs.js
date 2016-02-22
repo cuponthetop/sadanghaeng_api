@@ -46,6 +46,25 @@ describe('Get Individual Post API', () => {
         .then((res) => {
           res.body.status.should.be.equal(0);
           res.body.value.title.should.be.equal('Test Post2');
+          res.body.value.readCount.should.be.equal(2);
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
+
+    it('should get the correct individual post non-owner should increase read count', (done) => {
+      login('test2@test.com', 'test')
+        .then(() => {
+          return request
+            .get('/api/v1/posts/' + pid)
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(0);
+          res.body.value.title.should.be.equal('Test Post2');
+          res.body.value.readCount.should.be.equal(3);
         })
         .then(logout)
         .then(done)
