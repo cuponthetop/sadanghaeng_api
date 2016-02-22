@@ -11,7 +11,6 @@ var request = require('../../helper/setup-supertest')('http://localhost:3001')
   , commentInit = require('../../init/comments-init')
   , PostModel = require('../../../lib/model/post')
   , postInit = require('../../init/posts-init')
-  , mongoose = require('mongoose')
   ;
 
 describe('Add Comment API', () => {
@@ -98,6 +97,7 @@ describe('Add Comment API', () => {
         .done();
     });
 
+    /* addComment 시 본 post에 제대로 comment가 추가되는지 확인 */
     it('should be added in right post', (done) => {
       login('test@test.com', 'test')
         .then(() => {
