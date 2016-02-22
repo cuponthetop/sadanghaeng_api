@@ -10,6 +10,8 @@
     "written": "2016-02-09T08:11:10.000Z",
     "edited": "2016-02-09T08:11:10.000Z",
 
+    "readCount": 0,
+    
     "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "voteType": "up" }],
     "voteScore": 1,
     "comments": ["77ac6f7b9b0d0b0457673daf"]
@@ -25,6 +27,8 @@
     "written": "2016-02-10T08:11:10.000Z",
     "edited": "2016-02-10T08:11:10.000Z",
 
+    "readCount": 2,
+    
     "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "voteType": "down" }],
     "voteScore": -1,
     "comments": []
@@ -40,6 +44,8 @@
     "written": "2016-02-11T08:11:10.000Z",
     "edited": "2016-02-11T08:11:10.000Z",
 
+    "readCount": 3,
+    
     "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "voteType": "down" }],
     "voteScore": 0,
     "comments": [],
@@ -56,6 +62,8 @@
     "written": "2016-02-12T08:11:10.000Z",
     "edited": "2016-02-12T08:11:10.000Z",
 
+    "readCount": 0,
+    
     "votes": [],
     "voteScore": 0,
     "comments": []
@@ -71,6 +79,8 @@
     "written": "2016-02-13T08:11:10.000Z",
     "edited": "2016-02-13T08:11:10.000Z",
 
+    "readCount": 0,
+    
     "votes": [],
     "voteScore": 0,
     "comments": []
@@ -86,6 +96,8 @@
     "written": "2016-02-22T08:11:10.000Z",
     "edited": "2016-02-22T08:11:10.000Z",
 
+    "readCount": 0,
+    
     "votes": [],
     "voteScore": 0,
     "comments": []
