@@ -64,7 +64,7 @@ describe('Remove Comment API', () => {
         })
         .then((res) => {
           res.body.status.should.be.equal(0);
-          request
+          return request
           	.get('/api/v1/posts/' + pid)
           	.toPromise();
         })
@@ -88,7 +88,7 @@ describe('Remove Comment API', () => {
         })
         .then((res) => {
           res.body.status.should.not.equal(106);
-          request
+          return request
           	.get('/api/v1/posts/' + pid)
           	.toPromise();
         })
