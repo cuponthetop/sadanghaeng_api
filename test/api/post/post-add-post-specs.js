@@ -252,6 +252,43 @@ describe('Add Post API', () => {
         .catch(done)
         .done();
     });
-    
+    /* addPost 했을 때 글 쓴 학교외 다른 학교의 getPosts에 나오지 않는 것 확인 */
+    it('should not show the post added when get posts in another University', (done) => {
+      var anotherUnivId = '77cc6f7b9b0d0b0457673daa';
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .post('/api/v1/posts')
+            .send({
+              title: 'TEST',
+              text: 'testPost4',
+              univid: '56ac6f7b9b0d0b0457673daf'
+            })
+            .toPromise();
+        })
+        .then(logout)
+        // .then((res) => {
+        //   // var pid = res.body.value;
+        //   logout();
+        // })
+        .then(() => {
+          // console.log("login again");
+          login('admin@test.com', 'test');
+        })
+        .then(() => {
+          return request
+            .get('/api/v1/universities/'+ anotherUnivId +'/posts')
+            .toPromise();
+        })
+        .then((res) => {
+          // console.log(res.body.value);
+          res.body.value[0].should.not.have.property('title', 'TEST');
+        })
+        .then(postInit)
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
   });
 });
