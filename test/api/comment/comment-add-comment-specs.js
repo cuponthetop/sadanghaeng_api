@@ -9,6 +9,9 @@ var request = require('../../helper/setup-supertest')('http://localhost:3001')
   , logout = require('../../helper/logout')(request)
   , mongoInit = require('../../init/mongo-init')
   , commentInit = require('../../init/comments-init')
+  , PostModel = require('../../../lib/model/post')
+  , postInit = require('../../init/posts-init')
+  , mongoose = require('mongoose')
   ;
 
 describe('Add Comment API', () => {
@@ -87,6 +90,42 @@ describe('Add Comment API', () => {
           res.body.value.comments.should.have.length.above(0);
           res.body.value.comments[0].should.have.property('text', 'yay im logged in');
         })
+        .then(postInit)
+        .then(commentInit) 
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
+
+    it('should be added in right post', (done) => {
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .post('/api/v1/comments/')
+            .send({
+              text: 'This is comment',
+              pid: pid
+            })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(0);
+          res.body.value.should.exist;
+          var cid = res.body.value;
+          console.log("cid is " + cid);
+
+          return request
+            .get('/api/v1/posts/' + pid)
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.value.should.have.property('comments');
+          res.body.value.comments.should.have.length.above(0);
+          res.body.value.comments[0].should.have.property('text', 'This is comment');
+        })
+        .then(postInit)
+        .then(commentInit)
         .then(logout)
         .then(done)
         .catch(done)
