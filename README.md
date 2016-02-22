@@ -3,6 +3,8 @@
 ## Status
 [![Build Status](https://travis-ci.org/cuponthetop/sadanghaeng_api.png)](https://travis-ci.org/cuponthetop/sadanghaeng_api)
 
+## API Documentation
+Documentation can be found [here](http://cuponthetop.github.io/sadanghaeng_api/).
 
 ## 디렉토리 및 파일 설명
 
