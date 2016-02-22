@@ -12,7 +12,7 @@ var chai = require('../../helper/setup-chai')
   , logout = require('../../helper/logout')(request)
   ;
 
-describe('PostController', () => {
+describe('Add Post API', () => {
 
   before((done) => {
     mongoInit.connect().then(postInit).catch(console.log).fin(done);
@@ -42,7 +42,7 @@ describe('PostController', () => {
         .done();
     });
 
-    /* 관리자 접근 여부 테스트 => 계속 fail 남 아ㅏㅇ라 마아람라ㅣ마람 */
+    /* 관리자 접근 여부 테스트 */
     it('should allow access to admin users', (done) => {
       login('admin@test.com', 'test')
         .then(() => {
@@ -99,6 +99,29 @@ describe('PostController', () => {
             .post('/api/v1/posts')
             .send({
               title: '    \n    ',
+              text: 'testPost4',
+              univid: '56ac6f7b9b0d0b0457673daf'
+            })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.TitleOfPostIsInvalid.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
+
+    // 3: 게시물 제목이 ''일 때 
+    it('should not have \'null\' title', (done) => {
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .post('/api/v1/posts')
+            .send({
+              title: '',
               text: 'testPost4',
               univid: '56ac6f7b9b0d0b0457673daf'
             })
