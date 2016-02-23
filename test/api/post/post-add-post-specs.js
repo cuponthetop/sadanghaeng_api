@@ -268,29 +268,23 @@ describe('Add Post API', () => {
             .toPromise();
         })
         .then(logout)
-        // .then((res) => {
-        //   // var pid = res.body.value;
-        //   logout();
-        // })
         .then(() => {
-          // console.log("login again");
-          return login('admin@test.com', 'test');
-        })
-        .then(() => {
-          return request
-            .get('/api/v1/universities/'+ anotherUnivId +'/posts')
-            .send({ filter: 'new', age: 365 })
-            .toPromise();
-        })
-        .then((res) => {
-          res.body.value.should.have.length.above(0);
-          res.body.value[0].should.not.have.property('title', 'TEST');
-        })
-        .then(postInit)
-        .then(logout)
-        .then(done)
-        .catch(done)
-        .done();
+          login('admin@test.com', 'test')
+            .then(() => {
+              return request
+              .get('/api/v1/universities/'+ anotherUnivId +'/posts')
+              .toPromise();
+            })
+            .then((res) => {
+              res.body.value[0].should.not.have.property('title', 'TEST');
+            })
+            .then(postInit)
+            .then(logout)
+            .then(done)
+            .catch(done)
+            .done();
+        });
+        // .then(logout)
     });
   });
 });
