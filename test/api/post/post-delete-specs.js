@@ -119,13 +119,15 @@ describe('Delete post API', () => {
         .then(() => {
           return request
             .get('/api/v1/universities/' + univId + '/posts')
+            .send({ age: 365 })
             .toPromise();
         })
         .then((res) => {
           console.log(JSON.stringify(res));
           res.body.status.should.be.equal(0);
           res.body.value.should.have.length(4);
-          res.body.value[1].should.not.have.property('title', 'Test Post2');
+          // posts descend from latest post to oldest
+          res.body.value[3].should.not.have.property('title', 'Test Post2');
         })
         .then(done)
         .catch(done)
