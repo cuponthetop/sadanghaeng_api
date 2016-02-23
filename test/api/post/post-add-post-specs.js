@@ -273,7 +273,7 @@ describe('Add Post API', () => {
         // })
         .then(() => {
           // console.log("login again");
-          login('admin@test.com', 'test');
+          return login('admin@test.com', 'test');
         })
         .then(() => {
           return request
@@ -281,8 +281,10 @@ describe('Add Post API', () => {
             .toPromise();
         })
         .then((res) => {
-          // console.log(res.body.value);
-          res.body.value[0].should.not.have.property('title', 'TEST');
+          console.log(res);
+          console.log(res.body.value);
+          res.body.value.should.not.hanve.length.above(0);
+          // res.body.value[0].should.not.have.property('title', 'TEST');
         })
         .then(postInit)
         .then(logout)
