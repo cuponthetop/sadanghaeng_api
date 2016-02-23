@@ -13,7 +13,7 @@ var chai = require('../../helper/setup-chai')
   , PostModel = require('../../../lib/model/post')
   ;
 
-describe('PostController', () => {
+describe('Update Vote On Post API', () => {
 
   before((done) => {
     mongoInit.connect().then(postInit).catch(console.log).fin(done);

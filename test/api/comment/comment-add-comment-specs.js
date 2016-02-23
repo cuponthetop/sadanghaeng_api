@@ -64,6 +64,27 @@ describe('Add Comment API', () => {
         .done();
     });
 
+    it('should not be a comment with only newline and space', (done) => {
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .post('/api/v1/comments/')
+            .send({
+              text: '            \n',
+              pid: pid
+            })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.EmptyComment.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
+
     it('should allow logged-in users to post new comment', (done) => {
       login('test@test.com', 'test')
         .then(() => {
@@ -113,7 +134,6 @@ describe('Add Comment API', () => {
           res.body.status.should.be.equal(0);
           res.body.value.should.exist;
           var cid = res.body.value;
-          console.log("cid is " + cid);
 
           return request
             .get('/api/v1/posts/' + pid)

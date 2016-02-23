@@ -11,7 +11,7 @@ var request = require('../../helper/setup-supertest')('http://localhost:3001')
   , commentInit = require('../../init/comments-init')
   ;
 
-describe('Vote comment API', () => {
+describe('Vote Comment API', () => {
 
 
   before((done) => {
