@@ -241,6 +241,7 @@ describe('Add Post API', () => {
 
           return request
             .get('/api/v1/universities/'+ univId +'/posts')
+            .send({ filter: 'new', age: 365 })
             .toPromise();
         })
         .then((res) => {
@@ -278,13 +279,12 @@ describe('Add Post API', () => {
         .then(() => {
           return request
             .get('/api/v1/universities/'+ anotherUnivId +'/posts')
+            .send({ filter: 'new', age: 365 })
             .toPromise();
         })
         .then((res) => {
-          console.log(res);
-          console.log(res.body.value);
-          res.body.value.should.not.hanve.length.above(0);
-          // res.body.value[0].should.not.have.property('title', 'TEST');
+          res.body.value.should.have.length.above(0);
+          res.body.value[0].should.not.have.property('title', 'TEST');
         })
         .then(postInit)
         .then(logout)

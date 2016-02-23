@@ -284,9 +284,10 @@ describe('University API Search', () => {
       login('admin@test.com', 'test')
         .then(() => {
           return request
-            .get('/api/v1/universities/' + 'nonexisting' + '/posts')
+            .get('/api/v1/universities/' + 'nonexisting' + '/search')
             .send({
-
+              query: 'Test',
+              fields: ['title']
             })
             .expect(500)
             .toPromise();
