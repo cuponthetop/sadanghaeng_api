@@ -10,7 +10,7 @@ var chai = require('../../helper/setup-chai')
   , logout = require('../../helper/logout')(request)
   ;
 
-describe('CommentController', () => {
+describe('Report Comment Api', () => {
 
   before((done) => {
     mongoInit.connect().then(commentInit).catch(console.log).fin(done);
