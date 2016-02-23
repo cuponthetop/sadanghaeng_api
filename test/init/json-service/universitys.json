@@ -1,0 +1,151 @@
+[
+  {
+    "name": "가톨릭대학교",
+    "displayName": "캣홀릭",
+    "emailDomainList": ["catholic.ac.kr"]
+  },
+  
+  {
+    "name": "건국대학교",
+    "displayName": "건국대학교",
+    "emailDomainList": ["konkuk.ac.kr"]
+  },
+  
+  {
+    "name": "경희대학교",
+    "displayName": "경희대 웃는사자",
+    "emailDomainList": ["khu.ac.kr"]
+  },
+  
+  {
+    "name": "고려대학교",
+    "displayName": "고려대학교",
+    "emailDomainList": ["korea.ac.kr"]
+  },
+  
+  {
+    "name": "국민대학교",
+    "displayName": "정릉인",
+    "emailDomainList": ["kookmin.ac.kr"]
+  },
+  
+  {
+    "name": "단국대학교",
+    "displayName": "단대",
+    "emailDomainList": ["dankook.ac.kr"]
+  },
+  
+  {
+    "name": "동덕여대",
+    "displayName": "동감이",
+    "emailDomainList": ["dongduk.ac.kr"]
+  },
+  
+  {
+    "name": "서울대학교",
+    "displayName": "낙성대",
+    "emailDomainList": ["snu.ac.kr"]
+  },
+  
+  {
+    "name": "성공회대",
+    "displayName": "성공회대",
+    "emailDomainList": ["skhu.ac.kr"]
+  },
+  
+  {
+    "name": "성균관대학교",
+    "displayName": "유생",
+    "emailDomainList": ["skku.ac.kr"]
+  },
+  
+  {
+    "name": "성신여대",
+    "displayName": "수정이",
+    "emailDomainList": ["sungshin.ac.kr"]
+  },
+  
+  {
+    "name": "숙명여대",
+    "displayName": "눈송이",
+    "emailDomainList": ["sm.ac.kr"]
+  },
+  
+  {
+    "name": "순천대학교",
+    "displayName": "순대",
+    "emailDomainList": ["sunchon.ac.kr"]
+  },
+  
+  {
+    "name": "아주대학교",
+    "displayName": "아주대학교",
+    "emailDomainList": ["ajou.ac.kr"]
+  },
+  
+  {
+    "name": "연세대학교",
+    "displayName": "연대생",
+    "emailDomainList": ["yonsei.ac.kr"]
+  },
+  
+  {
+    "name": "유한대",
+    "displayName": "유한대",
+    "emailDomainList": ["yuhan.ac.kr"]
+  },
+  
+  {
+    "name": "이화여대",
+    "displayName": "벗",
+    "emailDomainList": ["ewha.ac.kr"]
+  },
+  
+  {
+    "name": "인천가톨릭대학교",
+    "displayName": "인가대",
+    "emailDomainList": ["iccu.ac.kr"]
+  },
+  
+  {
+    "name": "인천대",
+    "displayName": "인천대",
+    "emailDomainList": ["inu.ac.kr"]
+  },
+  
+  {
+    "name": "인하대학교",
+    "displayName": "가격인하",
+    "emailDomainList": ["inha.ac.kr"]
+  },
+  
+  {
+    "name": "중앙대학교",
+    "displayName": "앙랑이",
+    "emailDomainList": ["cau.ac.kr"]
+  },
+  
+  {
+    "name": "한국산업기술대학교",
+    "displayName": "산기대",
+    "emailDomainList": ["kpu.ac.kr"]
+  },
+  
+  {
+    "name": "한성대학교",
+    "displayName": "한성대학교",
+    "emailDomainList": ["hansung.ac.kr"]
+  },
+  
+  {
+    "name": "한양대학교",
+    "displayName": "하이리온",
+    "emailDomainList": ["hanyang.ac.kr"]
+  },
+  
+  {
+    "name": "항공대",
+    "displayName": "항대인",
+    "emailDomainList": ["kau.ac.kr"]
+  }
+]

@@ -2,6 +2,6 @@
 
 module.exports = {
   uri: 'http://localhost:5003/',
-  clientId: 'garim-test',
-  clientSecret: '123'
+  clientId: 'garim-service',
+  clientSecret: 'garimsecret'
 };

@@ -2,7 +2,7 @@
 
 process.env.NODE_ENV = 'test';
 
-var request = require('../../helper/setup-supertest')('http://localhost:3001')
+var request = require('../../helper/setup-supertest')('http://localhost:5001')
   , chai = require('../../helper/setup-chai')
   , status = require('../../../lib/server/status')
   , login = require('../../helper/login')(request)
@@ -50,6 +50,27 @@ describe('Add Comment API', () => {
             .post('/api/v1/comments/')
             .send({
               text: '',
+              pid: pid
+            })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.EmptyComment.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
+
+    it('should not be a comment with only newline and space', (done) => {
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .post('/api/v1/comments/')
+            .send({
+              text: '            \n',
               pid: pid
             })
             .toPromise();
@@ -113,7 +134,6 @@ describe('Add Comment API', () => {
           res.body.status.should.be.equal(0);
           res.body.value.should.exist;
           var cid = res.body.value;
-          console.log("cid is " + cid);
 
           return request
             .get('/api/v1/posts/' + pid)

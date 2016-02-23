@@ -2,7 +2,7 @@
 
 process.env.NODE_ENV = 'test';
 
-var request = require('../../helper/setup-supertest')('http://localhost:3001')
+var request = require('../../helper/setup-supertest')('http://localhost:5001')
   , chai = require('../../helper/setup-chai')
   , status = require('../../../lib/server/status')
   , login = require('../../helper/login')(request)
@@ -32,6 +32,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           page: -1
         })
         .expect(500)
@@ -49,6 +50,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           page: 10001
         })
         .expect(500)
@@ -66,6 +68,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           sort: 'dwq'
         })
         .expect(500)
@@ -100,6 +103,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           age: -1
         })
         .expect(500)
@@ -117,6 +121,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           age: 366
         })
         .expect(500)
@@ -134,6 +139,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           perPage: -1
         })
         .expect(500)
@@ -151,6 +157,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           perPage: 31
         })
         .expect(500)
@@ -168,6 +175,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           perPage: 0
         })
         .expect(500)

@@ -2,7 +2,7 @@
 
 process.env.NODE_ENV = 'test';
 
-var request = require('../../helper/setup-supertest')('http://localhost:3001')
+var request = require('../../helper/setup-supertest')('http://localhost:5001')
   , chai = require('../../helper/setup-chai')
   , status = require('../../../lib/server/status')
   , login = require('../../helper/login')(request)
@@ -11,7 +11,7 @@ var request = require('../../helper/setup-supertest')('http://localhost:3001')
   , postsInit = require('../../init/posts-init')
   ;
 
-describe('Report post API', () => {
+describe('Report Post API', () => {
 
   before((done) => {
     mongoInit.connect().then(postsInit).catch(console.log).fin(done);

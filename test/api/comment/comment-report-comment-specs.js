@@ -3,14 +3,14 @@
 var chai = require('../../helper/setup-chai')
   , CommentCtrl = require('../../../lib/controller/comment')
   , status = require('../../../lib/server/status')
-  , request = require('../../helper/setup-supertest')('http://localhost:3001')
+  , request = require('../../helper/setup-supertest')('http://localhost:5001')
   , mongoInit = require('../../init/mongo-init')
   , commentInit = require('../../init/comments-init')
   , login = require('../../helper/login')(request)
   , logout = require('../../helper/logout')(request)
   ;
 
-describe('CommentController', () => {
+describe('Report Comment Api', () => {
 
   before((done) => {
     mongoInit.connect().then(commentInit).catch(console.log).fin(done);
