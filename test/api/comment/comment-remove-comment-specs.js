@@ -79,7 +79,7 @@ describe('Remove Comment API', () => {
         .done();
     });
     /* owner가 아니고 admin이 아닌 사람이 removeComment 가능한지 확인 */
-    it('shold not remove a comment if the user is not the owner or admin', (done) => {
+    it('should not remove a comment if the user is not the owner or admin', (done) => {
       login('test2@test.com', 'test')
         .then(() => {
           return request

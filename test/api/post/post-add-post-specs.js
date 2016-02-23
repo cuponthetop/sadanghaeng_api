@@ -272,8 +272,8 @@ describe('Add Post API', () => {
           login('admin@test.com', 'test')
             .then(() => {
               return request
-              .get('/api/v1/universities/'+ anotherUnivId +'/posts')
-              .toPromise();
+                .get('/api/v1/universities/'+ anotherUnivId +'/posts')
+                .toPromise();
             })
             .then((res) => {
               res.body.value[0].should.not.have.property('title', 'TEST');
@@ -284,7 +284,7 @@ describe('Add Post API', () => {
             .catch(done)
             .done();
         });
-        // .then(logout)
     });
+
   });
 });
