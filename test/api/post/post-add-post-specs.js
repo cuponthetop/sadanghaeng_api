@@ -115,7 +115,7 @@ describe('Add Post API', () => {
         .done();
     });
 
-    // 3: 게시물 제목이 ''일 때 
+    // 3: 게시물 제목이 ''일 때
     it('should not have \'null\' title', (done) => {
       login('test@test.com', 'test')
         .then(() => {
@@ -219,6 +219,29 @@ describe('Add Post API', () => {
         .done();
     });
 
+    it('should not allow users not from the university to add', (done) => {
+      login('test2@test.com', 'test')
+        .then(() => {
+          return request
+            .post('/api/v1/posts')
+            .send({
+              title: 'testPost4',
+              text: 'testPost4',
+              univid: '17ac6f7b9b0d0b0457673daa'
+            })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(postInit)
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
+
     /* addPost 했을 때, universities의 getPosts에서 제대로 추가 되어 있는지 확인 */
     it('should get right posts when add post', (done) => {
       login('test@test.com', 'test')
@@ -240,7 +263,7 @@ describe('Add Post API', () => {
           var univId = '56ac6f7b9b0d0b0457673daf';
 
           return request
-            .get('/api/v1/universities/'+ univId +'/posts')
+            .get('/api/v1/universities/' + univId + '/posts')
             .send({ filter: 'new', age: 365 })
             .toPromise();
         })
@@ -253,6 +276,7 @@ describe('Add Post API', () => {
         .catch(done)
         .done();
     });
+
     /* addPost 했을 때 글 쓴 학교외 다른 학교의 getPosts에 나오지 않는 것 확인 */
     it('should not show the post added when get posts in another University', (done) => {
       var anotherUnivId = '77cc6f7b9b0d0b0457673daa';
@@ -268,17 +292,17 @@ describe('Add Post API', () => {
             .toPromise();
         })
         .then(logout)
-        // .then((res) => {
-        //   // var pid = res.body.value;
-        //   logout();
-        // })
+      // .then((res) => {
+      //   // var pid = res.body.value;
+      //   logout();
+      // })
         .then(() => {
           // console.log("login again");
           return login('admin@test.com', 'test');
         })
         .then(() => {
           return request
-            .get('/api/v1/universities/'+ anotherUnivId +'/posts')
+            .get('/api/v1/universities/' + anotherUnivId + '/posts')
             .send({ filter: 'new', age: 365 })
             .toPromise();
         })
