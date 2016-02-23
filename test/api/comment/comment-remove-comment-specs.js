@@ -12,7 +12,7 @@ var chai = require('../../helper/setup-chai')
   ;
 
 describe('Remove Comment API', () => {
-	before((done) => {
+  before((done) => {
     mongoInit.connect().then(commentInit).catch(console.log).fin(done);
   });
 
@@ -21,10 +21,10 @@ describe('Remove Comment API', () => {
   });
 
   describe('#removeComment', () => {
-  	var pid = '34bc6f7b9b0d0b0457673daf';
-  	var cid = '77ac6f7b9b0d0b0457673daf';
+    var pid = '34bc6f7b9b0d0b0457673daf';
+    var cid = '77ac6f7b9b0d0b0457673daf';
 
-		/* 익명의 사용자 접근 여부 테스트 */
+    /* 익명의 사용자 접근 여부 테스트 */
     it('should not allow access to anonymous users', (done) => {
       request
         .delete('/api/v1/comments/' + cid + '/remove')
@@ -38,7 +38,7 @@ describe('Remove Comment API', () => {
     });
     /* 관리자 접근 여부 테스트 / 관리자는 remove 할수 있어야 */
     it('should allow access to admin users', (done) => {
-    	login('admin@test.com', 'test')
+      login('admin@test.com', 'test')
         .then(() => {
           return request
             .delete('/api/v1/comments/' + cid + '/remove')
@@ -56,7 +56,7 @@ describe('Remove Comment API', () => {
     });
     /* removeComment 시 본 post에서 제대로 comment가 제거되는지 확인 */
     it('should remove a comment in the right post', (done) => {
-    	login('test@test.com', 'test')
+      login('test@test.com', 'test')
         .then(() => {
           return request
             .delete('/api/v1/comments/' + cid + '/remove')
@@ -65,11 +65,11 @@ describe('Remove Comment API', () => {
         .then((res) => {
           res.body.status.should.be.equal(0);
           return request
-          	.get('/api/v1/posts/' + pid)
-          	.toPromise();
+            .get('/api/v1/posts/' + pid)
+            .toPromise();
         })
         .then((res) => {
-        	res.value.commentCount.should.equal(0);
+          res.body.value.commentCount.should.equal(0);
         })
         .then(postInit)
         .then(commentInit)
@@ -80,20 +80,20 @@ describe('Remove Comment API', () => {
     });
     /* owner가 아니고 admin이 아닌 사람이 removeComment 가능한지 확인 */
     it('shold not remove a comment if the user is not the owner or admin', (done) => {
-    	login('test2@test.com', 'test')
+      login('test2@test.com', 'test')
         .then(() => {
           return request
             .delete('/api/v1/comments/' + cid + '/remove')
             .toPromise();
         })
         .then((res) => {
-          res.body.status.should.not.equal(106);
+          res.body.status.should.equal(106);
           return request
-          	.get('/api/v1/posts/' + pid)
-          	.toPromise();
+            .get('/api/v1/posts/' + pid)
+            .toPromise();
         })
         .then((res) => {
-        	res.value.commentCount.should.equal(1);
+          res.body.value.commentCount.should.equal(1);
         })
         .then(postInit)
         .then(commentInit)
