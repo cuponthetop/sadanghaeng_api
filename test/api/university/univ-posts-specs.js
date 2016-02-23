@@ -32,6 +32,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           page: -1
         })
         .expect(500)
@@ -49,6 +50,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           page: 10001
         })
         .expect(500)
@@ -66,6 +68,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           sort: 'dwq'
         })
         .expect(500)
@@ -100,6 +103,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           age: -1
         })
         .expect(500)
@@ -117,6 +121,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           age: 366
         })
         .expect(500)
@@ -134,6 +139,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           perPage: -1
         })
         .expect(500)
@@ -151,6 +157,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           perPage: 31
         })
         .expect(500)
@@ -168,6 +175,7 @@ describe('University API Posts', () => {
       request
         .get('/api/v1/universities/' + univId + '/posts')
         .send({
+          filter: 'hot',
           perPage: 0
         })
         .expect(500)
