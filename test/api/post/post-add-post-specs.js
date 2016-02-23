@@ -235,6 +235,11 @@ describe('Add Post API', () => {
           res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
           res.body.value.should.have.property('message');
         })
+        .then(postInit)
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
     });
 
     /* addPost 했을 때, universities의 getPosts에서 제대로 추가 되어 있는지 확인 */

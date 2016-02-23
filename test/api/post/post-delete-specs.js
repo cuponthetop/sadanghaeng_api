@@ -110,7 +110,7 @@ describe('Delete Post API', () => {
 
     it('should delete post from get list after delete', (done) => {
       let univId = '56ac6f7b9b0d0b0457673daf';
-      request
+      
       login('test@test.com', 'test')
         .then(() => {
           return request
@@ -123,7 +123,7 @@ describe('Delete Post API', () => {
         .then(() => {
           return request
             .get('/api/v1/universities/' + univId + '/posts')
-            .send({ age: 365 })
+            .send({ filter: 'new', age: 365 })
             .toPromise();
         })
         .then((res) => {
@@ -132,6 +132,7 @@ describe('Delete Post API', () => {
           // posts descend from latest post to oldest
           res.body.value[3].should.not.have.property('title', 'Test Post2');
         })
+        .then(logout)
         .then(done)
         .catch(done)
         .done();
