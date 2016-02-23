@@ -79,7 +79,54 @@ describe('Delete post API', () => {
         .then((res) => {
           res.body.status.should.be.equal(0);
         })
+        .then(postsInit)
         .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
+
+    it('should not allow the non-student and non-admin to delete the post', (done) => {
+      var newPid = '38bc6f7b9b0d0b0457673daf'
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .delete('/api/v1/posts/' + newPid)
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
+
+    it('should delete post from get list after delete', (done) => {
+      let univId = '56ac6f7b9b0d0b0457673daf';
+      request
+        login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .delete('/api/v1/posts/' + pid)
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(0);
+        })
+        .then(() => {
+          return request
+            .get('/api/v1/universities/' + univId + '/posts')
+            .toPromise();
+        })
+        .then((res) => {
+          console.log(JSON.stringify(res));
+          res.body.status.should.be.equal(0);
+          res.body.value.should.have.length(4);
+          res.body.value[1].should.not.have.property('title', 'Test Post2');
+        })
         .then(done)
         .catch(done)
         .done();

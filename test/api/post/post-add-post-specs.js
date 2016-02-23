@@ -194,5 +194,27 @@ describe('PostController', () => {
         .done();
     });
 
+    it('should not allow users not from the university to add', (done) => {
+      login('test2@test.com', 'test')
+        .then(() => {
+          return request
+            .post('/api/v1/posts')
+            .send({
+              title: 'testPost4',
+              text: 'testPost4',
+              univid: '17ac6f7b9b0d0b0457673daa'
+            })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });   
+
   });
 });
