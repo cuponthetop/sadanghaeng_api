@@ -9,7 +9,6 @@
   function validate() {
     var regExCheckEmptyText = /(^\s*)(\s*$)/;
     var searchInput = $('#search_input').val();
-    
     var status = true;
     
     if(!searchInput || regExCheckEmptyText.test(searchInput)) {
@@ -27,7 +26,7 @@
           query: $('#search_input').val()
         };
 
-        HttpUtil.get('http://localhost:5001/api/v1/universities/:univid/search', searchInput, function (err, result) {
+        HttpUtil.get('http://localhost:5001/api/v1/universities/'+$('#univ_container').data('id')+'/search', searchInput, function (err, result) {
           if (err) {
             return;
           }
