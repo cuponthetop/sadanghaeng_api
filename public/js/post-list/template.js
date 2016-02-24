@@ -31,6 +31,7 @@
   function Template() {
     this.defaultTemplate
       =	'<li data-id="{{id}}" class="post-item">'
+      +		'<a href="/post/{{id}}"">'
       +		'<div class="post-title">{{title}}</div>'
       +   '<div class="post-info">'
       +     '<span class="post-author">{{author}}</span>'
@@ -42,6 +43,7 @@
       +     '<span class="post-label post-dislike-label"></span>'
       +     '<span class="post-value post-dislike">{{dislikeCount}}</span>'
       +   '</div>'
+      +   '</a>'
       +	'</li>';
   }
 
@@ -52,7 +54,7 @@
     for (i = 0, l = data.length; i < l; i++) {
       var template = this.defaultTemplate;
 
-      template = template.replace('{{id}}', data[i].pid);
+      template = template.replace(/{{id}}/gi, data[i].pid);
       template = template.replace('{{title}}', escape(data[i].title));
       template = template.replace('{{author}}', escape(data[i].author));
       template = template.replace('{{written}}', escape(data[i].written));
