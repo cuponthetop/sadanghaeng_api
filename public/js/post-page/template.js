@@ -85,7 +85,7 @@
     var view = '';
     var template = this.postInfoTemplate;
 
-    if (data.didVote && (data.didVoteType === 'up' && data.didVoteType === 'down')) {
+    if (data.didVote && (data.didVoteType === 'up' || data.didVoteType === 'down')) {
       if (data.didVoteType === 'up') {
         template = template.replace('{{isLike}}', 'active');
         template = template.replace('{{isDisLike}}', '');
