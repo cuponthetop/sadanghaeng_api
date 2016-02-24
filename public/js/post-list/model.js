@@ -10,6 +10,14 @@
 
   }
 
+  Model.prototype.getTotalPostCount = function(parameter, callback) {
+    HttpUtil.get(HOST_URL + '/api/v1/stats/universities/'+parameter.univid+'/posts', function (err, result) {
+      if (result && result.status === 0) {
+        callback(result.value);
+      }
+    });
+  };
+
   Model.prototype.getUnivInfo = function(parameter, callback) {
     HttpUtil.get(HOST_URL + '/api/v1/universities/'+parameter.univid, function (err, result) {
       if (err) {
@@ -28,43 +36,12 @@
       if (err) {
         return callback([]);
       }
-      if (result.status === 0) {
+      if (result && result.status === 0) {
         callback(result.value);
       } else {
         callback([]);
       }
     });
-    //TODO: 서버에서 데이터 가져오는 부분 만들어야함!
-    //var postList = [
-    //  {
-    //    pid: 'abc',
-    //    title: '테스트',
-    //    author: '글쓴이',
-    //    written: '3시간전',
-    //    viewCount: 10,
-    //    likeCount: 1,
-    //    dislikeCount: 3
-    //  },
-    //  {
-    //    pid: 'abc',
-    //    title: '테스트',
-    //    author: '글쓴이',
-    //    written: '3시간전',
-    //    viewCount: 10,
-    //    likeCount: 1,
-    //    dislikeCount: 3
-    //  },
-    //  {
-    //    pid: 'abc',
-    //    title: '테스트',
-    //    author: '글쓴이',
-    //    written: '3시간전',
-    //    viewCount: 10,
-    //    likeCount: 1,
-    //    dislikeCount: 3
-    //  }
-    //];
-    //callback(postList);
   };
 
   // Export to window

@@ -1,6 +1,8 @@
 (function (window) {
   'use strict';
 
+  var PER_PAGE = 7;
+
   var htmlEscapes = {
     '&': '&amp;',
     '<': '&lt;',
@@ -46,6 +48,26 @@
       +   '</a>'
       +	'</li>';
   }
+
+  Template.prototype.paginationShow = function(data) {
+    var totalPageCount = Math.ceil(data.count / PER_PAGE);
+    var paginationTemplate = '<span class="text-center pagination-number {{isActive}}" data-value="{{pageVal}}">{{pageVal}}</span>'
+    var view = '';
+
+    for (var i=1; i<=totalPageCount; i++) {
+      var template = paginationTemplate;
+      if (i === 1) {
+        template = template.replace('{{isActive}}', 'active');
+      } else {
+        template = template.replace('{{isActive}}', '');
+      }
+      template = template.replace(/{{pageVal}}/gi, i);
+
+      view = view + template;
+    }
+
+    return view;
+  };
 
   Template.prototype.show = function(data) {
     var i, l;

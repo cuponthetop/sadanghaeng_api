@@ -4,7 +4,7 @@
   var PER_PAGE = 7;
   var pageNum = 1;
   var sortFilter = 'new';
-
+  var univId = $('#univ_title_container').data('id');
   /**
    * Takes a model and view and acts as the controller between them
    *
@@ -36,14 +36,17 @@
 
   Controller.prototype._updateUnivTitle = function () {
     var self = this;
-    self.model.getUnivInfo({ univid: $('#univ_title_container').data('id') }, function(data) {
+    self.model.getUnivInfo({ univid: univId }, function(data) {
       self.view.render('redrawTitle', data);
     });
   };
 
   Controller.prototype._updatePostList = function () {
     var self = this;
-    self.model.getPostList({ univid: $('#univ_title_container').data('id'), filter: sortFilter, page: pageNum, perPage: PER_PAGE }, function(data) {
+    self.model.getTotalPostCount({ univid: univId }, function(data) {
+      self.view.render('redrawPagination', data);
+    });
+    self.model.getPostList({ univid: univId, filter: sortFilter, page: pageNum, perPage: PER_PAGE }, function(data) {
       self.view.render('redraw', data);
     });
   };

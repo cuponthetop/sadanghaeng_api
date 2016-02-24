@@ -18,6 +18,11 @@
     $('#univ_title').text(parameter);
   };
 
+  View.prototype._drawPagination = function(parameter) {
+    $('#pagination_container').empty();
+    $('#pagination_container').append(this.template.paginationShow(parameter))
+  };
+
   View.prototype._clearPostList = function() {
     $('#post_list_container').empty();
   };
@@ -31,6 +36,9 @@
     var viewCommands = {
       redrawTitle: function() {
         self._drawUnivTitle(parameter);
+      },
+      redrawPagination: function() {
+        self._drawPagination(parameter);
       },
       redraw: function() {
         self._clearPostList();
