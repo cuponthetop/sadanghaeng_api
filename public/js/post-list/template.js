@@ -40,7 +40,7 @@
       +     '<span class="post-date">{{written}}</span>'
       +     '<span class="post-label post-view-label">View</span>'
       +     '<span class="post-value post-view">{{readCount}}</span>'
-      +     '<span class="post-label post-like-label active"></span>'
+      +     '<span class="post-label post-like-label"></span>'
       +     '<span class="post-value post-like">{{likeCount}}</span>'
       +     '<span class="post-label post-dislike-label"></span>'
       +     '<span class="post-value post-dislike">{{dislikeCount}}</span>'
