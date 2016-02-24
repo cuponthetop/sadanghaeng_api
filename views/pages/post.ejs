@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://v4-alpha.getbootstrap.com/examples/starter-template/ -->
+<html>
+<head>
+    <% include ../partials/head %>
+    <!-- post.css -->
+    <link href="/css/post.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- .navbar -->
+    <% var titleText = "한양대 가림판"; %>
+    <% include ../partials/common-nav %>
+
+    <!-- .post-container -->
+    <div id="post_container" class="post-container container-fluid" data-id="<%= pid %>">
+
+    </div><!-- /.post-container -->
+
+    <div id="comment_container" class="comment-container container-fluid">
+        <div id="post_info_container" class="post-info-container">
+
+        </div>
+        <ul id="comment_list_container" class="comment-list-container">
+
+        </ul>
+    </div>
+
+    <div class="comment-write-fixed-bottom container-fluid">
+        <div class="row">
+            <div class="col-xs-10 col-md-10 comment-input">
+                <input type="text" id="comment_write_input" placeholder="댓글을 입력하세요"/>
+            </div>
+            <div class="col-xs-2 col-md-2 padding-zero">
+                <p id="comment_write_btn" class="text-center">게시</p>
+            </div>
+        </div>
+    </div>
+
+    <% include ../partials/footer %>
+
+    <script src="/js/post-page/template.js"></script>
+    <script src="/js/post-page/model.js"></script>
+    <script src="/js/post-page/view.js"></script>
+    <script src="/js/post-page/controller.js"></script>
+    <script src="/js/post-page/app.js"></script>
+</body>
+
+</html>
