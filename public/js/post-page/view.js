@@ -63,7 +63,7 @@
 
     if (event === 'writeComment') {
       $('#comment_write_btn').unbind('click').click(function() {
-        handler({text:$('#comment_write_input').val(), postID: pid});
+        handler({text:$('#comment_write_input').val(), pid: pid});
       });
     }
   };
