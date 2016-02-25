@@ -57,7 +57,7 @@
   }
 
   $(document).ready(function() {
-    setView();
+    setView(); ///////////////////////위치 여기 맞나?
     bind();
   });
 
