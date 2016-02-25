@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://v4-alpha.getbootstrap.com/examples/starter-template/ -->
+<html>
+<head>
+    <% include ../partials/head %>
+    <!-- post.css -->
+    <link href="/css/mypage.css" rel="stylesheet">
+</head>
+
+<body>
+<!-- .navbar -->
+<% var titleText = "My GARIM"; %>
+<% include ../partials/common-nav %>
+<div class="profile"><img class="profile_img" src="/img/profile2.png" alt=""/></div>
+
+<div id="nickname_container" class="nickname-container container-fluid" data-id="<%= uid %>">
+    <!--<div class="editRow">-->
+    <!--<span class="leftNickname" class="col-xs-2 col-md-2">-->
+    <!--<p class="text-Pcenter">닉네임</p>-->
+    <!--</span>-->
+    <!--<span class="userNickname" class="col-xs-8 col-md-8 comment-input">-->
+    <!--<p id="user_nickname">유저닉네임</p>-->
+    <!--<input type="text" id="nickname_input" class="hide" value="닉네임"/>-->
+    <!--</span>-->
+    <!--<span class="editBtn" class="col-xs-2 col-md-2">-->
+    <!--<p class="text-Pcenter">수정</p>-->
+    <!--</span>-->
+    <!--</div>-->
+    <table class="nickname_table">
+        <tr>
+            <td class="nickname_text">닉네임</td>
+            <td class="user_nickname"><input id="user_input" type="text" value="안뇽내닉네임"/></td>
+            <td class="edit">
+                <input type="button" id="editBtn" value="저장" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="my_content_container" class="my-content-container container-fluid" data-id="<%= uid %>">
+    <a href="/mypost/<%= uid %>">
+        <div class="myList">내가 쓴 글
+            <img class="rightButton" src="/img/ic_left_right.png" alt=""/></div>
+    </a>
+    <a href="/mycomment/<%= uid %>">
+        <div class="myComment">내가 쓴 댓글
+            <img class="rightButton" src="/img/ic_left_right.png" alt=""/></div>
+    </a>
+</div>
+
+<a href=""><div class="logOutBtn">Log Out</div></a>
+
+<% include ../partials/footer %>
+<script src="/js/mypage-page/app.js"></script>
+
+</body>
+
+</html>

@@ -2,7 +2,7 @@
 
 process.env.NODE_ENV = 'test';
 
-var request = require('../../helper/setup-supertest')('http://localhost:3001')
+var request = require('../../helper/setup-supertest')('http://localhost:5001')
   , chai = require('../../helper/setup-chai')
   , status = require('../../../lib/server/status')
   , login = require('../../helper/login')(request)
@@ -72,6 +72,25 @@ describe('Get Individual Post API', () => {
         .done();
     });
 
+    it('should not increase read count when owner gets post', (done) => {
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .get('/api/v1/posts/' + pid)
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(0);
+          res.body.value.title.should.be.equal('Test Post2');
+          // because previous test increases read count to 3
+          res.body.value.readCount.should.be.equal(3);
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
+
     it('should throw error if post not found', (done) => {
       login('test@test.com', 'test')
         .then(() => {
@@ -81,6 +100,24 @@ describe('Get Individual Post API', () => {
         })
         .then((res) => {
           res.body.status.should.be.equal(status.codes.PostNotFound.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
+
+    it('should not allow non-university and non-admin to get posts', (done) => {
+      let newPid = '38bc6f7b9b0d0b0457673daf';
+      login('test2@test.com', 'test')
+        .then(() => {
+          return request
+            .get('/api/v1/posts/' + newPid)
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
           res.body.value.should.have.property('message');
         })
         .then(logout)

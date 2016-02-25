@@ -2,7 +2,7 @@
 
 process.env.NODE_ENV = 'test';
 
-var request = require('../../helper/setup-supertest')('http://localhost:3001')
+var request = require('../../helper/setup-supertest')('http://localhost:5001')
   , chai = require('../../helper/setup-chai')
   , status = require('../../../lib/server/status')
   , login = require('../../helper/login')(request)
@@ -90,34 +90,52 @@ describe('Delete Post API', () => {
         .done();
     });
 
-    it('should delete the comments dependent on the post', (done) => {
-      var promise = CommentModel
-      .find({ 'postID': pid })
-      .exec((err, mustExist) => {
-        chai.expect(mustExist).to.exist;
-      });
+    it('should not allow the non-student and non-admin to delete the post', (done) => {
+      var newPid = '38bc6f7b9b0d0b0457673daf'
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .delete('/api/v1/posts/' + newPid)
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
 
-      promise.then(() => {
-        login('test@test.com', 'test')
+    it('should delete post from get list after delete', (done) => {
+      let univId = '56ac6f7b9b0d0b0457673daf';
+      
+      login('test@test.com', 'test')
         .then(() => {
           return request
             .delete('/api/v1/posts/' + pid)
             .toPromise();
         })
         .then((res) => {
-          CommentModel
-            .find({ 'postID': pid })
-            .exec((err, mustBeNull) => {
-              chai.expect(mustBeNull).to.be.empty;
-            });
+          res.body.status.should.be.equal(0);
         })
-        .then(postsInit)
-        .then(commentsInit)
+        .then(() => {
+          return request
+            .get('/api/v1/universities/' + univId + '/posts')
+            .send({ filter: 'new', age: 365 })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(0);
+          res.body.value.should.have.length(4);
+          // posts descend from latest post to oldest
+          res.body.value[3].should.not.have.property('title', 'Test Post2');
+        })
         .then(logout)
         .then(done)
         .catch(done)
         .done();
-      });
     });
 
   });

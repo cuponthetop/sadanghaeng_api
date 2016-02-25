@@ -3,7 +3,7 @@
 var chai = require('../../helper/setup-chai')
   , CommentCtrl = require('../../../lib/controller/comment')
   , status = require('../../../lib/server/status')
-  , request = require('../../helper/setup-supertest')('http://localhost:3001')
+  , request = require('../../helper/setup-supertest')('http://localhost:5001')
   , mongoInit = require('../../init/mongo-init')
   , commentInit = require('../../init/comments-init')
   , postInit = require('../../init/posts-init')
@@ -78,6 +78,7 @@ describe('Remove Comment API', () => {
         .catch(done)
         .done();
     });
+
     /* owner가 아니고 admin이 아닌 사람이 removeComment 가능한지 확인 */
     it('should not remove a comment if the user is not the owner or admin', (done) => {
       login('test2@test.com', 'test')

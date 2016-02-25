@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://v4-alpha.getbootstrap.com/examples/starter-template/ -->
+<html>
+<head>
+    <% include ../partials/head %>
+    <!-- search.css -->
+    <link href="/css/search.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- .navbar -->
+    <nav class="navbar navbar-fixed-top post-navbar">
+        <div class="row">
+            <div class="col-xs-2 col-md-2">
+                <img class="nav-left-item nav-image nav-back" src="/img/ic_left.png">
+            </div>
+            <div class="nav-search-input col-xs-8 col-md-8">
+                <input id="search_input" type="text" placeholder="찾고 싶은걸 여기에 적으세요">
+            </div>
+            <div class="nav-search-btn col-xs-2 col-md-2">
+                <button id="search_btn" class="search-btn btn">검색</button>
+            </div>
+        </div>
+    </nav><!-- /.navbar -->
+
+    <div id="univ_container" data-id="<%= univid %>">
+
+    </div>
+
+    <ul id="post_list_container" class="post-list-container">
+
+    </ul>
+
+    <% include ../partials/footer %>
+    <script src="/js/search-page/app.js"></script>
+
+</body>
+
+</html>
