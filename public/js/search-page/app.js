@@ -1,12 +1,27 @@
 (function (window) {
   'use strict';
 
-  var univId = $('#univ_container').data('id');
   /**
-   * Set up login page
+   * Set up search page
    *
-   * @param {string}
+   * @param {string}   ////////// ??????????????????????
    */
+  function SearchResultList() {
+    this.model = new app.Model();
+    this.template = new app.Template();
+    this.view = new app.View(this.template);
+    this.controller = new app.Controller(this.model, this.view);
+  }
+
+  var searchResultList = new SearchResultList();
+
+  function setView() {
+    searchResultList.controller.setView();
+  }
+
+///////////////////////////////////////////////////////////////
+  var univId = $('#univ_container').data('id');
+
   function validate() {
     var regExCheckEmptyText = /(^\s*)(\s*$)/;
     var searchInput = $('#search_input').val();
