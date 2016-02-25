@@ -5,7 +5,7 @@ process.env.NODE_ENV = 'test';
 var chai = require('../../helper/setup-chai')
   , PostCtrl = require('../../../lib/controller/post')
   , status = require('../../../lib/server/status')
-  , request = require('../../helper/setup-supertest')('http://localhost:3001')
+  , request = require('../../helper/setup-supertest')('http://localhost:5001')
   , mongoInit = require('../../init/mongo-init')
   , postInit = require('../../init/posts-init')
   , login = require('../../helper/login')(request)
@@ -13,7 +13,7 @@ var chai = require('../../helper/setup-chai')
   , PostModel = require('../../../lib/model/post')
   ;
 
-describe('PostController', () => {
+describe('Update Vote On Post API', () => {
 
   before((done) => {
     mongoInit.connect().then(postInit).catch(console.log).fin(done);

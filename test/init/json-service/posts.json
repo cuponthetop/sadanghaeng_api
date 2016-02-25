@@ -1,0 +1,105 @@
+[
+  {
+    "_id": "34bc6f7b9b0d0b0457673daf",
+    "title": "Test Post1",
+    "text": "11Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text",
+
+    "author": "11bc6f7b9b0d0b0457673daf",
+    "university": "56ac6f7b9b0d0b0457673daf",
+
+    "written": "2016-02-09T08:11:10.000Z",
+    "edited": "2016-02-09T08:11:10.000Z",
+
+    "readCount": 0,
+    
+    "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "voteType": "up" }],
+    "voteScore": 1,
+    "comments": ["77ac6f7b9b0d0b0457673daf"]
+  },
+  {
+    "_id": "35bc6f7b9b0d0b0457673daf",
+    "title": "Test Post2",
+    "text": "22Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text",
+
+    "author": "11bc6f7b9b0d0b0457673daf",
+    "university": "56ac6f7b9b0d0b0457673daf",
+
+    "written": "2016-02-10T08:11:10.000Z",
+    "edited": "2016-02-10T08:11:10.000Z",
+
+    "readCount": 2,
+    
+    "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "voteType": "down" }],
+    "voteScore": -1,
+    "comments": []
+  },
+  {
+    "_id": "36bc6f7b9b0d0b0457673daf",
+    "title": "Test Post3",
+    "text": "33Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text",
+
+    "author": "11bc6f7b9b0d0b0457673daf",
+    "university": "56ac6f7b9b0d0b0457673daf",
+
+    "written": "2016-02-11T08:11:10.000Z",
+    "edited": "2016-02-11T08:11:10.000Z",
+
+    "readCount": 3,
+    
+    "votes": [{ "uid": "21bc6f7b900d0aa457673daf", "voteType": "down" }],
+    "voteScore": 0,
+    "comments": [],
+    "reported": ["21bc6f7b900d0aa457673daf"]
+  },
+  {
+    "_id": "37bc6f7b9b0d0b0457673daf",
+    "title": "Test Post4",
+    "text": "44Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text",
+
+    "author": "11bc6f7b9b0d0b0457673daf",
+    "university": "56ac6f7b9b0d0b0457673daf",
+
+    "written": "2016-02-12T08:11:10.000Z",
+    "edited": "2016-02-12T08:11:10.000Z",
+
+    "readCount": 0,
+    
+    "votes": [],
+    "voteScore": 0,
+    "comments": []
+  },
+  {
+    "_id": "38bc6f7b9b0d0b0457673daf",
+    "title": "Test Post5",
+    "text": "55Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text",
+
+    "author": "11bc6f7b9b0d0b0457673daf",
+    "university": "56ac6f7b9b0d0b0457673daf",
+
+    "written": "2016-02-13T08:11:10.000Z",
+    "edited": "2016-02-13T08:11:10.000Z",
+
+    "readCount": 0,
+    
+    "votes": [],
+    "voteScore": 0,
+    "comments": []
+  },
+  {
+    "_id": "39bc6f7b9b0d0b0457673daf",
+    "title": "Test Post6",
+    "text": "66Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text, Test Text",
+
+    "author": "11bc6f7b9b0d0b0457673daf",
+    "university": "56ac6f7b9b0d0b0457673daf",
+
+    "written": "2016-02-22T08:11:10.000Z",
+    "edited": "2016-02-22T08:11:10.000Z",
+
+    "readCount": 0,
+    
+    "votes": [],
+    "voteScore": 0,
+    "comments": []
+  }
+]

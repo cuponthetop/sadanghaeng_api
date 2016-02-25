@@ -1,0 +1,25 @@
+{
+  "name": "sadanghaeng_web",
+  "description": "web client for 사당행",
+  "main": "index.js",
+  "authors": [
+    "Sadanghaeng"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "garim"
+  ],
+  "homepage": "https://github.com/cuponthetop/sadanghaeng_web",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "bootstrap": "^3.3.6"
+  }
+}

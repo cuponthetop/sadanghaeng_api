@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://v4-alpha.getbootstrap.com/examples/starter-template/ -->
+<html>
+<head>
+    <% include ../partials/head %>
+    <!-- main.css -->
+    <link href="/css/write.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-fixed-top write-navbar">
+        <div class="write-nav-con">
+            <img class="nav-left-item nav-image nav-back" src="/img/ic_left.png">
+            <span class="nav-right-item post-btn">Post</span>
+        </div>
+    </nav><!-- /.navbar -->
+
+    <div id="univ_container" data-id="<%= univid %>">
+
+    </div>
+
+    <div class="post-container container-fluid">
+        <div class="title-container">
+            <label>Title: </label>
+            <input id="post_title" placeholder="제목을 입력해주세요"/>
+        </div>
+        <div class="content-container">
+            <textarea id="post_content" placeholder="내용을 입력해주세요"></textarea>
+        </div>
+    </div>
+
+    <% include ../partials/footer %>
+</body>
+
+</html>

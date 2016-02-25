@@ -1,0 +1,219 @@
+body {
+    padding-top: 50px;
+    font-family: sans-serif, "Nanum Gothic";
+}
+
+/* navbar start */
+.nav-left-item {
+    float: left;
+}
+.nav-center-item {
+    float: left;
+    height: 50px;
+    font-size: 18px;
+    color: #fd4037;
+}
+.nav-right-item {
+    float: right;
+}
+.main-navbar {
+    background-color: rgb(255, 255, 255);
+}
+.nav-image {
+    margin-top:6px;
+    margin-bottom:6px;
+    width: 32px;
+    height: 32px;
+}
+.navbar-nav .nav-item {
+    float: left;
+}
+
+.nav-title-text {
+    line-height: 50px;
+    color: #fd4037;
+}
+/* navbar end */
+
+/* footer start */
+.footer-fixed-bottom {
+    width: 100%;
+    position: fixed;
+    background-color: rgb(255, 255, 255);
+    bottom: 0px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.pagination-container {
+    text-align: center;
+}
+
+.pagination-container .pagination-number {
+    font-size: 14px;
+    margin-left: 3px;
+    margin-right: 3px;
+    color: #000000;
+}
+
+.pagination-container .pagination-number.active {
+    color: #fd4037;
+}
+
+.pagination-container .pagination-left > img {
+    width: 24px;
+    height: 24px;
+}
+
+.pagination-container .pagination-right > img {
+    width: 24px;
+    height: 24px;
+}
+
+/* footer end */
+
+.full-width-btn {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.write-post-btn-container {
+    width: 100%;
+    position: fixed;
+    padding-top: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: rgb(255, 255, 255);
+}
+
+.write-post-btn {
+    height: 47px;
+    font-size: 14px;
+    background-color: #fd4037;
+    color: #ffffff;
+}
+
+/* post-container start */
+.post-container {
+    padding-top: 60px;
+}
+
+.post-container .sort-btn-container {
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 14px;
+}
+
+.post-container .sort-new-btn {
+    float: left;
+    width: 50%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+
+    border: 1px solid rgb(252, 86, 80);
+    border-top-left-radius: 0.3em;
+    border-bottom-left-radius: 0.3em;
+    text-align: center;
+    text-decoration: none;
+    color: #fd4037;
+    display: inline-block;
+}
+
+.post-container .sort-best-btn {
+    float: right;
+    width: 50%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+
+    border: 1px solid rgb(252, 86, 80);
+    border-top-right-radius: 0.3em;
+    border-bottom-right-radius: 0.3em;
+    text-align: center;
+    text-decoration: none;
+    color: #fd4037;
+    display: inline-block;
+}
+
+.sort-btn-container .active {
+    background-color: #fd4037;
+    color: #ffffff;
+}
+
+.post-list-container {
+    list-style: none;
+    padding-left:0px;
+}
+
+.post-list-container .post-item:last-child {
+    border: none;
+}
+
+.post-list-container .post-item {
+    height: 72px;
+    border-bottom: 1px solid rgb(245, 245, 245);
+    padding: 12px 6px;
+}
+
+.post-list-container .post-item .post-title {
+    height: 18px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.post-list-container .post-item .post-info {
+    margin-top: 14px;
+    height: 12px;
+}
+
+.post-list-container .post-item .post-info .post-author {
+    margin-left: 0px;
+}
+
+.post-list-container .post-item .post-info span {
+    margin: 0px 5px;
+}
+
+.post-list-container .post-item .post-info span.post-label {
+    margin: 0px 1px;
+}
+
+.post-list-container .post-item .post-info span.post-value {
+    margin-left: 1px;
+    margin-right: 6px;
+}
+
+.post-list-container .post-item .post-info .post-like-label {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-size: cover;
+    background-image: url('/img/ic_like_normal.png');
+}
+
+.post-list-container .post-item .post-info .post-like-label.active {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-size: cover;
+    background-image: url('/img/ic_like_pressed.png');
+}
+
+.post-list-container .post-item .post-info .post-dislike-label {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-size: cover;
+    background-image: url('/img/ic_dislike_normal.png');
+}
+
+.post-list-container .post-item .post-info .post-dislike-label.active {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-size: cover;
+    background-image: url('/img/ic_dislike_pressed.png');
+}

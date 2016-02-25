@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://v4-alpha.getbootstrap.com/examples/starter-template/ -->
+<html>
+<head>
+    <% include ../partials/head %>
+    <!-- main.css -->
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-fixed-top main-navbar container-fluid">
+        <div class="row">
+            <div class="col-xs-2 col-md-2">
+                <a href="/mypage/<%= uid %>">
+                    <img class="nav-left-item nav-image" src="/img/ic_user.png">
+                </a>
+            </div>
+            <div id="univ_title_container" data-id="<%= univid %>" class="nav-center-item col-xs-8 col-md-8">
+                <div class="center-block">
+                    <p id="univ_title" class="nav-title-text text-center">가림판</p>
+                </div>
+            </div>
+            <div class="col-xs-2 col-md-2">
+                <!--
+                <a href="/search/<%= univid %>">
+                -->
+                <a onClick="alert('준비중입니다.');">
+                    <img class="nav-right-item nav-image" src="/img/ic_search.png">
+                </a>
+            </div>
+        </div>
+    </nav><!-- /.navbar -->
+
+    <div class="center-block write-post-btn-container">
+        <a href="/write/<%= univid %>">
+            <button class="full-width-btn write-post-btn btn">글 쓰기</button>
+        </a>
+    </div>
+
+    <div class="post-container container-fluid">
+
+        <div class="sort-btn-container">
+            <div class="sort-btn sort-new-btn active" data-value="new">NEW</div>
+            <div class="sort-btn sort-best-btn" data-value="hot">BEST</div>
+        </div>
+        <ul id="post_list_container" class="post-list-container">
+
+        </ul>
+    </div><!-- /.post-container -->
+
+    <footer class="footer-fixed-bottom">
+        <div class="row container-fluid">
+            <div id="pagination_container" class="center-block pagination-container">
+                <!--<span class="text-center pagination-left"><img src="/img/ic_left_24.png"/></span>-->
+                <span class="text-center pagination-number active" data-value="1">1</span>
+                <span class="text-center pagination-number" data-value="2">2</span>
+                <span class="text-center pagination-number" data-value="3">3</span>
+                <!--<span class="text-center pagination-right"><img src="/img/ic_right_24.png"/></span>-->
+            </div>
+        </div>
+    </footer>
+
+    <% include ../partials/footer %>
+    <script src="/js/post-list/template.js"></script>
+    <script src="/js/post-list/model.js"></script>
+    <script src="/js/post-list/view.js"></script>
+    <script src="/js/post-list/controller.js"></script>
+    <script src="/js/post-list/app.js"></script>
+</body>
+
+</html>

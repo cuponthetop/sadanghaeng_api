@@ -1,0 +1,194 @@
+body {
+    padding-top: 50px;
+    font-family: sans-serif, "Nanum Gothic";
+}
+
+.padding-zero {
+    padding: 0px;
+}
+
+/* post-navbar start */
+.post-navbar {
+    padding-top: 3px;
+    padding-left: 8px;
+    background-color: #ffffff;
+}
+
+.nav-left-item {
+    float: left;
+}
+
+.nav-image {
+    width: 44px;
+    height: 44px;
+}
+/* post-navbar end */
+
+/* post-container start */
+.post-container {
+    min-height: 260px;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.post-container .title-container {
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    color: #fd4037;
+}
+
+.post-container .info-container {
+    margin-top: 8px;
+    height: 14px;
+    font-size: 12px;
+}
+
+.post-container .content-container {
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+#post_content {
+    width: 100%;
+    min-height: 220px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    resize: none;
+    -webkit-appearance: none;
+}
+/* post-container end */
+
+/* comment-container start */
+.comment-container {
+    padding-bottom: 32px;
+}
+
+.comment-container .post-info-container {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    height: 30px;
+}
+
+.comment-container .post-info-container .post-value {
+    float: left;
+    margin-left: 10px;
+    margin-right: 18px;
+    line-height: 24px;
+    height: 24px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.comment-container .post-info-container .comment-info {
+    float: right;
+    line-height: 24px;
+    height: 24px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.comment-container .post-info-container .post-like-label {
+    float: left;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-size: cover;
+    background-image: url('/img/ic_like_normal.png');
+}
+
+.comment-container .post-info-container .post-like-label.active {
+    float: left;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-size: cover;
+    background-image: url('/img/ic_like_pressed.png');
+}
+
+.comment-container .post-info-container .post-dislike-label {
+    float: left;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-size: cover;
+    background-image: url('/img/ic_dislike_normal.png');
+}
+
+.comment-container .post-info-container .post-dislike-label.active {
+    float: left;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-size: cover;
+    background-image: url('/img/ic_dislike_pressed.png');
+}
+
+.comment-container .comment-list-container {
+    list-style: none;
+    padding-left:0px;
+    margin-top: 3px;
+}
+
+.comment-list-container .comment-item {
+    min-height: 60px;
+    border-bottom: solid 1px #000000;
+}
+
+.comment-list-container .comment-item .author {
+    font-size: 12px;
+    margin-top: 8px;
+    margin-bottom: 3px;
+}
+
+.comment-list-container .comment-item .content {
+    font-size: 14px;
+}
+
+
+.comment-list-container .comment-item .comment-info {
+    font-size: 12px;
+    margin-top: 3px;
+    margin-bottom: 8px;
+}
+
+
+/* comment-container end */
+
+/* comment-write-fixed-bottom start */
+.comment-write-fixed-bottom {
+    width: 100%;
+    height: 44px;
+    position: fixed;
+    background-color: #fc5650;
+    bottom: 0px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+
+.comment-write-fixed-bottom .comment-input {
+    padding-right: 0px;
+    color: #ffffff;
+}
+
+#comment_write_input {
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 0.3em;
+    background-color: #F9322E;
+    border: none;
+    color: #ffffff;
+    padding-left: 8px;
+}
+
+#comment_write_btn {
+    line-height: 30px;
+    font-size: 16px;
+    color: #ffffff;
+}
+/* comment-write-fixed-bottom end */

@@ -2,16 +2,18 @@
 
 process.env.NODE_ENV = 'test';
 
-var request = require('../../helper/setup-supertest')('http://localhost:3001')
+var request = require('../../helper/setup-supertest')('http://localhost:5001')
   , chai = require('../../helper/setup-chai')
   , status = require('../../../lib/server/status')
   , login = require('../../helper/login')(request)
   , logout = require('../../helper/logout')(request)
   , mongoInit = require('../../init/mongo-init')
   , postsInit = require('../../init/posts-init')
+  , commentsInit = require('../../init/comments-init')
+  , CommentModel = require('../../../lib/model/comment')
   ;
 
-describe('Delete post API', () => {
+describe('Delete Post API', () => {
 
   before((done) => {
     mongoInit.connect().then(postsInit).catch(console.log).fin(done);
@@ -63,6 +65,7 @@ describe('Delete post API', () => {
           res.body.status.should.be.equal(0);
         })
         .then(postsInit)
+        .then(commentsInit)
         .then(logout)
         .then(done)
         .catch(done)
@@ -80,6 +83,7 @@ describe('Delete post API', () => {
           res.body.status.should.be.equal(0);
         })
         .then(postsInit)
+        .then(commentsInit)
         .then(logout)
         .then(done)
         .catch(done)
@@ -106,8 +110,8 @@ describe('Delete post API', () => {
 
     it('should delete post from get list after delete', (done) => {
       let univId = '56ac6f7b9b0d0b0457673daf';
-      request
-        login('test@test.com', 'test')
+      
+      login('test@test.com', 'test')
         .then(() => {
           return request
             .delete('/api/v1/posts/' + pid)
@@ -119,21 +123,20 @@ describe('Delete post API', () => {
         .then(() => {
           return request
             .get('/api/v1/universities/' + univId + '/posts')
-            .send({ age: 365 })
+            .send({ filter: 'new', age: 365 })
             .toPromise();
         })
         .then((res) => {
-          console.log(JSON.stringify(res));
           res.body.status.should.be.equal(0);
           res.body.value.should.have.length(4);
           // posts descend from latest post to oldest
           res.body.value[3].should.not.have.property('title', 'Test Post2');
         })
+        .then(logout)
         .then(done)
         .catch(done)
         .done();
     });
 
   });
-
 });

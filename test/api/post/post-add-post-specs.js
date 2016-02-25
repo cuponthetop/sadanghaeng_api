@@ -5,14 +5,14 @@ process.env.NODE_ENV = 'test';
 var chai = require('../../helper/setup-chai')
   , PostCtrl = require('../../../lib/controller/post')
   , status = require('../../../lib/server/status')
-  , request = require('../../helper/setup-supertest')('http://localhost:3001')
+  , request = require('../../helper/setup-supertest')('http://localhost:5001')
   , mongoInit = require('../../init/mongo-init')
   , postInit = require('../../init/posts-init')
   , login = require('../../helper/login')(request)
   , logout = require('../../helper/logout')(request)
   ;
 
-describe('PostController', () => {
+describe('Add Post API', () => {
 
   before((done) => {
     mongoInit.connect().then(postInit).catch(console.log).fin(done);
@@ -42,7 +42,7 @@ describe('PostController', () => {
         .done();
     });
 
-    /* 관리자 접근 여부 테스트 => 계속 fail 남 아ㅏㅇ라 마아람라ㅣ마람 */
+    /* 관리자 접근 여부 테스트 */
     it('should allow access to admin users', (done) => {
       login('admin@test.com', 'test')
         .then(() => {
@@ -60,6 +60,7 @@ describe('PostController', () => {
           // res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
           // res.body.value.should.have.property('message');
         })
+        .then(postInit)
         .then(logout)
         .then(done)
         .catch(done)
@@ -99,6 +100,29 @@ describe('PostController', () => {
             .post('/api/v1/posts')
             .send({
               title: '    \n    ',
+              text: 'testPost4',
+              univid: '56ac6f7b9b0d0b0457673daf'
+            })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(status.codes.TitleOfPostIsInvalid.code);
+          res.body.value.should.have.property('message');
+        })
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
+
+    // 3: 게시물 제목이 ''일 때
+    it('should not have \'null\' title', (done) => {
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .post('/api/v1/posts')
+            .send({
+              title: '',
               text: 'testPost4',
               univid: '56ac6f7b9b0d0b0457673daf'
             })
@@ -188,6 +212,7 @@ describe('PostController', () => {
           res.body.value.should.have.property('title', 'testPostTitle4');
           res.body.value.should.have.property('text', 'testPostText4');
         })
+        .then(postInit)
         .then(logout)
         .then(done)
         .catch(done)
@@ -210,11 +235,87 @@ describe('PostController', () => {
           res.body.status.should.be.equal(status.codes.UserPermissionNotAllowed.code);
           res.body.value.should.have.property('message');
         })
+        .then(postInit)
         .then(logout)
         .then(done)
         .catch(done)
         .done();
-    });   
+    });
+
+    /* addPost 했을 때, universities의 getPosts에서 제대로 추가 되어 있는지 확인 */
+    it('should get right posts when add post', (done) => {
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .post('/api/v1/posts')
+            .send({
+              title: 'TEST',
+              text: 'testPost4',
+              univid: '56ac6f7b9b0d0b0457673daf'
+            })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.status.should.be.equal(0);
+          res.body.value.should.have.lengthOf(24);
+
+          var pid = res.body.value;
+          var univId = '56ac6f7b9b0d0b0457673daf';
+
+          return request
+            .get('/api/v1/universities/' + univId + '/posts')
+            .send({ filter: 'new', age: 365 })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.value[0].should.have.property('title', 'TEST'); /////////////// is this right? I thought 0th element is the most recent one
+        })
+        .then(postInit)
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
+
+    /* addPost 했을 때 글 쓴 학교외 다른 학교의 getPosts에 나오지 않는 것 확인 */
+    it('should not show the post added when get posts in another University', (done) => {
+      var anotherUnivId = '77cc6f7b9b0d0b0457673daa';
+      login('test@test.com', 'test')
+        .then(() => {
+          return request
+            .post('/api/v1/posts')
+            .send({
+              title: 'TEST',
+              text: 'testPost4',
+              univid: '56ac6f7b9b0d0b0457673daf'
+            })
+            .toPromise();
+        })
+        .then(logout)
+      // .then((res) => {
+      //   // var pid = res.body.value;
+      //   logout();
+      // })
+        .then(() => {
+          // console.log("login again");
+          return login('admin@test.com', 'test');
+        })
+        .then(() => {
+          return request
+            .get('/api/v1/universities/' + anotherUnivId + '/posts')
+            .send({ filter: 'new', age: 365 })
+            .toPromise();
+        })
+        .then((res) => {
+          res.body.value.should.have.length.above(0);
+          res.body.value[0].should.not.have.property('title', 'TEST');
+        })
+        .then(postInit)
+        .then(logout)
+        .then(done)
+        .catch(done)
+        .done();
+    });
 
   });
 });
