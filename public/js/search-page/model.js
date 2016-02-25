@@ -10,9 +10,8 @@
 
 	}	
 
-	/* search한 개수를 불러와야하나? */
 	Model.prototype.getTotalPostCount = function(parameter, callback) {
-		HttpUtil.get(HOST_URL + /* 'route path' */ , function (err, result) {
+		HttpUtil.get(HOST_URL + '/api/v1/universities/' + parameter.univid + '/search' , function (err, result) {
 			if (result && result.status === 0) {
         callback(result.value);
       }
