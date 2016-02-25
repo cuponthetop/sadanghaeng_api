@@ -1,6 +1,7 @@
 (function (window) {
   'use strict';
 
+  var univId = $('#univ_container').data('id');
   /**
    * Set up login page
    *
@@ -26,7 +27,7 @@
           query: $('#search_input').val()
         };
 
-        HttpUtil.get('http://localhost:5001/api/v1/universities/'+$('#univ_container').data('id')+'/search', searchInput, function (err, result) {
+        HttpUtil.get('http://localhost:5001/api/v1/universities/'+univId+'/search', searchInput, function (err, result) {
           if (err) {
             return;
           }
