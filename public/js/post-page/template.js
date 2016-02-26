@@ -74,7 +74,7 @@
 
     template = template.replace('{{title}}', data.title);
     template = template.replace('{{author}}', data.author);
-    template = template.replace('{{written}}', data.written);
+    template = template.replace('{{written}}', getWrittenDateStr(data.written));
     template = template.replace('{{readCount}}', data.readCount);
     template = template.replace('{{text}}', data.text);
 
@@ -119,7 +119,7 @@
       template = template.replace('{{id}}', data[i].cid);
       template = template.replace('{{author}}', escape(data[i].author));
       template = template.replace('{{text}}', escape(data[i].text));
-      template = template.replace('{{written}}', data[i].written);
+      template = template.replace('{{written}}', getWrittenDateStr(data[i].written));
       template = template.replace('{{likeCount}}', data[i].likeCount);
 
       view = view + template;
