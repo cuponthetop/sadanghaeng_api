@@ -13,7 +13,11 @@ body {
     padding-left: 8px;
     background-color: #ffffff;
 }
-
+.post-author, .post-date, .post-label, .post-value {
+    margin-right: 8px;
+    color: #848484;
+    font-weight: bold;
+}
 .nav-left-item {
     float: left;
 }
@@ -89,6 +93,8 @@ body {
     height: 24px;
     text-align: center;
     font-size: 14px;
+    color: #848484;
+    font-weight: bold;
 }
 
 .comment-container .post-info-container .post-like-label {
@@ -142,6 +148,8 @@ body {
     font-size: 12px;
     margin-top: 8px;
     margin-bottom: 3px;
+    color: #848484;
+    font-weight: bold;
 }
 
 .comment-list-container .comment-item .content {
@@ -191,4 +199,23 @@ body {
     font-size: 16px;
     color: #ffffff;
 }
+.comment-date, .like-text, .comment-like {
+    color: #848484;
+    font-weight: bold;
+}
 /* comment-write-fixed-bottom end */
+
+
+/* comment list*/
+.like-img {
+    width: 14px;
+    height: 14px;
+}
+
+.dot-separate {
+    padding: 0 5px;
+}
+
+.like-img {
+    margin-right: 5px;
+}

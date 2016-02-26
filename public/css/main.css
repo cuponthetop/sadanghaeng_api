@@ -162,6 +162,7 @@ body {
     height: 18px;
     font-size: 16px;
     font-weight: bold;
+    color: #000;
 }
 
 .post-list-container .post-item .post-info {
@@ -171,6 +172,7 @@ body {
 
 .post-list-container .post-item .post-info .post-author {
     margin-left: 0px;
+    color: #848484;
 }
 
 .post-list-container .post-item .post-info span {
@@ -178,12 +180,14 @@ body {
 }
 
 .post-list-container .post-item .post-info span.post-label {
-    margin: 0px 1px;
+    margin: 0px 8px;
+    color: #848484;
 }
 
 .post-list-container .post-item .post-info span.post-value {
     margin-left: 1px;
     margin-right: 6px;
+    color: #848484;
 }
 
 .post-list-container .post-item .post-info .post-like-label {
@@ -192,6 +196,7 @@ body {
     display: inline-block;
     background-size: cover;
     background-image: url('/img/ic_like_normal.png');
+    margin: 0 8px;
 }
 
 .post-list-container .post-item .post-info .post-like-label.active {
@@ -217,3 +222,13 @@ body {
     background-size: cover;
     background-image: url('/img/ic_dislike_pressed.png');
 }
+.post-date{
+    color: #848484;
+}
+
+
+/**/
+
+/*.post-title {*/
+    /**/
+/*}*/
