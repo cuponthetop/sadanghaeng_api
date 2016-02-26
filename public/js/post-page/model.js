@@ -18,6 +18,15 @@
     });
   };
 
+  Model.prototype.voteComment = function(parameter, callback) {
+    HttpUtil.post(HOST_URL + '/api/v1/comments/'+parameter.pid+'/votes', parameter, function (err, result) {
+      if (result.status === 0) {
+        callback();
+      }
+    });
+  };
+
+
   Model.prototype.addCommentData = function(parameter, callback) {
     HttpUtil.post(HOST_URL + '/api/v1/comments', parameter, function (err, result) {
       if (result.status === 0) {

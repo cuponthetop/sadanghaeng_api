@@ -34,6 +34,14 @@
     });
   };
 
+  Controller.prototype._voteComment = function (parameter) {
+    var self = this;
+    self.model.voteComment(parameter, function() {
+      alert("투표가 완료되었습니다.");
+      location.reload(true);
+    });
+  };
+
   Controller.prototype._writeComment = function (parameter) {
     var self = this;
     self.model.addCommentData(parameter, function() {
