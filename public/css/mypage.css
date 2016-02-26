@@ -136,7 +136,7 @@ body {
 
 .comment-list-container .comment-item {
     min-height: 60px;
-    border-bottom: solid 1px #000000;
+    border-bottom: solid 1px #a9a9a9;
 }
 
 .comment-list-container .comment-item .author {
@@ -197,7 +197,7 @@ body {
 
 .editRow {
     min-height: 72px;
-    border-bottom: 1px solid #979797;
+    border-bottom: 1px solid #a9a9a9;
 }
 
 .myList{
@@ -205,7 +205,7 @@ body {
     min-height: 48px;
     padding: 15px 0px 15px 15px;
     color: #4A4A4A;
-    border-bottom: 1px solid #979797;
+    border-bottom: 1px solid #a9a9a9;
     background-color: #ffffff;
     margin-left: 15px;
     margin-right: 15px;
@@ -231,7 +231,7 @@ body {
 }
 #nickname_container{
     height: 72px;
-    border-bottom: 1px solid #4A4A4A;
+    border-bottom: 1px solid #a9a9a9;
     margin-top: 52px;
 }
 #my_content_container{
@@ -263,7 +263,7 @@ body {
 .logOutBtn{
     width: 218px;
     height: 44px;
-    background-color: #fe511f;
+    background-color: #fd4037;
     color: #ffffff;
     text-align: center;
     margin: 0 auto;

@@ -69,6 +69,7 @@ body {
 /* comment-container start */
 .comment-container {
     padding-bottom: 32px;
+    background-color: #fafafa ;
 }
 
 .comment-container .post-info-container {
@@ -141,7 +142,7 @@ body {
 
 .comment-list-container .comment-item {
     min-height: 60px;
-    border-bottom: solid 1px #000000;
+    border-bottom: solid 1px #a9a9a9;
 }
 
 .comment-list-container .comment-item .author {
@@ -192,6 +193,19 @@ body {
     border: none;
     color: #ffffff;
     padding-left: 8px;
+}
+
+::-webkit-input-placeholder {
+    color: #ffffff;
+}
+:-moz-placeholder { /* older Firefox*/
+    color: #ffffff;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    color: #ffffff;
+}
+:-ms-input-placeholder {
+    color: #ffffff;
 }
 
 #comment_write_btn {
