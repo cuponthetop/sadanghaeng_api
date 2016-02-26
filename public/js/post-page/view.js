@@ -44,7 +44,6 @@
     var pid = $('#post_container').data('id');
     if (event === 'votePost') {
       $('.post-like-label').unbind('click').click(function() {
-        console.log("DDD");
         if ($(this).hasClass('active') || $('.post-dislike-label').hasClass('active')) {
           return alert("이미 투표한 글입니다.");
         }
@@ -58,6 +57,12 @@
         }
         $(this).addClass('active');
         handler({pid: pid, voteType:'down'});
+      });
+    }
+
+    if (event === 'voteComment') {
+      $('.comment-like-btn').unbind('click').click(function() {
+        handler({cid: $(this).parents('.comment-item').data('id')});
       });
     }
 

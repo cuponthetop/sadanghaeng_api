@@ -29,6 +29,15 @@
     $('#editBtn').click(function() {
       save();
     });
+
+    $('#logout_btn').click(function() {
+      HttpUtil.post(HOST_URL + '/api/v1/users/logout', function (err, result) {
+        if (result && result.status === 0) {
+          alert('로그아웃되었습니다.');
+          location.href = '/login';
+        }
+      });
+    });
   }
 
   $(document).ready(function() {

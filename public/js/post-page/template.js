@@ -59,10 +59,17 @@
       +		'<div class="content">{{text}}</div>'
       +   '<div class="comment-info">'
       +     '<span class="comment-date">{{written}}</span>'
+<<<<<<< HEAD
         +     '<span class="dot-separate">&sdot;</span>'
       +     '<span class="like-text">좋아요</span>'
         +     '<span class="dot-separate">&sdot;</span>'
       +     '<span class="comment-like-label"></span>'
+=======
+      +     '<span class="dot-separate">&sdot;</span>'
+      +     '<span class="comment-like-btn like-text">좋아요</span>'
+      +     '<span class="dot-separate">&sdot;</span>'
+      +     '<span class="comment-like-btn like-label"><img class="like-img" src="/img/ic_like_normal.png" alt=""/></span>'
+>>>>>>> origin/master
       +     '<span class="comment-like">{{likeCount}}</span>'
       +   '</div>'
       +	'</li>';
