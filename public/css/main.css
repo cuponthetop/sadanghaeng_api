@@ -172,6 +172,7 @@ body {
 
 .post-list-container .post-item .post-info .post-author {
     margin-left: 0px;
+    max-width: 30px;
     color: #848484;
 }
 
