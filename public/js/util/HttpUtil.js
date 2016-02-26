@@ -24,6 +24,7 @@
       url: url,
       data: params,
       error: function errorHandler(jqXHR, textStatus, errorThrown) {
+        alert(jqXHR.responseJSON.value.message);
         callback("status : " + jqXHR.status + " msg : " + textStatus);
       },
       success: function successHandler(data, textStatus, jqXHR) {
@@ -59,6 +60,7 @@
       contentType: 'application/json;charset=UTF-8',
       dataType: 'json',
       error: function errorHandler(jqXHR, textStatus, errorThrown) {
+        alert(jqXHR.responseJSON.value.message);
         callback("status : " + jqXHR.status + " msg : " + textStatus);
       },
       success: function successHandler(data, status, xhr) {
@@ -94,6 +96,7 @@
       contentType: 'application/json;charset=UTF-8',
       dataType: 'json',
       error: function errorHandler(jqXHR, textStatus, errorThrown) {
+        alert(jqXHR.responseJSON.value.message);
         callback("status : " + jqXHR.status + " msg : " + textStatus);
       },
       success: function successHandler(data, status, xhr) {
@@ -129,6 +132,7 @@
       contentType: 'application/json;charset=UTF-8',
       dataType: 'json',
       error: function errorHandler(jqXHR, textStatus, errorThrown) {
+        alert(jqXHR.responseJSON.value.message);
         callback("status : " + jqXHR.status + " msg : " + textStatus);
       },
       success: function successHandler(data, status, xhr) {
@@ -140,8 +144,7 @@
     })
   };
 
-  window.HOST_URL = 'http://www.garim.me';
-  //window.HOST_URL = 'http://localhost:5001';
+  window.HOST_URL = '';
   window.HttpUtil = HttpUtil;
 
 })(window);

@@ -85,7 +85,7 @@
       var template = this.defaultTemplate;
 
       template = template.replace(/{{id}}/gi, data[i].pid);
-      template = template.replace('{{title}}', escape(data[i].title));
+      template = template.replace('{{title}}', data[i].title);
       template = template.replace('{{author}}', getAuthorStr(data[i].author));
       template = template.replace('{{written}}', getWrittenDateStr(data[i].written));
       template = template.replace('{{readCount}}', escape(data[i].readCount));

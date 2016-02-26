@@ -46,9 +46,7 @@
         };
         HttpUtil.post(HOST_URL + '/api/v1/users/login', user, function (err, result) {
           if (err) {
-            console.log(err.msg);
-
-            alert(err.msg.value.message);
+            console.log(err);
             return;
           } else {
             console.log(result);

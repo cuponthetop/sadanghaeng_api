@@ -1,37 +1,36 @@
 <!DOCTYPE html>
-
+<!-- saved from url=(0059)http://v4-alpha.getbootstrap.com/examples/starter-template/ -->
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Garim</title>
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/login.css" />
+  <% include ../partials/head %>
+  <!-- post.css -->
+  <link href="/css/login.css" rel="stylesheet">
 </head>
 
 <body>
-  <div class="login">
-    <div>
-      <img class="logo-img" src="/img/garim_small.png" alt="" />
-    </div>
-    <div class="login-text">
-      <div id="university_stat">___</div>
-      <div id="post_stat">___</div>
-    </div>
-    우리 학교 이야기가 궁금하세요?
-    <br> 지금 바로 시작하세요!
-    <div class="login-form">
-      <form action="">
-        <input type="email" id="user_email" class="email" placeholder="E-mail" />
-        <br>
-        <input type="password" id="user_pwd" class="pwd" placeholder="Password" />
-      </form>
-      <div id="login_btn" class="login-btn">Log in</div>
-      <div id="join_btn" class="join-btn">회원가입</div>
-    </div>
+<div class="wrap">
+  <div>
+    <img class="logo-img" src="/img/garim_small.png" alt="" />
   </div>
+  <div class="login-text">
+    <div id="university_stat">___</div>
+    <div id="post_stat">___</div>
+  </div>
+  우리 학교 이야기가 궁금하세요?
+  <br> 지금 바로 시작하세요!
+  <div class="login-form">
+    <form action="">
+      <input type="email" id="user_email" class="email" placeholder="E-mail" />
+      <br>
+      <input type="password" id="user_pwd" class="pwd" placeholder="Password" />
+    </form>
+    <div id="login_btn" class="login-btn">Log in</div>
+    <div id="join_btn" class="join-btn">회원가입</div>
+  </div>
+</div>
+</div>
 
-  <% include ../partials/footer %>
-    <script src="/js/login-page/app.js"></script>
+<% include ../partials/footer %>
+<script src="/js/login-page/app.js"></script>
 </body>
-
 </html>
