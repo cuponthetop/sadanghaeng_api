@@ -31,7 +31,7 @@
         , perPage: 10     // ||
         };
 
-        HttpUtil.get('http://localhost:5001/api/v1/universities/'+univId+'/search', searchInput, function (err, result) {
+        HttpUtil.get(HOST_URL + '/api/v1/universities/'+univId+'/search', searchInput, function (err, result) {
           if (err) {
             return;
           }

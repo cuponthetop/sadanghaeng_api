@@ -206,11 +206,7 @@ body {
 /* comment-write-fixed-bottom end */
 
 
-/* comment list*/
-.like-img {
-    width: 14px;
-    height: 14px;
-}
+
 
 .dot-separate {
     padding: 0 5px;
@@ -233,3 +229,4 @@ body {
     margin-right: 5px;
     background-image: url('/img/ic_like_pressed.png');
 }
+

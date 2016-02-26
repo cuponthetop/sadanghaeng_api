@@ -32,7 +32,9 @@
    */
   function Template() {
     this.defaultTemplate
+
       =	'<li data-id="{{id}}" class="post-item">'
+      + '<div class="post-list-wrap">'
       +		'<a href="/post/{{id}}"">'
       +		'<div class="post-title">{{title}}</div>'
       +   '<div class="post-info">'
@@ -46,7 +48,13 @@
       +     '<span class="post-value post-dislike">{{dislikeCount}}</span>'
       +   '</div>'
       +   '</a>'
+      +  '</div>'
+      +  '<div class="comment-count-wrap">'
+      +    '<span class="comment-img"></span><br>'
+      +    '<span class="comment-label comment-count">{{commentCount}}</span>'
+      +  '</div>'
       +	'</li>';
+
   }
 
   Template.prototype.paginationShow = function(data) {
@@ -83,6 +91,7 @@
       template = template.replace('{{readCount}}', escape(data[i].readCount));
       template = template.replace('{{likeCount}}', escape(data[i].likeCount));
       template = template.replace('{{dislikeCount}}', escape(data[i].dislikeCount));
+      template = template.replace('{{commentCount}}', escape(data[i].commentCount));
 
       view = view + template;
     }

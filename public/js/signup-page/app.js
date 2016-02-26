@@ -34,7 +34,7 @@
           email: $('#user_email').val(),
           password: $('#user_pwd').val()
         };
-        HttpUtil.post('http://localhost:5001/api/v1/users/register', user, function (err, result) {
+        HttpUtil.post(HOST_URL + '/api/v1/users/register', user, function (err, result) {
           if (err) {
             return;
           }

@@ -34,7 +34,7 @@
           title: $('#post_title').val(),
           text: $('#post_content').val()
         };
-        HttpUtil.post('http://localhost:5001/api/v1/posts', post, function (err, result) {
+        HttpUtil.post(HOST_URL + '/api/v1/posts', post, function (err, result) {
           if (err) {
             return;
           }
