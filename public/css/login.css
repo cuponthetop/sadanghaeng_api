@@ -10,7 +10,7 @@ body {
     height: 100%;
 }
 .login{
-    background-image: url('/img/bg.png');
+    background-image: url('/img/bg_book.png');
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;

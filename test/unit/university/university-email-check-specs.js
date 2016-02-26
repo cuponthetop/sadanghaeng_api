@@ -48,11 +48,11 @@ describe('UniversityController', () => {
         .notify(done);
     });
 
-    it('should accept valid email domain', (done) => {
-      UnivCtrl.getUniversityFromEmail('test@test.com')
-        .should.eventually.equal('56ac6f7b9b0d0b0457673daf')
-        .notify(done);
-    });
+    // it('should accept valid email domain', (done) => {
+    //   UnivCtrl.getUniversityFromEmail('test@test.com')
+    //     .should.eventually.equal('56ac6f7b9b0d0b0457673daf')
+    //     .notify(done);
+    // });
 
   });
 });
