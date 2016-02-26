@@ -63,7 +63,6 @@
       $('#pagination_container > .pagination-number').unbind('click').click(function() {
         $('#pagination_container > .pagination-number').removeClass('active');
         $(this).addClass('active');
-        console.log("PAGE");
         handler(parseInt($(this).data('value')));
       });
     }

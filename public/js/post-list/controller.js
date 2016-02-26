@@ -17,13 +17,17 @@
     self.model = model;
     self.view = view;
 
-    self.view.bind('changeTab', function(tabValue) {
-      sortFilter = tabValue;
-      self._updatePostList();
+    self.model.getTotalPostCount({ univid: univId, filter: sortFilter }, function(data) {
+      self.view.render('redrawPagination', data);
+
+      self.view.bind('movePage', function(pageNumVal) {
+        pageNum = pageNumVal;
+        self._updatePostList();
+      });
     });
 
-    self.view.bind('movePage', function(pageNumVal) {
-      pageNum = pageNumVal;
+    self.view.bind('changeTab', function(tabValue) {
+      sortFilter = tabValue;
       self._updatePostList();
     });
   }
@@ -43,9 +47,6 @@
 
   Controller.prototype._updatePostList = function () {
     var self = this;
-    self.model.getTotalPostCount({ univid: univId, filter: sortFilter }, function(data) {
-      self.view.render('redrawPagination', data);
-    });
     self.model.getPostList({ univid: univId, filter: sortFilter, page: pageNum, perPage: PER_PAGE }, function(data) {
       self.view.render('redraw', data);
     });
