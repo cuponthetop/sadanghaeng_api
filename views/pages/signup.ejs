@@ -1,27 +1,27 @@
 <!DOCTYPE html>
+<!-- saved from url=(0059)http://v4-alpha.getbootstrap.com/examples/starter-template/ -->
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>Garim</title>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/css/signup.css"/>
+	<% include ../partials/head %>
+	<!-- post.css -->
+	<link href="/css/signup.css" rel="stylesheet">
 </head>
 
 <body>
-	<div class="signup">
-		<div style="height:30%;"></div>
-		<div class="signup-text">소속 학교의 본인 이메일 주소를<br>입력해주세요.</div>
-		<div class="signup-form">
-			<form action="">
-				<input id="user_email" type="email" class="email" placeholder="E-mail"/><br>
-				<input id="user_pwd" type="password" class="pwd" placeholder="Password"/>
-				<input id="user_pwd2" type="password" class="pwd" placeholder="Password Confirm"/>
-			</form>
-			<div id="signup_btn" class="signup-btn">가입하기</div>
-		</div>
+<div class="signup">
+	<!--<div style="height:30%;"></div>-->
+	<div class="signup-text">소속 학교의 본인 이메일 주소를<br>입력해주세요.</div>
+	<div class="signup-form">
+		<form action="">
+			<input id="user_email" type="email" class="email" placeholder="E-mail"/><br>
+			<input id="user_pwd" type="password" class="pwd" placeholder="Password"/>
+			<input id="user_pwd2" type="password" class="pwd" placeholder="Password Confirm"/>
+		</form>
+		<div id="signup_btn" class="signup-btn">가입하기</div>
 	</div>
+</div>
 
-	<% include ../partials/footer %>
-	<script src="/js/signup-page/app.js"></script>
+<% include ../partials/footer %>
+<script src="/js/signup-page/app.js"></script>
 </body>
 </html>
