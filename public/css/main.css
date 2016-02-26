@@ -176,11 +176,11 @@ body {
 }
 
 .post-list-container .post-item .post-info span {
-    margin: 0px 5px;
+    margin: 0px 3px;
 }
 
 .post-list-container .post-item .post-info span.post-label {
-    margin: 0px 8px;
+    margin: 0px 3px;
     color: #848484;
 }
 
