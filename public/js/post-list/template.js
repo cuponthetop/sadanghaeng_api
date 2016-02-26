@@ -51,7 +51,7 @@
       +  '</div>'
       +  '<div class="comment-count-wrap">'
       +    '<span class="comment-img"></span><br>'
-      +    '<span class="comment-label comment-count">00</span>'
+      +    '<span class="comment-label comment-count">{{commentCount}}</span>'
       +  '</div>'
       +	'</li>';
 
@@ -91,6 +91,7 @@
       template = template.replace('{{readCount}}', escape(data[i].readCount));
       template = template.replace('{{likeCount}}', escape(data[i].likeCount));
       template = template.replace('{{dislikeCount}}', escape(data[i].dislikeCount));
+      template = template.replace('{{commentCount}}', escape(data[i].commentCount));
 
       view = view + template;
     }
