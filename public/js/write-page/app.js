@@ -30,6 +30,7 @@
     $('#post_btn').click(function () {
       if (validate()) {
         var post = {
+          univid: $('#univ_container').data('id'),
           title: $('#post_title').val(),
           text: $('#post_content').val()
         };
