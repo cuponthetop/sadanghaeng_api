@@ -88,14 +88,14 @@
     if (data.didVote && (data.didVoteType === 'up' || data.didVoteType === 'down')) {
       if (data.didVoteType === 'up') {
         template = template.replace('{{isLike}}', 'active');
-        template = template.replace('{{isDisLike}}', '');
+        template = template.replace('{{isDislike}}', '');
       } else {
         template = template.replace('{{isLike}}', '');
-        template = template.replace('{{isDisLike}}', 'active');
+        template = template.replace('{{isDislike}}', 'active');
       }
     } else {
       template = template.replace('{{isLike}}', '');
-      template = template.replace('{{isDisLike}}', '');
+      template = template.replace('{{isDislike}}', '');
     }
 
     template = template.replace('{{likeCount}}', data.likeCount);

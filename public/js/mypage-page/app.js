@@ -9,13 +9,19 @@
   function save() {
     var userNickname = $('#user_input').val();
 
-    if(userNickname==""){
+    if(userNickname === ""){
       alert("변경할 닉네임을 입력해주세요.");
       $('#user_input').focus();
       return false;
     }else {
-      alert("저장되었습니다.");
-      var params = {'userNickname': userNickname}
+      var parameter = {nickname: userNickname};
+
+      HttpUtil.put(HOST_URL + '/api/v1/users/'+$('#nickname_container').data('id'), parameter, function (err, result) {
+        if (result && result.status === 0) {
+          alert("변경되었습니다.");
+          location.reload = true;
+        }
+      });
     }
   }
 
