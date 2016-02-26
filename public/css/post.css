@@ -215,7 +215,21 @@ body {
 .dot-separate {
     padding: 0 5px;
 }
-
-.like-img {
+/*comment label active*/
+.comment-info .comment-like-label {
+    width: 13px;
+    height: 12px;
+    display: inline-block;
+    background-size: cover;
     margin-right: 5px;
+    background-image: url('/img/ic_like_normal.png');
+}
+
+.comment-info .comment-like-label.active{
+    width: 13px;
+    height: 12px;
+    display: inline-block;
+    background-size: cover;
+    margin-right: 5px;
+    background-image: url('/img/ic_like_pressed.png');
 }

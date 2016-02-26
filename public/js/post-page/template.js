@@ -62,7 +62,7 @@
       +     '<span class="dot-separate">&sdot;</span>'
       +     '<span class="comment-like-btn like-text {{isLike}}">좋아요</span>'
       +     '<span class="dot-separate">&sdot;</span>'
-      +     '<span class="comment-like-btn like-label {{isLike}}"><img class="like-img" src="/img/ic_like_normal.png" alt=""/></span>'
+      +     '<span class="comment-like-btn like-label {{isLike}}"></span>'
       +     '<span class="comment-like">{{likeCount}}</span>'
       +   '</div>'
       +	'</li>';
