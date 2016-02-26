@@ -6,6 +6,10 @@
     height: 44px;
 }
 
+.nav-back-container {
+    padding-left: 8px;
+}
+
 .nav-left-item {
     float: left;
 }

@@ -140,9 +140,8 @@
     })
   };
 
-
-  window.HOST_URL = 'http://localhost:5001';
-
+  window.HOST_URL = 'http://www.garim.me';
+  //window.HOST_URL = 'http://localhost:5001';
   window.HttpUtil = HttpUtil;
 
 })(window);
