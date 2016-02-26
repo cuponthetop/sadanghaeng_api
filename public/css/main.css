@@ -50,9 +50,9 @@ body {
 }
 
 .pagination-container .pagination-number {
-    font-size: 14px;
-    margin-left: 3px;
-    margin-right: 3px;
+    font-size: 18px;
+    margin-left: 6px;
+    margin-right: 6px;
     color: #000000;
 }
 
