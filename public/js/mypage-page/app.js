@@ -19,7 +19,7 @@
       HttpUtil.put(HOST_URL + '/api/v1/users/'+$('#nickname_container').data('id'), parameter, function (err, result) {
         if (result && result.status === 0) {
           alert("변경되었습니다.");
-          location.reload = true;
+          location.reload(true);
         }
       });
     }

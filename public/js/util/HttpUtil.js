@@ -140,7 +140,7 @@
     })
   };
 
-  window.HOST_URL = 'http://godong9.com:5001';
+  window.HOST_URL = 'http://www.garim.me';
   window.HttpUtil = HttpUtil;
 
 })(window);
