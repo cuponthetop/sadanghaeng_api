@@ -181,5 +181,12 @@
     "emailDomainList": [
       "kau.ac.kr"
     ]
+  },
+  {
+    "name": "넥스터즈",
+    "displayName": "넥터인",
+    "emailDomainList": [
+      "teamnexters.com"
+    ]
   }
 ]
