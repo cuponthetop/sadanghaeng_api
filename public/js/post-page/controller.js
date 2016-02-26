@@ -15,7 +15,6 @@
     self.model = model;
     self.view = view;
 
-
     self.view.bind('writeComment', function(parameter) {
       self._writeComment(parameter);
     });
@@ -30,14 +29,16 @@
   Controller.prototype._votePost = function (parameter) {
     var self = this;
     self.model.votePost(parameter, function() {
-
+      alert("투표가 완료되었습니다.");
+      location.reload(true);
     });
   };
 
   Controller.prototype._writeComment = function (parameter) {
     var self = this;
     self.model.addCommentData(parameter, function() {
-      self._updatePostPage(univId);
+      alert("댓글이 작성되었습니다.");
+      location.reload(true);
     });
   };
 
