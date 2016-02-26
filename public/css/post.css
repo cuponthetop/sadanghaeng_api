@@ -21,6 +21,9 @@ body {
 }
 .nav-left-item {
     float: left;
+    width: 32px;
+    height: 32px;
+    margin: 7px 0;
 }
 
 .nav-image {
@@ -68,7 +71,7 @@ body {
 /* comment-container start */
 .comment-container {
     padding-bottom: 32px;
-    background-color: #fafafa ;
+    background-color: #ffffff ;
 }
 
 .post-info-container {

@@ -17,6 +17,9 @@ body {
 
 .nav-left-item {
     float: left;
+    width: 32px;
+    height: 32px;
+    margin: 7px 0;
 }
 
 .nav-image {
@@ -197,7 +200,7 @@ body {
 
 .editRow {
     min-height: 72px;
-    border-bottom: 1px solid #a9a9a9;
+
 }
 
 .myList{
@@ -231,7 +234,7 @@ body {
 }
 #nickname_container{
     height: 72px;
-    border-bottom: 1px solid #a9a9a9;
+    /*border-bottom: 1px solid #a9a9a9;*/
     margin-top: 52px;
 }
 #my_content_container{
