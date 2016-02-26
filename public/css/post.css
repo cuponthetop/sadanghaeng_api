@@ -216,7 +216,7 @@ body {
     padding: 0 5px;
 }
 /*comment label active*/
-.comment-info .comment-like-label {
+.comment-info .comment-like-btn.like-label {
     width: 13px;
     height: 12px;
     display: inline-block;
@@ -225,7 +225,7 @@ body {
     background-image: url('/img/ic_like_normal.png');
 }
 
-.comment-info .comment-like-label.active{
+.comment-info .comment-like-btn.like-label.active{
     width: 13px;
     height: 12px;
     display: inline-block;
