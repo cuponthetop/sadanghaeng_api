@@ -58,6 +58,10 @@
       self.view.bind('votePost', function(parameter) {
         self._votePost(parameter);
       });
+
+      self.view.bind('voteComment', function(parameter) {
+        self._voteComment(parameter);
+      });
     });
   };
 

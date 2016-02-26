@@ -19,7 +19,8 @@
   };
 
   Model.prototype.voteComment = function(parameter, callback) {
-    HttpUtil.post(HOST_URL + '/api/v1/comments/'+parameter.pid+'/votes', parameter, function (err, result) {
+    parameter.voteType = 'up';
+    HttpUtil.post(HOST_URL + '/api/v1/comments/'+parameter.cid+'/votes', parameter, function (err, result) {
       if (result.status === 0) {
         callback();
       }

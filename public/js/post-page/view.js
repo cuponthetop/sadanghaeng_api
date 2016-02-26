@@ -61,7 +61,9 @@
     }
 
     if (event === 'voteComment') {
-
+      $('.comment-like-btn').unbind('click').click(function() {
+        handler({cid: $(this).parents('.comment-item').data('id')});
+      });
     }
 
     if (event === 'writeComment') {
