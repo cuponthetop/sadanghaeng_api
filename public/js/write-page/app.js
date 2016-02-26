@@ -38,7 +38,7 @@
           if (err) {
             return;
           }
-          console.log(result);
+          location.href = '/universities/'+$('#univ_container').data('id')+'/user/'+$('#univ_container').data('uid');
         });
       }
     });
