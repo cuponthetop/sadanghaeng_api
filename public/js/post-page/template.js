@@ -60,9 +60,9 @@
       +   '<div class="comment-info">'
       +     '<span class="comment-date">{{written}}</span>'
       +     '<span class="dot-separate">&sdot;</span>'
-      +     '<span class="comment-like-btn like-text">좋아요</span>'
+      +     '<span class="comment-like-btn like-text {{isLike}}">좋아요</span>'
       +     '<span class="dot-separate">&sdot;</span>'
-      +     '<span class="comment-like-btn like-label"><img class="like-img" src="/img/ic_like_normal.png" alt=""/></span>'
+      +     '<span class="comment-like-btn like-label {{isLike}}"><img class="like-img" src="/img/ic_like_normal.png" alt=""/></span>'
       +     '<span class="comment-like">{{likeCount}}</span>'
       +   '</div>'
       +	'</li>';
@@ -121,6 +121,12 @@
       template = template.replace('{{text}}', escape(data[i].text));
       template = template.replace('{{written}}', getWrittenDateStr(data[i].written));
       template = template.replace('{{likeCount}}', data[i].likeCount);
+
+      if (data[i].didVote && (data[i].didVoteType === 'up')) {
+        template = template.replace(/{{isLike}}/gi, 'active');
+      } else {
+        template = template.replace(/{{isLike}}/gi, '');
+      }
 
       view = view + template;
     }

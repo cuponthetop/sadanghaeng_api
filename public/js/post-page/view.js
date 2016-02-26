@@ -62,6 +62,9 @@
 
     if (event === 'voteComment') {
       $('.comment-like-btn').unbind('click').click(function() {
+        if ($(this).hasClass('active')) {
+          return alert("이미 투표한 댓글입니다.");
+        }
         handler({cid: $(this).parents('.comment-item').data('id')});
       });
     }
