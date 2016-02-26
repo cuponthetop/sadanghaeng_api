@@ -140,11 +140,9 @@
     })
   };
 
-<<<<<<< Updated upstream
-  window.HOST_URL = 'http://www.garim.me';
-=======
+
   window.HOST_URL = 'http://localhost:5001';
->>>>>>> Stashed changes
+
   window.HttpUtil = HttpUtil;
 
 })(window);
