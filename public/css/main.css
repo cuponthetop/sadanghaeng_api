@@ -156,6 +156,7 @@ body {
     height: 72px;
     border-bottom: 1px solid rgb(245, 245, 245);
     padding: 12px 6px;
+    display: flex;
 }
 
 .post-list-container .post-item .post-title {
@@ -164,7 +165,6 @@ body {
     font-weight: bold;
     color: #000;
 }
-
 .post-list-container .post-item .post-info {
     margin-top: 14px;
     height: 12px;
@@ -222,11 +222,29 @@ body {
     background-size: cover;
     background-image: url('/img/ic_dislike_pressed.png');
 }
+
+.post-list-container .post-list-wrap {
+    width: 90%;
+}
+
 .post-date{
     color: #848484;
 }
 
+.comment-count-wrap {
+    width: 50px;
+    height: 50px;
 
+    float: right;
+    text-align: center;
+}
+.comment-img {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: cover;
+    background-image: url('/img/ic_comment_20.png');
+}
 /**/
 
 /*.post-title {*/
