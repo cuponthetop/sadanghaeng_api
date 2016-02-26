@@ -140,7 +140,7 @@
     })
   };
 
-  window.HOST_URL = 'http://localhost:5001';
+  window.HOST_URL = 'http://godong9.com:5001';
   window.HttpUtil = HttpUtil;
 
 })(window);
