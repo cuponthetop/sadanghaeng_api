@@ -1,6 +1,7 @@
 body {
     padding-top: 50px;
     font-family: sans-serif, "Nanum Gothic";
+    background-color: #fafafa;
 }
 
 .padding-zero {
@@ -33,11 +34,9 @@ body {
 
 /* post-container start */
 .post-container {
-    min-height: 260px;
-    margin-top: 12px;
-    margin-bottom: 10px;
-    padding-left: 16px;
-    padding-right: 16px;
+    min-height: 300px;
+    padding: 10px 16px;
+    background-color: #ffffff;
 }
 
 .post-container .title-container {
@@ -72,16 +71,16 @@ body {
 /* comment-container start */
 .comment-container {
     padding-bottom: 32px;
-    background-color: #ffffff ;
+    background-color: #fafafa;
 }
 
-.comment-container .post-info-container {
-    padding-top: 3px;
-    padding-bottom: 3px;
-    height: 30px;
+.post-info-container {
+    padding: 3px 16px;
+    height: 35px;
+    background-color: #ffffff;
 }
 
-.comment-container .post-info-container .post-value {
+.post-info-container .post-value {
     float: left;
     margin-left: 10px;
     margin-right: 18px;
@@ -91,7 +90,7 @@ body {
     font-size: 14px;
 }
 
-.comment-container .post-info-container .comment-info {
+.post-info-container .comment-info {
     float: right;
     line-height: 24px;
     height: 24px;
@@ -101,7 +100,7 @@ body {
     font-weight: bold;
 }
 
-.comment-container .post-info-container .post-like-label {
+.post-info-container .post-like-label {
     float: left;
     width: 24px;
     height: 24px;
@@ -110,7 +109,7 @@ body {
     background-image: url('/img/ic_like_normal.png');
 }
 
-.comment-container .post-info-container .post-like-label.active {
+.post-info-container .post-like-label.active {
     float: left;
     width: 24px;
     height: 24px;
@@ -119,7 +118,7 @@ body {
     background-image: url('/img/ic_like_pressed.png');
 }
 
-.comment-container .post-info-container .post-dislike-label {
+.post-info-container .post-dislike-label {
     float: left;
     width: 24px;
     height: 24px;
@@ -128,7 +127,7 @@ body {
     background-image: url('/img/ic_dislike_normal.png');
 }
 
-.comment-container .post-info-container .post-dislike-label.active {
+.post-info-container .post-dislike-label.active {
     float: left;
     width: 24px;
     height: 24px;
