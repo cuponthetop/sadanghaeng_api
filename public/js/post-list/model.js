@@ -11,7 +11,7 @@
   }
 
   Model.prototype.getTotalPostCount = function(parameter, callback) {
-    HttpUtil.get(HOST_URL + '/api/v1/stats/universities/'+parameter.univid+'/posts', function (err, result) {
+    HttpUtil.get(HOST_URL + '/api/v1/stats/universities/'+parameter.univid+'/posts', parameter, function (err, result) {
       if (result && result.status === 0) {
         callback(result.value);
       }

@@ -43,7 +43,7 @@
 
   Controller.prototype._updatePostList = function () {
     var self = this;
-    self.model.getTotalPostCount({ univid: univId }, function(data) {
+    self.model.getTotalPostCount({ univid: univId, filter: sortFilter }, function(data) {
       self.view.render('redrawPagination', data);
     });
     self.model.getPostList({ univid: univId, filter: sortFilter, page: pageNum, perPage: PER_PAGE }, function(data) {
