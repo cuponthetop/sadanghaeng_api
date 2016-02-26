@@ -14,22 +14,25 @@
    
    var status = true;
    if (!title || regExCheckEmptyText.test(title)) {
-     alert("글 제목을 제대로 입력해주세요!");
+     alert("글 제목을 입력해주세요!");
      status = false;
+     return status;
    }
    if (!text || regExCheckEmptyText.test(text)) {
-     alert("글 내용을 제대로 입력해주세요!");
+     alert("글 내용을 입력해주세요!");
      status = false;
+     return status;
    }
    return status;       
   }
 
   function bind() {
-    $('.post-btn').click(function () {
+    $('#post_btn').click(function () {
       if (validate()) {
         var post = {
-          title: $('#post_title').val()
-        , text: $('#post_content').val()
+          univid: $('#univ_container').data('id'),
+          title: $('#post_title').val(),
+          text: $('#post_content').val()
         };
         HttpUtil.post('http://localhost:5001/api/v1/posts', post, function (err, result) {
           if (err) {
