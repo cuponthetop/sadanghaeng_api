@@ -1,0 +1,25 @@
+body {
+    background-image: url('/img/bg_id.png');
+    background-size: cover;
+    text-align: center;
+    font-family: "Nanum Gothic", sans-serif;
+    color: #ffffff;
+}
+
+.wrap {
+    margin-top: 200px;
+}
+
+.make{
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+.dev{
+    margin-bottom: 20px;
+}
+
+.developer ,.designer{
+    font-size: 16px;
+    font-weight: bold;
+}
