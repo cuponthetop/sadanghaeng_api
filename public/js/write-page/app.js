@@ -7,6 +7,28 @@
    * @param {string}
    */
 
+  var htmlEscapes = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    '\'': '&#x27;',
+    '`': '&#x60;'
+  };
+
+  var escapeHtmlChar = function (chr) {
+    return htmlEscapes[chr];
+  };
+
+  var reUnescapedHtml = /[&<>"'`]/g;
+  var reHasUnescapedHtml = new RegExp(reUnescapedHtml.source);
+
+  var escape = function (string) {
+    return (string && reHasUnescapedHtml.test(string))
+      ? string.replace(reUnescapedHtml, escapeHtmlChar)
+      : string;
+  };
+
   function validate() {
    var regExCheckEmptyText = /(^\s*)(\s*$)/;
    var title = $('#post_title').val();
@@ -31,8 +53,8 @@
       if (validate()) {
         var post = {
           univid: $('#univ_container').data('id'),
-          title: $('#post_title').val(),
-          text: $('#post_content').val()
+          title: escape($('#post_title').val()),
+          text: escape($('#post_content').val())
         };
         HttpUtil.post(HOST_URL + '/api/v1/posts', post, function (err, result) {
           if (err) {
