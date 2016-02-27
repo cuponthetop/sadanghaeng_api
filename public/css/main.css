@@ -99,6 +99,7 @@ body {
 /* post-container start */
 .post-container {
     padding-top: 60px;
+    padding-bottom: 30px;
 }
 
 .post-container .sort-btn-container {
