@@ -21,6 +21,7 @@
 
     self.view.bind('changeTab', function(tabValue) {
       sortFilter = tabValue;
+      pageNum = 1;
       self._updatePagination();
       self._updatePostList();
     });
