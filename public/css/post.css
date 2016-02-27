@@ -40,7 +40,7 @@ body {
 }
 
 .post-container .title-container {
-    height: 20px;
+    min-height: 20px;
     line-height: 20px;
     font-size: 16px;
     color: #fd4037;
