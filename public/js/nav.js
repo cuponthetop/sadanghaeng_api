@@ -3,7 +3,7 @@
 
   function bind() {
     $('.nav-back').click(function () {
-      location.href = document.referrer;
+      history.back();
     });
   }
 
