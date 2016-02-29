@@ -19,7 +19,7 @@
 
     self._updatePagination();
 
-    self.view.bind('changeTab', function(tabValue) {
+    self.view.bind('changeTab', function (tabValue) {
       sortFilter = tabValue;
       pageNum = 1;
       self._updatePagination();
@@ -27,7 +27,7 @@
     });
   }
 
-  Controller.prototype.setView = function() {
+  Controller.prototype.setView = function () {
     var self = this;
     self._updateUnivTitle();
     self._updatePostList();
@@ -35,24 +35,24 @@
 
   Controller.prototype._updateUnivTitle = function () {
     var self = this;
-    self.model.getUnivInfo({ univid: univId }, function(data) {
+    self.model.getUnivInfo({ univid: univId }, function (data) {
       self.view.render('redrawTitle', data);
     });
   };
 
   Controller.prototype._updatePostList = function () {
     var self = this;
-    self.model.getPostList({ univid: univId, filter: sortFilter, page: pageNum, perPage: PER_PAGE }, function(data) {
+    self.model.getPostList({ univid: univId, filter: sortFilter, page: pageNum, perPage: PER_PAGE }, function (data) {
       self.view.render('redraw', data);
     });
   };
 
   Controller.prototype._updatePagination = function () {
     var self = this;
-    self.model.getTotalPostCount({ univid: univId, filter: sortFilter }, function(data) {
+    self.model.getTotalPostCount({ univid: univId, filter: sortFilter }, function (data) {
       self.view.render('redrawPagination', data);
 
-      self.view.bind('movePage', function(pageNumVal) {
+      self.view.bind('movePage', function (pageNumVal) {
         pageNum = pageNumVal;
         self._updatePostList();
       });

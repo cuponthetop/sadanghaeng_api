@@ -19,7 +19,7 @@
     postList.controller.setView();
   }
 
-  $(document).ready(function() {
+  $(document).ready(function () {
     setView();
   });
 
