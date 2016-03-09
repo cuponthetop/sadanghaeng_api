@@ -19,7 +19,7 @@
     postPage.controller.setView($('#post_container').data('id'));
   }
 
-  $(document).ready(function() {
+  $(document).ready(function () {
     setView();
   });
 
