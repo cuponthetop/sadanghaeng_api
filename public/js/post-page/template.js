@@ -34,13 +34,13 @@
       +   '<p>{{title}}</p>'
       + '</div>'
       + '<div class="info-container">'
-      +	  '<span class="post-author">{{author}}</span>'
-      +	  '<span class="post-date">{{written}}</span>'
-      +	  '<span class="post-label post-view-label">View</span>'
-      +	  '<span class="post-value post-view">{{readCount}}</span>'
+      +   '<span class="post-author">{{author}}</span>'
+      +   '<span class="post-date">{{written}}</span>'
+      +   '<span class="post-label post-view-label">View</span>'
+      +   '<span class="post-value post-view">{{readCount}}</span>'
       +	'</div>'
       +	'<div class="content-container">'
-      +	  '{{text}}'
+      +   '{{text}}'
       +	'</div>';
 
     this.postInfoTemplate
@@ -68,7 +68,7 @@
       +	'</li>';
   }
 
-  Template.prototype.showPost = function(data) {
+  Template.prototype.showPost = function (data) {
     var view = '';
     var template = this.postTemplate;
 
@@ -83,7 +83,7 @@
     return view;
   };
 
-  Template.prototype.showPostInfo = function(data) {
+  Template.prototype.showPostInfo = function (data) {
     var view = '';
     var template = this.postInfoTemplate;
 
@@ -109,7 +109,7 @@
     return view;
   };
 
-  Template.prototype.showComment = function(data) {
+  Template.prototype.showComment = function (data) {
     var i, l;
     var view = '';
 

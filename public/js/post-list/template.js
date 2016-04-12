@@ -57,12 +57,12 @@
 
   }
 
-  Template.prototype.paginationShow = function(data) {
+  Template.prototype.paginationShow = function (data) {
     var totalPageCount = Math.ceil(data.count / PER_PAGE);
     var paginationTemplate = '<span class="text-center pagination-number {{isActive}}" data-value="{{pageVal}}">{{pageVal}}</span>'
     var view = '';
 
-    for (var i=1; i<=totalPageCount; i++) {
+    for (var i = 1; i <= totalPageCount; i++) {
       var template = paginationTemplate;
       if (i === 1) {
         template = template.replace('{{isActive}}', 'active');
@@ -77,7 +77,7 @@
     return view;
   };
 
-  Template.prototype.show = function(data) {
+  Template.prototype.show = function (data) {
     var i, l;
     var view = '';
 

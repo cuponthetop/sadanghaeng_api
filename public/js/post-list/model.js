@@ -10,16 +10,16 @@
 
   }
 
-  Model.prototype.getTotalPostCount = function(parameter, callback) {
-    HttpUtil.get(HOST_URL + '/api/v1/stats/universities/'+parameter.univid+'/posts', parameter, function (err, result) {
+  Model.prototype.getTotalPostCount = function (parameter, callback) {
+    HttpUtil.get(HOST_URL + '/api/v1/stats/universities/' + parameter.univid + '/posts', parameter, function (err, result) {
       if (result && result.status === 0) {
         callback(result.value);
       }
     });
   };
 
-  Model.prototype.getUnivInfo = function(parameter, callback) {
-    HttpUtil.get(HOST_URL + '/api/v1/universities/'+parameter.univid, function (err, result) {
+  Model.prototype.getUnivInfo = function (parameter, callback) {
+    HttpUtil.get(HOST_URL + '/api/v1/universities/' + parameter.univid, function (err, result) {
       if (err) {
         return callback("가림판");
       }
@@ -31,8 +31,8 @@
     });
   };
 
-  Model.prototype.getPostList = function(parameter, callback) {
-    HttpUtil.get(HOST_URL + '/api/v1/universities/'+parameter.univid+'/posts', parameter, function (err, result) {
+  Model.prototype.getPostList = function (parameter, callback) {
+    HttpUtil.get(HOST_URL + '/api/v1/universities/' + parameter.univid + '/posts', parameter, function (err, result) {
       if (err) {
         return callback([]);
       }
